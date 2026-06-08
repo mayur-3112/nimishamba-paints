@@ -7,6 +7,17 @@ function show(page) {
   document.querySelectorAll('.pg').forEach(p => p.classList.remove('active'));
   const el = document.getElementById('pg-' + page);
   if (el) { el.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  
+  // Highlight active menu item
+  document.querySelectorAll('.nav-menu a').forEach(a => {
+    const onclickStr = a.getAttribute('onclick') || '';
+    if (onclickStr.includes(`'${page}'`)) {
+      a.classList.add('active');
+    } else {
+      a.classList.remove('active');
+    }
+  });
+
   document.getElementById('navMenu').classList.remove('open');
   if (page === 'shades' && !shadesReady) initShades();
 }

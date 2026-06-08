@@ -15,6 +15,26 @@ function toggleNav() {
   document.getElementById('navMenu').classList.toggle('open');
 }
 
+// ── WHATSAPP LEAD GEN FORM ─────────────────────────────
+function sendToWhatsApp(e) {
+  e.preventDefault();
+  const name  = document.getElementById('fName').value.trim();
+  const phone = document.getElementById('fPhone').value.trim();
+  const type  = document.getElementById('fType').value;
+  const area  = document.getElementById('fArea').value.trim();
+  const msg = `Hi Nimishamba Paints! 👋
+
+I need a paint estimate:
+• Name: ${name}
+• Phone: ${phone}
+• What to paint: ${type}
+${area ? `• Area: ${area}` : ''}
+
+Please help me with shade suggestions and quantity estimate. Thank you!`;
+  const url = 'https://wa.me/919448084351?text=' + encodeURIComponent(msg);
+  window.open(url, '_blank');
+}
+
 // Keyboard nav close
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();

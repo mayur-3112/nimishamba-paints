@@ -210,7 +210,7 @@ function openModal(s) {
   }
 
   document.getElementById('mWa').href =
-    `https://wa.me/919876543210?text=Hi! I'm interested in Berger shade: ${encodeURIComponent(s.name)} (${s.code}). Please help.`;
+    `https://wa.me/919448084351?text=Hi! I'm interested in Berger shade: ${encodeURIComponent(s.name)} (${s.code}). Please help.`;
 
   document.getElementById('shadeModal').classList.add('open');
   document.body.style.overflow = 'hidden';

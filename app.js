@@ -268,8 +268,8 @@ function initAnimations() {
         clickable: true,
       },
       navigation: {
-        nextEl: '.swiper-button-prev',
-        prevEl: '.swiper-button-next',
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
       },
     });
   }

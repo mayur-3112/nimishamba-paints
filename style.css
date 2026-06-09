@@ -183,7 +183,7 @@ body {
   padding:3rem 4rem 3rem 1rem; background:var(--light);
 }
 .hero-img {
-  width:100%; max-height:560px; object-fit:cover;
+  width:100%; height:100%; max-height:560px; object-fit:cover;
   border-radius:20px;
   filter:drop-shadow(0 24px 48px rgba(0,0,0,0.12));
 }

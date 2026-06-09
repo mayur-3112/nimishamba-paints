@@ -2,13 +2,17 @@
    app.js — Sri Nimishamba Paints Website Logic
    ============================================================ */
 
+let isTransitioning = false;
+
 // ── PAGE NAVIGATION ──────────────────────────────────────
 function show(page) {
-  document.querySelectorAll('.pg').forEach(p => p.classList.remove('active'));
-  const el = document.getElementById('pg-' + page);
-  if (el) { el.classList.add('active'); window.scrollTo({ top: 0, behavior: 'instant' }); }
+  const activePage = document.querySelector('.pg.active');
+  const targetPage = document.getElementById('pg-' + page);
+  if (!targetPage || targetPage === activePage || isTransitioning) return;
+
+  isTransitioning = true;
   
-  // Highlight active menu item
+  // Highlight active menu item immediately
   document.querySelectorAll('.nav-menu a').forEach(a => {
     const onclickStr = a.getAttribute('onclick') || '';
     if (onclickStr.includes(`'${page}'`)) {
@@ -19,14 +23,33 @@ function show(page) {
   });
 
   document.getElementById('navMenu').classList.remove('open');
-  if (page === 'shades' && !shadesReady) initShades();
 
-  // Refresh AOS scroll animations for newly revealed page content
-  setTimeout(() => {
-    if (typeof AOS !== 'undefined') {
-      AOS.refresh();
-    }
-  }, 100);
+  if (activePage) {
+    // Slide down and fade out the active page
+    activePage.classList.add('leaving');
+    activePage.classList.remove('active');
+    
+    setTimeout(() => {
+      activePage.classList.remove('leaving');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      
+      // Make the target page slide up and fade in
+      targetPage.classList.add('active');
+      isTransitioning = false;
+      if (page === 'shades' && !shadesReady) initShades();
+      
+      // Refresh AOS scroll animations for newly revealed page content
+      setTimeout(() => {
+        if (typeof AOS !== 'undefined') {
+          AOS.refresh();
+        }
+      }, 100);
+    }, 400); // matches the 0.4s CSS transition duration
+  } else {
+    targetPage.classList.add('active');
+    isTransitioning = false;
+    if (page === 'shades' && !shadesReady) initShades();
+  }
 }
 
 function toggleNav() {

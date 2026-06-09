@@ -346,15 +346,15 @@
           <form class="estimate-form" id="estimateForm" onsubmit="sendToWhatsApp(event)">
             <h3>Get Free Paint Estimate</h3>
             <div class="form-group">
-              <label>Your Name</label>
+              <label for="fName">Your Name</label>
               <input type="text" id="fName" placeholder="e.g. Rajesh Kumar" required/>
             </div>
             <div class="form-group">
-              <label>Phone Number</label>
+              <label for="fPhone">Phone Number</label>
               <input type="tel" id="fPhone" placeholder="+91 98765 43210" required/>
             </div>
             <div class="form-group">
-              <label>What do you want to paint?</label>
+              <label for="fType">What do you want to paint?</label>
               <select id="fType" required>
                 <option value="">Select...</option>
                 <option>Bedroom (1 room)</option>
@@ -368,7 +368,7 @@
               </select>
             </div>
             <div class="form-group">
-              <label>Approx. area (sq ft) &mdash; optional</label>
+              <label for="fArea">Approx. area (sq ft) &mdash; optional</label>
               <input type="text" id="fArea" placeholder="e.g. 1200 sq ft"/>
             </div>
             <button type="submit" class="btn-fill" style="width:100%;justify-content:center;margin-top:0.5rem">
@@ -468,7 +468,7 @@
   <section class="shade-sec">
     <div class="wrap">
       <div class="shade-bar">
-        <input id="searchBox" type="text" placeholder="Search shade by name or code&hellip;" oninput="filterShades()" class="search-box"/>
+        <input id="searchBox" type="text" aria-label="Search shades by name or code" placeholder="Search shade by name or code&hellip;" oninput="filterShades()" class="search-box"/>
         <div class="cat-pills" id="catPills"></div>
       </div>
       <div class="shade-meta" id="shadeMeta"></div>

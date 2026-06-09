@@ -2,55 +2,39 @@
    app.js — Sri Nimishamba Paints Website Logic
    ============================================================ */
 
-let isTransitioning = false;
-
 // ── PAGE NAVIGATION ──────────────────────────────────────
 function show(page) {
-  const activePage = document.querySelector('.pg.active');
   const targetPage = document.getElementById('pg-' + page);
-  if (!targetPage || targetPage === activePage || isTransitioning) return;
+  if (!targetPage) return;
 
-  isTransitioning = true;
+  targetPage.scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('navMenu').classList.remove('open');
+}
+
+// Highlight active menu item on scroll (ScrollSpy)
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('.pg');
+  const navLinks = document.querySelectorAll('.nav-menu a');
   
-  // Highlight active menu item immediately
-  document.querySelectorAll('.nav-menu a').forEach(a => {
-    const onclickStr = a.getAttribute('onclick') || '';
-    if (onclickStr.includes(`'${page}'`)) {
-      a.classList.add('active');
-    } else {
-      a.classList.remove('active');
+  let currentSectionId = '';
+  sections.forEach(sec => {
+    const rect = sec.getBoundingClientRect();
+    if (rect.top <= 180 && rect.bottom >= 180) {
+      currentSectionId = sec.id.replace('pg-', '');
     }
   });
 
-  document.getElementById('navMenu').classList.remove('open');
-
-  if (activePage) {
-    // Slide down and fade out the active page
-    activePage.classList.add('leaving');
-    activePage.classList.remove('active');
-    
-    setTimeout(() => {
-      activePage.classList.remove('leaving');
-      window.scrollTo({ top: 0, behavior: 'instant' });
-      
-      // Make the target page slide up and fade in
-      targetPage.classList.add('active');
-      isTransitioning = false;
-      if (page === 'shades' && !shadesReady) initShades();
-      
-      // Refresh AOS scroll animations for newly revealed page content
-      setTimeout(() => {
-        if (typeof AOS !== 'undefined') {
-          AOS.refresh();
-        }
-      }, 100);
-    }, 400); // matches the 0.4s CSS transition duration
-  } else {
-    targetPage.classList.add('active');
-    isTransitioning = false;
-    if (page === 'shades' && !shadesReady) initShades();
+  if (currentSectionId) {
+    navLinks.forEach(a => {
+      const onclickStr = a.getAttribute('onclick') || '';
+      if (onclickStr.includes(`'${currentSectionId}'`)) {
+        a.classList.add('active');
+      } else {
+        a.classList.remove('active');
+      }
+    });
   }
-}
+});
 
 function toggleNav() {
   document.getElementById('navMenu').classList.toggle('open');
@@ -272,7 +256,7 @@ function initAnimations() {
 
 // ── BOOT ──────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  show('home');
   initHome();
+  initShades();
   initAnimations();
 });

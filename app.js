@@ -6,7 +6,7 @@
 function show(page) {
   document.querySelectorAll('.pg').forEach(p => p.classList.remove('active'));
   const el = document.getElementById('pg-' + page);
-  if (el) { el.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  if (el) { el.classList.add('active'); window.scrollTo({ top: 0, behavior: 'instant' }); }
   
   // Highlight active menu item
   document.querySelectorAll('.nav-menu a').forEach(a => {
@@ -20,6 +20,13 @@ function show(page) {
 
   document.getElementById('navMenu').classList.remove('open');
   if (page === 'shades' && !shadesReady) initShades();
+
+  // Refresh AOS scroll animations for newly revealed page content
+  setTimeout(() => {
+    if (typeof AOS !== 'undefined') {
+      AOS.refresh();
+    }
+  }, 100);
 }
 
 function toggleNav() {
@@ -243,8 +250,43 @@ window.addEventListener('scroll', () => {
     ? 'rgba(0,0,0,0.12)' : 'rgba(0,0,0,0.08)';
 });
 
+// Swiper & AOS instance variables
+let heroSwiper;
+
+function initAnimations() {
+  // Initialize Swiper for the Hero banner
+  if (document.querySelector('.hero-swiper')) {
+    heroSwiper = new Swiper('.hero-swiper', {
+      loop: true,
+      speed: 800,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-prev',
+        prevEl: '.swiper-button-next',
+      },
+    });
+  }
+
+  // Initialize AOS (Animate On Scroll)
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+    });
+  }
+}
+
 // ── BOOT ──────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   show('home');
   initHome();
+  initAnimations();
 });

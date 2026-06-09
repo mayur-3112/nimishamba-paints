@@ -207,31 +207,53 @@ function loadMore() { shown += 60; renderGrid(); }
 
 // ── SHADE MODAL ───────────────────────────────────────────
 function openModal(s) {
-  document.getElementById('mSwatch').style.background = s.hex;
-  document.getElementById('mCode').textContent  = s.code;
-  document.getElementById('mName').textContent  = s.name;
-  document.getElementById('mCat').textContent   = s.category || '';
-  document.getElementById('mDesc').textContent  = s.desc || 'Visit Sri Nimishamba Paints for physical shade cards and expert colour advice from our trained staff.';
+  try {
+    console.log('openModal called with shade:', s);
+    if (!s) {
+      console.error('openModal called with undefined or null shade!');
+      return;
+    }
+    
+    const mSwatch = document.getElementById('mSwatch');
+    const mCode = document.getElementById('mCode');
+    const mName = document.getElementById('mName');
+    const mCat = document.getElementById('mCat');
+    const mDesc = document.getElementById('mDesc');
+    const mPairs = document.getElementById('mPairs');
+    const mWa = document.getElementById('mWa');
+    const shadeModal = document.getElementById('shadeModal');
 
-  const pairs = document.getElementById('mPairs');
-  pairs.innerHTML = '';
-  if (s.combos && s.combos.length) {
-    s.combos.forEach(c => {
-      const d = document.createElement('div');
-      d.className = 'm-pair-dot';
-      d.style.background = c.hex || '#ddd';
-      d.title = c.name;
-      pairs.appendChild(d);
-    });
-  } else {
-    pairs.innerHTML = '<span style="font-size:0.8rem;color:#86868B">Visit us for expert colour pairing advice</span>';
+    if (!mSwatch || !mCode || !mName || !mCat || !mDesc || !mPairs || !mWa || !shadeModal) {
+      console.error('One of the modal DOM elements is missing!', { mSwatch, mCode, mName, mCat, mDesc, mPairs, mWa, shadeModal });
+      return;
+    }
+
+    mSwatch.style.background = s.hex || '#ffffff';
+    mCode.textContent  = s.code || '';
+    mName.textContent  = s.name || '';
+    mCat.textContent   = s.category || '';
+    mDesc.textContent  = s.desc || 'Visit Sri Nimishamba Paints for physical shade cards and expert colour advice from our trained staff.';
+
+    mPairs.innerHTML = '';
+    if (s.combos && s.combos.length) {
+      s.combos.forEach(c => {
+        const d = document.createElement('div');
+        d.className = 'm-pair-dot';
+        d.style.background = c.hex || '#ddd';
+        d.title = c.name;
+        mPairs.appendChild(d);
+      });
+    } else {
+      mPairs.innerHTML = '<span style="font-size:0.8rem;color:#86868B">Visit us for expert colour pairing advice</span>';
+    }
+
+    mWa.href = `https://wa.me/919448084351?text=Hi! I'm interested in Berger shade: ${encodeURIComponent(s.name || '')} (${s.code || ''}). Please help.`;
+
+    shadeModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  } catch (err) {
+    console.error('Error in openModal:', err);
   }
-
-  document.getElementById('mWa').href =
-    `https://wa.me/919448084351?text=Hi! I'm interested in Berger shade: ${encodeURIComponent(s.name)} (${s.code}). Please help.`;
-
-  document.getElementById('shadeModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {

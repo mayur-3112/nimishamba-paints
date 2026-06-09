@@ -37,8 +37,13 @@ body {
 /* ── UTILITIES ──────────────────────────────────────── */
 .wrap { max-width:1120px; margin:0 auto; padding:0 24px; }
 .pg {
+  display:none;
+  opacity:0;
+  transition:opacity 0.3s ease;
+}
+.pg.active {
   display:block;
-  scroll-margin-top:90px;
+  opacity:1;
 }
 
 /* ── NAV ────────────────────────────────────────────── */

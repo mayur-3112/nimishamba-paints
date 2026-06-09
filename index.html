@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,wght@0,300;0,600;0,700;1,300;1,600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <link rel="stylesheet" href="style.css?v=1.6"/>
+  <link rel="stylesheet" href="style.css?v=1.7"/>
 </head>
 <body>
 
@@ -399,11 +399,13 @@
 
 <!-- ══ ABOUT ══ -->
 <div id="pg-about" class="pg">
-  <section class="wrap" style="padding:6rem 24px 2rem">
-    <p class="section-eye" data-aos="fade-up">About Us</p>
-    <h2 class="section-h2" data-aos="fade-up" data-aos-delay="100">Trusted since 2005.<br/><em>Built on quality.</em></h2>
-  </section>
-  <section class="wrap" style="padding:1rem 24px 5rem">
+  <div class="inner-hero">
+    <div class="wrap">
+      <p class="eyebrow">About Us</p>
+      <h1 class="inner-h1">Trusted since 2005.<br/><em>Built on quality.</em></h1>
+    </div>
+  </div>
+  <section class="wrap" style="padding:5rem 24px">
     <div class="about-split">
       <div class="about-img-wrap">
         <img src="images/color_wall.png" alt="Nimishamba Paints store colour wall Mysuru" class="about-img"/>
@@ -458,12 +460,14 @@
 
 <!-- ══ SHADES ══ -->
 <div id="pg-shades" class="pg">
-  <section class="wrap" style="padding:6rem 24px 1rem">
-    <p class="section-eye" data-aos="fade-up">Berger Colour Catalogue &mdash; Mysuru</p>
-    <h2 class="section-h2" data-aos="fade-up" data-aos-delay="100">Find your<br/><em>perfect colour.</em></h2>
-    <p style="color:var(--muted);margin-top:-1.5rem;font-size:0.9rem" data-aos="fade-up" data-aos-delay="150">Search or filter below. Click any shade to preview and enquire directly on WhatsApp</p>
-  </section>
-  <section class="shade-sec" style="padding-top:0">
+  <div class="inner-hero">
+    <div class="wrap">
+      <p class="eyebrow">Berger Colour Catalogue &mdash; Mysuru</p>
+      <h1 class="inner-h1">Find your<br/><em>perfect colour.</em></h1>
+      <p style="color:rgba(255,255,255,0.5);margin-top:0.5rem;font-size:0.9rem">Click any shade to preview and enquire directly on WhatsApp</p>
+    </div>
+  </div>
+  <section class="shade-sec">
     <div class="wrap">
       <div class="shade-bar">
         <input id="searchBox" type="text" aria-label="Search shades by name or code" placeholder="Search shade by name or code&hellip;" oninput="filterShades()" class="search-box"/>
@@ -480,11 +484,13 @@
 
 <!-- ══ GALLERY ══ -->
 <div id="pg-gallery" class="pg">
-  <section class="wrap" style="padding:6rem 24px 2rem">
-    <p class="section-eye" data-aos="fade-up">Gallery</p>
-    <h2 class="section-h2" data-aos="fade-up" data-aos-delay="100">Colour in the<br/><em>real world.</em></h2>
-  </section>
-  <section class="wrap" style="padding:1rem 24px 6rem">
+  <div class="inner-hero">
+    <div class="wrap">
+      <p class="eyebrow">Gallery</p>
+      <h1 class="inner-h1">Colour in the<br/><em>real world.</em></h1>
+    </div>
+  </div>
+  <section class="wrap" style="padding:4rem 24px 6rem">
     <div class="gal-grid">
       <div class="gal-item gal-big"><img src="images/color_wall.png" alt="Berger paint colour wall Nimishamba Mysuru"/><div class="gal-label">Our Colour Collection</div></div>
       <div class="gal-item"><img src="images/hero_minimal.png" alt="Premium Berger paint products"/><div class="gal-label">Premium Products</div></div>
@@ -503,11 +509,13 @@
 
 <!-- ══ CONTACT ══ -->
 <div id="pg-contact" class="pg">
-  <section class="wrap" style="padding:6rem 24px 2rem">
-    <p class="section-eye" data-aos="fade-up">Contact &amp; Location</p>
-    <h2 class="section-h2" data-aos="fade-up" data-aos-delay="100">Come say hello.<br/><em>We&rsquo;re always here.</em></h2>
-  </section>
-  <section class="wrap contact-wrap" style="padding-top:1rem">
+  <div class="inner-hero">
+    <div class="wrap">
+      <p class="eyebrow">Contact &amp; Location</p>
+      <h1 class="inner-h1">Come say hello.<br/><em>We&rsquo;re always here.</em></h1>
+    </div>
+  </div>
+  <section class="wrap contact-wrap">
     <div class="contact-cols">
       <div class="contact-info-col">
         <div class="info-block">
@@ -611,6 +619,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script src="app.js?v=1.6"></script>
+<script src="app.js?v=1.7"></script>
 </body>
 </html>

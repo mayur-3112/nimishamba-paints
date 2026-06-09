@@ -109,7 +109,7 @@ function buildBentoStrip() {
     d.className = 'b-swatch';
     d.style.background = s.hex;
     d.title = s.name;
-    d.onclick = () => { show('shades'); setTimeout(() => openModal(s), 300); };
+    d.onclick = () => show('shades');
     d.style.cursor = 'pointer';
     el.appendChild(d);
   });
@@ -131,7 +131,7 @@ function buildPreviewGrid() {
         <div class="prev-code">${s.code}</div>
         <div class="prev-name">${s.name}</div>
       </div>`;
-    t.onclick = () => { show('shades'); setTimeout(() => openModal(s), 300); };
+    t.onclick = () => show('shades');
     el.appendChild(t);
   });
 }
@@ -198,72 +198,13 @@ function renderGrid() {
         <div class="s-name">${s.name}</div>
         ${s.category ? `<span class="s-cat">${s.category}</span>` : ''}
       </div>`;
-    t.onclick = () => openModal(s);
     grid.appendChild(t);
   });
 }
 
 function loadMore() { shown += 60; renderGrid(); }
 
-// ── SHADE MODAL ───────────────────────────────────────────
-function openModal(s) {
-  try {
-    console.log('openModal called with shade:', s);
-    if (!s) {
-      console.error('openModal called with undefined or null shade!');
-      return;
-    }
-    
-    const mSwatch = document.getElementById('mSwatch');
-    const mCode = document.getElementById('mCode');
-    const mName = document.getElementById('mName');
-    const mCat = document.getElementById('mCat');
-    const mDesc = document.getElementById('mDesc');
-    const mPairs = document.getElementById('mPairs');
-    const mWa = document.getElementById('mWa');
-    const shadeModal = document.getElementById('shadeModal');
 
-    if (!mSwatch || !mCode || !mName || !mCat || !mDesc || !mPairs || !mWa || !shadeModal) {
-      console.error('One of the modal DOM elements is missing!', { mSwatch, mCode, mName, mCat, mDesc, mPairs, mWa, shadeModal });
-      return;
-    }
-
-    mSwatch.style.background = s.hex || '#ffffff';
-    mCode.textContent  = s.code || '';
-    mName.textContent  = s.name || '';
-    mCat.textContent   = s.category || '';
-    mDesc.textContent  = s.desc || 'Visit Sri Nimishamba Paints for physical shade cards and expert colour advice from our trained staff.';
-
-    mPairs.innerHTML = '';
-    if (s.combos && s.combos.length) {
-      s.combos.forEach(c => {
-        const d = document.createElement('div');
-        d.className = 'm-pair-dot';
-        d.style.background = c.hex || '#ddd';
-        d.title = c.name;
-        mPairs.appendChild(d);
-      });
-    } else {
-      mPairs.innerHTML = '<span style="font-size:0.8rem;color:#86868B">Visit us for expert colour pairing advice</span>';
-    }
-
-    mWa.href = `https://wa.me/919448084351?text=Hi! I'm interested in Berger shade: ${encodeURIComponent(s.name || '')} (${s.code || ''}). Please help.`;
-
-    shadeModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  } catch (err) {
-    console.error('Error in openModal:', err);
-  }
-}
-
-function closeModal() {
-  document.getElementById('shadeModal')?.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function bgClose(e) {
-  if (e.target === document.getElementById('shadeModal')) closeModal();
-}
 
 // ── NAV SCROLL EFFECT ─────────────────────────────────────
 window.addEventListener('scroll', () => {

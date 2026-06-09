@@ -125,10 +125,10 @@ function buildBentoStrip() {
 function buildPreviewGrid() {
   const el = document.getElementById('previewGrid');
   if (!el) return;
-  // Sample evenly across catalog for variety — show 60 tiles
+  // Sample evenly across catalog for variety — show 12 trending swatches as a preview
   const all = allShades.filter(s => s.hex && s.hex !== '#FFFFFF' && s.hex !== '#000000');
-  const step = Math.max(1, Math.floor(all.length / 60));
-  const picks = all.filter((_, i) => i % step === 0).slice(0, 60);
+  const step = Math.max(1, Math.floor(all.length / 12));
+  const picks = all.filter((_, i) => i % step === 0).slice(0, 12);
   picks.forEach(s => {
     const t = document.createElement('div');
     t.className = 'prev-tile';

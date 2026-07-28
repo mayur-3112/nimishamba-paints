@@ -83,7 +83,7 @@ export default function App() {
                     Discover Signature Combinations
                   </h2>
                   <p className="font-sans text-neutral-mid text-sm mt-3">
-                    Preview our digital colour studio. Click any color box below to open the full interactive visualizer and explore palettes.
+                    Preview our digital colour studio. Click any shade below to open the Material Mood Board and explore palettes against real interior finishes.
                   </p>
                 </div>
 
@@ -133,7 +133,7 @@ export default function App() {
                     onClick={() => setCurrentTab('shades')}
                     className="bg-primary text-white font-display text-xs font-bold uppercase tracking-wider px-8 py-4.5 rounded-xl hover:bg-primary-light transition-all shadow-premium inline-flex items-center gap-2"
                   >
-                    <span>Launch Color Visualizer</span>
+                    <span>Open Material Mood Board</span>
                     <ArrowRight className="w-4 h-4 text-gold" />
                   </button>
                 </div>
@@ -193,17 +193,17 @@ export default function App() {
             <div className="bg-gradient-to-br from-primary to-primary-dark text-white py-20 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-80 h-80 bg-gold bg-opacity-10 rounded-full filter blur-3xl pointer-events-none" />
               <div className="max-w-7xl mx-auto px-6 relative z-10 text-left">
-                <span className="text-[10px] font-bold text-gold uppercase tracking-widest block mb-2">Berger Experience Hub</span>
+                <span className="text-[10px] font-bold text-gold uppercase tracking-widest block mb-2">Berger Colour Studio</span>
                 <h1 className="font-display font-extrabold text-3xl sm:text-5xl leading-tight max-w-xl text-white">
-                  Interactive Room Color Renders
+                  The Material Mood Board Lab
                 </h1>
                 <p className="font-sans text-neutral-light opacity-65 text-sm max-w-md mt-4 leading-relaxed">
-                  Select and preview shades from the catalogue explorer grid. Calculate complementary accent combinations.
+                  Select a shade and see how it converses with timber, stone, linen, and brass — then shift ambient light to test morning, noon, and golden hour.
                 </p>
               </div>
             </div>
 
-            {/* Room Visualizer Sandbox */}
+            {/* Material Mood Board */}
             <PaintInspiration 
               selectedShade={selectedShade} 
               onSelectShade={handleSelectShade} 

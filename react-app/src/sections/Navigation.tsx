@@ -56,13 +56,9 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
             }}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <img
-              src="/images/logo-mark.png"
-              alt="Nimishamba Paints &amp; Plywoods"
-              width={40}
-              height={40}
-              className="h-10 w-10 object-contain group-hover:scale-105 transition-transform duration-300"
-            />
+            <div className="overflow-hidden w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-md border border-neutral-light/10 group-hover:scale-105 transition-transform duration-300">
+              <img src="/images/logo.png" alt="Nimishamba Paints Logo" className="w-full h-full object-cover" />
+            </div>
             <div className="flex flex-col leading-none text-left">
               <span className="font-display font-bold text-primary tracking-tight text-base">NIMISHAMBA</span>
               <span className="font-sans text-[9px] font-bold text-neutral-mid tracking-wider uppercase">PAINTS &amp; DÉCOR</span>

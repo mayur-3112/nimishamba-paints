@@ -28,12 +28,12 @@ export default function Footer({ setCurrentTab, openQuoteModal }: FooterProps) {
             }}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-md">
-              <span className="font-display font-bold text-primary text-lg">N</span>
+            <div className="overflow-hidden w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-md border border-neutral-light/10">
+              <img src="/images/logo.png" alt="Nimishamba Paints Logo" className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="font-display font-bold text-white tracking-tight text-lg">NIMISHAMBA</span>
-              <span className="font-sans text-[10px] font-semibold text-neutral-light opacity-50 tracking-wider uppercase">PAINTS &amp; DÉCOR</span>
+              <span className="font-display font-bold text-white tracking-tight text-base">NIMISHAMBA</span>
+              <span className="font-sans text-[9px] font-bold text-neutral-light opacity-50 tracking-wider uppercase">PAINTS &amp; DÉCOR</span>
             </div>
           </a>
           

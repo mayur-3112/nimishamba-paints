@@ -34,6 +34,32 @@ export interface Inspiration {
   colors: string[]; // hex codes
 }
 
+/**
+ * A completed room scheme shown in the Featured Projects section.
+ *
+ * `compare` drives the drag-to-compare slider. It holds two Berger shades that
+ * are blended over the same photograph, so the comparison is a genuine shade
+ * preview rather than a claimed customer before/after. When real project
+ * photography becomes available, supply `beforeImage` instead and the slider
+ * will show the photographs directly.
+ */
+export interface Project {
+  id: string;
+  title: string;
+  category: string;
+  scope: string;
+  description: string;
+  image: string;
+  beforeImage?: string;
+  compare?: {
+    fromLabel: string;
+    fromHex: string;
+    toLabel: string;
+    toHex: string;
+  };
+  products: string[];
+}
+
 export const PRODUCTS: Product[] = [
   {
     id: "int-paint",
@@ -164,5 +190,72 @@ export const INSPIRATIONS: Inspiration[] = [
     description: "Premium stone-greys with classic navy accents on gables and door trims for a modern look.",
     image: "/images/hero_banner.png",
     colors: ["#FAF0DC", "#BDD5C0", "#152B4C", "#B8D4E8"]
+  }
+];
+
+export const PROJECTS: Project[] = [
+  {
+    id: "living-warm-neutral",
+    title: "Warm Neutral Living Room",
+    category: "Living Room",
+    scope: "3BHK apartment · 4 walls + ceiling",
+    description:
+      "A soft sand base keeps a west-facing living room from going harsh in the afternoon. Silk Glamor was specified for its low-sheen wipe-clean finish around the seating.",
+    image: "/images/rooms/living.png",
+    compare: {
+      fromLabel: "Warm Sand",
+      fromHex: "#E4C79C",
+      toLabel: "Cool Ivory",
+      toHex: "#DCE3E8"
+    },
+    products: ["Silk Glamor", "Bison Acrylic Putty"]
+  },
+  {
+    id: "bedroom-calm-blue",
+    title: "Calm Blue Master Bedroom",
+    category: "Bedroom",
+    scope: "Master bedroom · feature wall + trim",
+    description:
+      "A muted blue headboard wall with the remaining walls held light, so the room reads restful rather than dark. Breathe Easy chosen for the low-odour, low-VOC formulation.",
+    image: "/images/rooms/bedroom.png",
+    compare: {
+      fromLabel: "Powder Blue",
+      fromHex: "#9FB8CD",
+      toLabel: "Clay Rose",
+      toHex: "#D3A79A"
+    },
+    products: ["Silk Breathe Easy", "Undercoat Primer"]
+  },
+  {
+    id: "kids-bright",
+    title: "Bright Kids Room",
+    category: "Kids Room",
+    scope: "Children's bedroom · washable finish",
+    description:
+      "A pale citrus scheme that stays cheerful without overwhelming a small room. Specified in an easy-clean emulsion so scuffs and crayon come off the wall, not the paint.",
+    image: "/images/rooms/kids.png",
+    compare: {
+      fromLabel: "Soft Citrus",
+      fromHex: "#EDE8A6",
+      toLabel: "Mint Wash",
+      toHex: "#BFD9C8"
+    },
+    products: ["Easy Clean", "Bison Acrylic Putty"]
+  },
+  {
+    id: "dining-teal",
+    title: "Deep Teal Dining Room",
+    category: "Dining Room",
+    scope: "Open dining · accent wall",
+    description:
+      "A saturated teal accent wall behind the dining table, balanced by warm timber and brass. Deep tones need correct base tinting — mixed in-store on the computerised machine.",
+    image: "/images/rooms/dining.png",
+    compare: {
+      fromLabel: "Deep Teal",
+      fromHex: "#2E7286",
+      toLabel: "Forest Green",
+      toHex: "#3F6B4F"
+    },
+    products: ["Silk Glamor", "Silk Illusions"]
   }
 ];

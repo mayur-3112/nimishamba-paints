@@ -55,12 +55,12 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
             }}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-all duration-300">
-              <span className="font-display font-bold text-white text-lg">N</span>
+            <div className="overflow-hidden h-10 w-10 bg-white rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-all duration-300 border border-neutral-light">
+              <img src="/images/logo.png" alt="Nimishamba Paints Logo" className="w-full h-full object-cover" />
             </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-display font-bold text-primary tracking-tight text-lg">NIMISHAMBA</span>
-              <span className="font-sans text-[10px] font-semibold text-neutral-mid tracking-wider uppercase">PAINTS &amp; DÉCOR</span>
+            <div className="flex flex-col leading-none text-left">
+              <span className="font-display font-bold text-primary tracking-tight text-base">NIMISHAMBA</span>
+              <span className="font-sans text-[9px] font-bold text-neutral-mid tracking-wider uppercase">PAINTS &amp; DÉCOR</span>
             </div>
           </a>
 

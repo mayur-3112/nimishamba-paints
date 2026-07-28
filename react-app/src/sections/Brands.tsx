@@ -9,11 +9,11 @@ export default function Brands() {
           
           {/* Logo Left */}
           <div className="flex-shrink-0 flex flex-col items-center">
-            <div className="w-24 h-24 bg-primary rounded-3xl flex items-center justify-center shadow-md mb-3 transform hover:rotate-2 transition-transform duration-300">
-              <span className="font-display font-black text-white text-4xl">B</span>
+            <div className="w-24 h-24 overflow-hidden rounded-3xl border border-neutral-light bg-white flex items-center justify-center shadow-md mb-3 transform hover:rotate-2 transition-transform duration-300">
+              <img src="/images/logo.png" alt="Nimishamba Paints Logo" className="w-full h-full object-cover" />
             </div>
-            <h3 className="font-display font-extrabold text-primary text-2xl leading-none">BERGER PAINTS</h3>
-            <span className="font-sans text-[10px] font-bold text-accent uppercase tracking-widest mt-2">PLATINUM PARTNER</span>
+            <h3 className="font-display font-extrabold text-primary text-base leading-none">NIMISHAMBA</h3>
+            <span className="font-sans text-[9px] font-bold text-accent tracking-widest uppercase mt-2">PLATINUM PARTNER</span>
           </div>
 
           {/* Description Right */}

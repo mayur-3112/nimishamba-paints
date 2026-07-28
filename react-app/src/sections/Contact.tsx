@@ -79,6 +79,19 @@ export default function Contact() {
                   </a>
                 </div>
               </div>
+
+              <div className="flex gap-4">
+                <div className="w-10 h-10 bg-pink-50 rounded-lg border border-pink-200 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-5 h-5 text-pink-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </div>
+                <div className="flex flex-col leading-snug">
+                  <span className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider mb-1">Instagram Socials</span>
+                  <a href="https://www.instagram.com/nimishamba.paints/" target="_blank" rel="noopener noreferrer" className="font-display text-primary text-base font-bold hover:text-accent transition-colors">
+                    @nimishamba.paints
+                  </a>
+                  <span className="font-sans text-[10px] text-neutral-mid mt-0.5">Explore daily updates &amp; inspiration</span>
+                </div>
+              </div>
             </div>
 
             {/* Hours and Perks */}

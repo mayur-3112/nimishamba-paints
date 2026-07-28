@@ -1,82 +1,64 @@
 import React from 'react';
-import { Shield, Sparkles, Truck, Users, Award, Tag } from 'lucide-react';
 
 export default function WhyChooseUs() {
-  const perks = [
-    {
-      title: "Authorized Platinum Dealer",
-      desc: "Direct-from-factory sourcing ensures 100% genuine paints. No dilution, no shelf-life tampering.",
-      icon: Shield
-    },
-    {
-      title: "Tinting Mixing Machine",
-      desc: "Computerized automatic tinting system mixes 2,500+ customized shades in minutes to match any reference swatch.",
-      icon: Sparkles
-    },
-    {
-      title: "Contractor Wholesale Rates",
-      desc: "Direct wholesale pricing offers significant material savings for architects, builders, and large commercial projects.",
-      icon: Tag
-    },
-    {
-      title: "Fast Local Logistics",
-      desc: "In-house prompt delivery vehicles supply paint materials directly to sites on the same day in Mysuru.",
-      icon: Truck
-    },
-    {
-      title: "20+ Years Trust in Mysuru",
-      desc: "Established in 2005, serving thousands of satisfied families and contractors at our Hinkal Ring Road showroom.",
-      icon: Award
-    },
-    {
-      title: "Expert Colour Guidance",
-      desc: "Technical shade selection advice. We review building substrates and lighting to recommend correct products.",
-      icon: Users
-    }
-  ];
-
   return (
-    <section className="py-24 bg-neutral-soft border-y border-neutral-light">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-        
-        {/* Left Banner Column */}
-        <div className="lg:col-span-4 flex flex-col justify-center text-left">
-          <span className="text-[10px] font-bold text-accent uppercase tracking-wider block mb-2">Showroom Credibility</span>
-          <h2 className="font-display font-bold text-primary text-3xl sm:text-4xl mb-4">
-            Built on Trust.<br/>Driven by Quality.
-          </h2>
-          <p className="font-sans text-neutral-mid text-sm leading-relaxed mb-6">
-            Families, interior designers, and painting contractors in Mysuru choose us for our wholesale rates, computer tinting consistency, and genuine brand certifications.
-          </p>
-          <div className="p-5 glass-panel rounded-2xl border-l-4 border-l-gold text-left">
-            <p className="font-display italic text-primary text-sm font-semibold">
-              "We maintain 100% shade match consistency across batches. If you order paint today and need a refill in 6 months, our mixing machine matches it exactly."
+    <section className="py-24 bg-neutral-soft border-b border-neutral-light overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          
+          {/* Left Text Block */}
+          <div className="lg:col-span-5 text-left sticky top-28">
+            <span className="text-[10px] font-bold text-accent uppercase tracking-widest block mb-4">
+              The Showroom Standards
+            </span>
+            <h2 className="font-display font-black text-primary text-4xl sm:text-5xl uppercase leading-tight">
+              A Study in <br />
+              Color & Precision<span className="text-gold">.</span>
+            </h2>
+            <p className="font-sans text-neutral-mid text-sm mt-6 leading-relaxed max-w-sm">
+              We do not simply sell paint. We partner with architects, builders, and homeowners to formulate exact atmospheres. Sourced and tint-matched under direct Berger authorization.
             </p>
-            <span className="font-sans text-[10px] font-bold text-neutral-mid uppercase tracking-wider mt-3 block">&mdash; Store Tinting Specialist</span>
           </div>
-        </div>
 
-        {/* Right Perks Grid Column */}
-        <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {perks.map((p, i) => {
-            const Icon = p.icon;
-            return (
-              <div 
-                key={i}
-                className="bg-white rounded-2xl p-6 border border-neutral-light shadow-sm flex gap-4 text-left hover:border-primary transition-all duration-300 hover:shadow-premium"
-              >
-                <div className="w-10 h-10 bg-accent bg-opacity-5 rounded-lg border border-accent border-opacity-10 flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-5 h-5 text-accent" />
-                </div>
-                <div className="flex flex-col">
-                  <h3 className="font-display font-bold text-primary text-base mb-1.5">{p.title}</h3>
-                  <p className="font-sans text-neutral-mid text-xs leading-relaxed">{p.desc}</p>
-                </div>
+          {/* Right Editorial Blocks - Asymmetrical Scroll */}
+          <div className="lg:col-span-7 flex flex-col gap-16">
+            
+            {/* Pillar 01 */}
+            <div className="flex gap-8 items-start border-b border-neutral-light pb-10">
+              <span className="font-display font-black text-gold/30 text-5xl sm:text-6xl leading-none">01</span>
+              <div className="text-left">
+                <h3 className="font-display font-bold text-primary text-xl mb-2">Exclusive Tinting Base Access</h3>
+                <p className="font-sans text-neutral-mid text-xs leading-relaxed max-w-md">
+                  Direct factory allocation of Berger's premium Silk Glamor bases, WoodKeeper polymers, and architectural membranes. No dilutions, no generic fills.
+                </p>
               </div>
-            );
-          })}
-        </div>
+            </div>
 
+            {/* Pillar 02 */}
+            <div className="flex gap-8 items-start border-b border-neutral-light pb-10">
+              <span className="font-display font-black text-gold/30 text-5xl sm:text-6xl leading-none">02</span>
+              <div className="text-left">
+                <h3 className="font-display font-bold text-primary text-xl mb-2">Moisture & Damp Diagnostics</h3>
+                <p className="font-sans text-neutral-mid text-xs leading-relaxed max-w-md">
+                  Before a drop of paint is applied, our team checks wall moisture levels using professional electronic meters, prescribing structural HomeShield treatments first.
+                </p>
+              </div>
+            </div>
+
+            {/* Pillar 03 */}
+            <div className="flex gap-8 items-start">
+              <span className="font-display font-black text-gold/30 text-5xl sm:text-6xl leading-none">03</span>
+              <div className="text-left">
+                <h3 className="font-display font-bold text-primary text-xl mb-2">Architectural Grade Yields</h3>
+                <p className="font-sans text-neutral-mid text-xs leading-relaxed max-w-md">
+                  Precise calculations mapping paint solids to coverage index. Get exact quantity guides to eliminate wastage on massive residential build scopes.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
       </div>
     </section>
   );

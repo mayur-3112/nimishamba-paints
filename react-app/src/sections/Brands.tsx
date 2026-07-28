@@ -1,52 +1,70 @@
-import React from 'react';
 import { Award, CheckCircle, Cpu, ShieldCheck } from 'lucide-react';
+
+const CREDENTIALS = [
+  { icon: CheckCircle, tint: 'text-emerald-500', label: '100% Genuine Materials' },
+  { icon: Cpu, tint: 'text-accent', label: 'Computerised Tinting' },
+  { icon: Award, tint: 'text-gold', label: 'Platinum Certified Dealer' },
+];
 
 export default function Brands() {
   return (
-    <section className="py-16 bg-neutral-soft border-y border-neutral-light">
+    <section id="brands" className="py-16 bg-neutral-soft border-y border-neutral-light">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="bg-white border border-neutral-light rounded-3xl p-8 md:p-12 shadow-sm flex flex-col md:flex-row items-center gap-10">
-          
-          {/* Logo Left */}
-          <div className="flex-shrink-0 flex flex-col items-center">
-            <div className="w-24 h-24 overflow-hidden rounded-3xl border border-neutral-light bg-white flex items-center justify-center shadow-md mb-3 transform hover:rotate-2 transition-transform duration-300">
-              <img src="/images/logo.png" alt="Nimishamba Paints Logo" className="w-full h-full object-cover" />
-            </div>
-            <h3 className="font-display font-extrabold text-primary text-base leading-none">NIMISHAMBA</h3>
-            <span className="font-sans text-[9px] font-bold text-accent tracking-widest uppercase mt-2">PLATINUM PARTNER</span>
+        <div className="bg-white border border-neutral-light rounded-3xl overflow-hidden shadow-sm grid md:grid-cols-2">
+          {/* Showroom counter */}
+          <div className="relative min-h-[280px] md:min-h-full">
+            <img
+              src="/images/shop_interior.png"
+              alt="The Berger Colour World counter and shade library at the Nimishamba Paints showroom in Hinkal, Mysuru"
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/45 to-transparent" />
+            <span className="absolute bottom-5 left-5 glass-panel rounded-full px-4 py-2 font-sans text-[10px] font-bold uppercase tracking-widest text-primary">
+              Berger Colour World · Hinkal
+            </span>
           </div>
 
-          {/* Description Right */}
-          <div className="flex-grow text-left">
-            <div className="inline-flex items-center gap-2 bg-accent bg-opacity-5 px-3 py-1 rounded-full border border-accent border-opacity-10 mb-4">
-              <ShieldCheck className="w-3.5 h-3.5 text-accent" />
-              <span className="font-display text-[9px] font-bold uppercase tracking-wider text-accent">Exclusive Authorized Showroom</span>
+          {/* Dealership credentials */}
+          <div className="p-8 md:p-12 flex flex-col justify-center">
+            <div className="flex items-center gap-3 mb-5">
+              <img
+                src="/images/logo-mark.png"
+                alt=""
+                width={48}
+                height={48}
+                loading="lazy"
+                className="w-12 h-12 object-contain"
+              />
+              <div className="inline-flex items-center gap-2 bg-accent/5 px-3 py-1 rounded-full border border-accent/10">
+                <ShieldCheck className="w-3.5 h-3.5 text-accent" />
+                <span className="font-display text-[9px] font-bold uppercase tracking-wider text-accent">
+                  Exclusive Authorised Showroom
+                </span>
+              </div>
             </div>
-            
-            <h4 className="font-display font-bold text-primary text-xl md:text-2xl mb-3 leading-snug">
-              Official Berger Paints Color World Experience Centre
-            </h4>
-            
-            <p className="font-sans text-neutral-mid text-xs leading-relaxed mb-6">
-              As Mysuru's authorized Platinum Dealer, we carry the complete catalog of Berger interior emulsions, exterior barriers, HomeShield waterproofing systems, and WoodKeeper finishes. Our computerized tinting station guarantees exact formulation accuracy directly from official paint bases.
+
+            <h2 className="font-display font-bold text-primary text-2xl md:text-3xl mb-4 leading-snug">
+              Mysuru's official Berger Paints Colour World centre
+            </h2>
+
+            <p className="font-sans text-neutral-mid text-sm leading-relaxed mb-7">
+              As an authorised Platinum dealer we stock the complete Berger range — interior
+              emulsions, exterior weather barriers, HomeShield waterproofing and WoodKeeper
+              finishes. Every litre is tinted in-store from official bases, so the shade on your
+              wall matches the shade on the card.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-neutral-light pt-5">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4.5 h-4.5 text-emerald-500 flex-shrink-0" />
-                <span className="font-sans text-[11px] font-bold text-primary">100% Genuine Materials</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Cpu className="w-4.5 h-4.5 text-accent flex-shrink-0" />
-                <span className="font-sans text-[11px] font-bold text-primary">Computerized Tinting mixing</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Award className="w-4.5 h-4.5 text-gold flex-shrink-0" />
-                <span className="font-sans text-[11px] font-bold text-primary">Platinum Certified Dealer</span>
-              </div>
-            </div>
+            <ul className="grid sm:grid-cols-2 gap-4 border-t border-neutral-light pt-6">
+              {CREDENTIALS.map(({ icon: Icon, tint, label }) => (
+                <li key={label} className="flex items-center gap-2.5">
+                  <Icon className={`w-4.5 h-4.5 flex-shrink-0 ${tint}`} />
+                  <span className="font-sans text-[11px] font-bold text-primary">{label}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-
         </div>
       </div>
     </section>

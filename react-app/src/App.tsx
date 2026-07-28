@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Navigation from './sections/Navigation';
 import Hero from './sections/Hero';
 import Brands from './sections/Brands';
 import Products from './sections/Products';
+import Projects from './sections/Projects';
+import Reviews from './sections/Reviews';
 import Services from './sections/Services';
 import WhyChooseUs from './sections/WhyChooseUs';
 import PaintInspiration from './sections/PaintInspiration';
@@ -16,7 +18,7 @@ import About from './sections/About';
 // Load the Berger colors database statically
 import colorsData from './data/berger_colors.json';
 import { Shade } from './utils/colorUtils';
-import { Sparkles, MessageSquare, ArrowRight, Award } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const allShades: Shade[] = (colorsData.shades || []) as Shade[];
 
@@ -142,6 +144,12 @@ export default function App() {
             {/* Why Choose Us Section */}
             <WhyChooseUs />
 
+            {/* Featured Schemes with drag-to-compare shade preview */}
+            <Projects openQuoteModal={openQuoteModal} />
+
+            {/* Verified customer reviews */}
+            <Reviews />
+
             {/* Visualizer Promo Band (Glassmorphic) */}
             <section className="py-20 bg-primary text-white text-center relative overflow-hidden border-b border-white border-opacity-5">
               <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary-dark opacity-90 z-0" />
@@ -208,6 +216,13 @@ export default function App() {
               selectedShade={selectedShade} 
               onSelectShade={handleSelectShade} 
             />
+          </div>
+        )}
+
+        {currentTab === 'projects' && (
+          <div className="animate-fade-in pt-24">
+            <Projects openQuoteModal={openQuoteModal} />
+            <Reviews />
           </div>
         )}
 

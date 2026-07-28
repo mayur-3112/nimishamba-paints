@@ -23,6 +23,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
     { id: 'home', label: 'Home' },
     { id: 'products', label: 'Products' },
     { id: 'shades', label: 'Colours' },
+    { id: 'projects', label: 'Projects' },
     { id: 'estimator', label: 'Estimator' },
     { id: 'services', label: 'Services' },
     { id: 'about', label: 'About' },
@@ -55,9 +56,13 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
             }}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="overflow-hidden h-10 w-10 bg-white rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-all duration-300 border border-neutral-light">
-              <img src="/images/logo.png" alt="Nimishamba Paints Logo" className="w-full h-full object-cover" />
-            </div>
+            <img
+              src="/images/logo-mark.png"
+              alt="Nimishamba Paints &amp; Plywoods"
+              width={40}
+              height={40}
+              className="h-10 w-10 object-contain group-hover:scale-105 transition-transform duration-300"
+            />
             <div className="flex flex-col leading-none text-left">
               <span className="font-display font-bold text-primary tracking-tight text-base">NIMISHAMBA</span>
               <span className="font-sans text-[9px] font-bold text-neutral-mid tracking-wider uppercase">PAINTS &amp; DÉCOR</span>
@@ -65,7 +70,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => (
               <a
                 key={link.id}
@@ -86,7 +91,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4">
             <a
               href="tel:+919448084351"
               className="flex items-center gap-2 font-display text-sm font-bold text-primary hover:text-accent transition-colors py-2"
@@ -105,7 +110,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
           {/* Mobile Toggle Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-primary p-2 focus:outline-none"
+            className="lg:hidden text-primary p-2 focus:outline-none"
             aria-label="Toggle Menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -115,7 +120,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
 
       {/* Mobile Navigation Drawer */}
       <div
-        className={`fixed inset-0 z-50 bg-primary bg-opacity-40 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-50 bg-primary bg-opacity-40 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setIsOpen(false)}
@@ -181,7 +186,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
       </div>
 
       {/* Mobile Sticky Footer Bar (Persistent on screens smaller than md) */}
-      <div className="fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-neutral-light flex md:hidden h-16 shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
+      <div className="fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-neutral-light flex lg:hidden h-16 shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
         <a
           href="tel:+919448084351"
           className="flex-1 flex flex-col justify-center items-center gap-1 text-primary hover:text-accent transition-colors border-r border-neutral-light"
@@ -206,6 +211,19 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
           <span className="font-display text-[10px] font-bold uppercase tracking-wider">Get Quote</span>
         </button>
       </div>
+
+      {/* Desktop floating WhatsApp. Hidden below lg, where the sticky bar already
+          carries the same action. */}
+      <a
+        href="https://wa.me/919448084351?text=Hi%2C%20I%27d%20like%20a%20paint%20quote%20for%20my%20home."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat with Nimishamba Paints on WhatsApp"
+        className="hidden lg:flex fixed bottom-8 right-8 z-30 items-center gap-3 bg-[#25D366] text-white font-display text-xs font-bold uppercase tracking-wider pl-4 pr-5 py-3.5 rounded-full shadow-luxury hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300"
+      >
+        <MessageSquare className="w-5 h-5" />
+        <span>Chat on WhatsApp</span>
+      </a>
     </>
   );
 }

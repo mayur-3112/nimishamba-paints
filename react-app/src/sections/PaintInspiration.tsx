@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Shade, hexToHsl, hslToHex, findClosestShade } from '../utils/colorUtils';
-import { MessageSquare, Info } from 'lucide-react';
+import { MessageSquare, Sun, Sunset, Sunrise, Layers } from 'lucide-react';
 
 interface PaintInspirationProps {
   selectedShade: Shade | null;
@@ -9,7 +9,7 @@ interface PaintInspirationProps {
 }
 
 export default function PaintInspiration({ selectedShade, onSelectShade, allShades }: PaintInspirationProps) {
-  const [activeRoom, setActiveRoom] = useState<'living' | 'bedroom'>('living');
+  const [lightingMode, setLightingMode] = useState<'morning' | 'noon' | 'evening'>('noon');
   const [activeColors, setActiveColors] = useState({
     wall: '#FCFBF7',
     accent: '#F5F3EE',
@@ -36,11 +36,11 @@ export default function PaintInspiration({ selectedShade, onSelectShade, allShad
 
     const hsl = hexToHsl(selectedShade.hex);
 
-    // 1. Accent Wall (Slightly darker shade of same hue)
+    // 1. Accent (Slightly darker shade of same hue)
     const accentHex = hslToHex(hsl.h, Math.max(20, hsl.s), Math.max(15, hsl.l - 16));
     const accentShade = findClosestShade(accentHex, allShades);
 
-    // 2. Contrast Wall (Complementary Hue shift 180 degrees)
+    // 2. Contrast (Complementary Hue shift 180 degrees)
     const contrastHex = hslToHex((hsl.h + 180) % 360, Math.max(30, hsl.s), Math.max(35, hsl.l - 5));
     const contrastShade = findClosestShade(contrastHex, allShades);
 
@@ -67,13 +67,12 @@ export default function PaintInspiration({ selectedShade, onSelectShade, allShad
     if (!selectedShade) return;
     const msg = `Hi Nimishamba Paints! 👋
 
-I selected a paint colour scheme on your website and want to check availability:
-• Main Wall: ${selectedShade.name} (${selectedShade.code}) - ${selectedShade.hex}
-• Accent Wall: ${recommendedPalette.accent?.name || 'N/A'} (${recommendedPalette.accent?.code || ''})
-• Contrast Wall: ${recommendedPalette.contrast?.name || 'N/A'} (${recommendedPalette.contrast?.code || ''})
-• Ceiling: ${recommendedPalette.ceiling?.name || 'N/A'} (${recommendedPalette.ceiling?.code || ''})
+I selected a custom color palette in your Material Mood Board Lab:
+• Base Paint: ${selectedShade.name} (${selectedShade.code}) - ${selectedShade.hex}
+• Recommended Accent: ${recommendedPalette.accent?.name || 'N/A'} (${recommendedPalette.accent?.code || ''})
+• Recommended Contrast: ${recommendedPalette.contrast?.name || 'N/A'} (${recommendedPalette.contrast?.code || ''})
 
-Please guide me with pricing and stock availability. Thanks!`;
+I would like to schedule a showroom consultation to examine physical swatches of these shades.`;
 
     const url = 'https://wa.me/919448084351?text=' + encodeURIComponent(msg);
     window.open(url, '_blank');
@@ -81,161 +80,229 @@ Please guide me with pricing and stock availability. Thanks!`;
 
   const applySuggestedColor = (part: 'accent' | 'contrast' | 'ceiling') => {
     const targetShade = recommendedPalette[part];
-    if (!targetShade) return;
-    
-    setActiveColors(prev => ({
-      ...prev,
-      [part === 'accent' ? 'accent' : part === 'contrast' ? 'contrast' : 'ceiling']: targetShade.hex
-    }));
+    if (targetShade) {
+      onSelectShade(targetShade);
+    }
   };
 
   return (
-    <section className="py-16 bg-neutral-soft border-b border-neutral-light" id="visualizerCard">
+    <section className="py-24 bg-neutral-soft border-b border-neutral-light text-left" id="materialBoardCard">
       <div className="max-w-7xl mx-auto px-6">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+        {/* Typographic Introduction */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
+          <div className="lg:col-span-5">
+            <span className="text-[10px] font-bold text-accent uppercase tracking-widest block mb-4">Volume III / Tactile Studies</span>
+            <h2 className="font-display font-black text-primary text-4xl sm:text-5xl uppercase leading-tight">
+              The Material Mood Board Lab
+            </h2>
+          </div>
+          <div className="lg:col-span-7 flex flex-col justify-end">
+            <p className="font-sans text-neutral-mid text-sm leading-relaxed max-w-xl">
+              Interior color is never chosen in isolation. We have curated a tactile material tray showing how your selected paint base balances against natural timber, raw stone, gold accents, and woven linen.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           
-          {/* Visualizer Window (Left) */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-6 border border-neutral-light shadow-sm flex flex-col justify-between">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-              <div className="text-left">
-                <span className="text-[10px] font-bold text-accent uppercase tracking-wider block mb-1">Color Studio</span>
-                <h3 className="font-display font-bold text-primary text-xl">Architectural Space Renders</h3>
-              </div>
-              
-              {/* Room Toggles */}
-              <div className="flex bg-neutral-light p-1 rounded-xl border border-neutral-light self-start">
-                {(['living', 'bedroom'] as const).map(room => (
-                  <button
-                    key={room}
-                    onClick={() => setActiveRoom(room)}
-                    className={`font-display text-[10px] font-bold uppercase tracking-wider px-4 py-2.5 rounded-lg transition-all cursor-pointer ${
-                      activeRoom === room
-                        ? 'bg-white text-primary shadow-sm'
-                        : 'text-neutral-mid hover:text-primary'
-                    }`}
-                  >
-                    {room === 'living' ? 'Living Room' : 'Bedroom'}
-                  </button>
-                ))}
+          {/* Left Column: The Material Mood Board Canvas */}
+          <div className="lg:col-span-7">
+            
+            {/* Ambient Lighting Controllers */}
+            <div className="flex justify-between items-center mb-6">
+              <span className="text-[9px] font-bold text-neutral-mid uppercase tracking-widest">Ambient Light Simulator</span>
+              <div className="flex bg-neutral-light/50 p-1 rounded-xl border border-neutral-light/80">
+                <button
+                  onClick={() => setLightingMode('morning')}
+                  className={`flex items-center gap-2 font-display text-[9px] font-bold uppercase tracking-wider px-4 py-2.5 rounded-lg transition-all cursor-pointer ${
+                    lightingMode === 'morning' ? 'bg-white text-primary shadow-sm' : 'text-neutral-mid hover:text-primary'
+                  }`}
+                >
+                  <Sunrise className="w-3.5 h-3.5 text-sky-400" />
+                  <span>08:00 Morning</span>
+                </button>
+                <button
+                  onClick={() => setLightingMode('noon')}
+                  className={`flex items-center gap-2 font-display text-[9px] font-bold uppercase tracking-wider px-4 py-2.5 rounded-lg transition-all cursor-pointer ${
+                    lightingMode === 'noon' ? 'bg-white text-primary shadow-sm' : 'text-neutral-mid hover:text-primary'
+                  }`}
+                >
+                  <Sun className="w-3.5 h-3.5 text-amber-500" />
+                  <span>13:00 Noon</span>
+                </button>
+                <button
+                  onClick={() => setLightingMode('evening')}
+                  className={`flex items-center gap-2 font-display text-[9px] font-bold uppercase tracking-wider px-4 py-2.5 rounded-lg transition-all cursor-pointer ${
+                    lightingMode === 'evening' ? 'bg-white text-primary shadow-sm' : 'text-neutral-mid hover:text-primary'
+                  }`}
+                >
+                  <Sunset className="w-3.5 h-3.5 text-orange-500" />
+                  <span>19:00 Golden Hour</span>
+                </button>
               </div>
             </div>
 
-            {/* Photo Render Viewport */}
-            <div className="w-full bg-neutral-light rounded-2xl border border-neutral-light overflow-hidden aspect-[5/3] relative flex items-center justify-center shadow-inner">
+            {/* Tactile Composition Container */}
+            <div className="relative w-full h-[480px] bg-[#EBEAE6] rounded-3xl border border-neutral-light overflow-hidden shadow-inner flex items-center justify-center p-8 select-none">
               
-              {/* Background Architectural Photo */}
-              <img 
-                src={activeRoom === 'living' ? '/images/living_room_visualizer.png' : '/images/bedroom_visualizer.png'} 
-                alt="Architectural Interior Render" 
-                className="absolute inset-0 w-full h-full object-cover select-none"
+              {/* Asymmetrical Material Layflat Tray */}
+              <div className="relative w-full h-full max-w-xl flex items-center justify-center">
+                
+                {/* 1. Oak Wood Board (Bottom Right Stacked) */}
+                <div 
+                  className="absolute right-4 bottom-4 w-[55%] h-[60%] rounded-2xl shadow-luxury overflow-hidden border border-neutral-dark/5"
+                  style={{
+                    backgroundColor: '#d8b998',
+                    backgroundImage: `radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.15) 0%, transparent 80%), 
+                                      repeating-linear-gradient(90deg, rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 2px, transparent 2px, transparent 18px),
+                                      repeating-linear-gradient(85deg, rgba(82,53,24,0.04) 0px, rgba(82,53,24,0.04) 4px, transparent 4px, transparent 32px)`
+                  }}
+                  title="Raw Natural Oak Sample"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-tr from-black/10 via-transparent to-white/10" />
+                  <span className="absolute bottom-3 right-4 font-display text-[8px] font-bold text-neutral-dark/40 uppercase tracking-widest">Natural Oak</span>
+                </div>
+
+                {/* 2. Travertine Speckled Stone Block (Left Middle Stacked) */}
+                <div 
+                  className="absolute left-6 top-1/4 w-[45%] h-[40%] rounded-2xl shadow-luxury overflow-hidden border border-neutral-dark/5"
+                  style={{
+                    backgroundColor: '#E5DFD3',
+                    backgroundImage: `radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px), 
+                                      radial-gradient(circle, rgba(0,0,0,0.03) 2px, transparent 2px)`,
+                    backgroundSize: '24px 24px, 12px 12px',
+                    backgroundPosition: '0 0, 6px 6px'
+                  }}
+                  title="Speckled Travertine Sample"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/15" />
+                  <span className="absolute top-3 left-4 font-display text-[8px] font-bold text-neutral-dark/40 uppercase tracking-widest">Speckled Stone</span>
+                </div>
+
+                {/* 3. Linen Fabric Woven Swatch (Top Right Overlap) */}
+                <div 
+                  className="absolute right-12 top-6 w-[38%] h-[35%] rounded-2xl shadow-premium overflow-hidden border border-neutral-dark/5 rotate-3"
+                  style={{
+                    backgroundColor: '#F0EFEB',
+                    backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px), 
+                                      linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px)`,
+                    backgroundSize: '4px 4px'
+                  }}
+                  title="Woven Linen Textile Sample"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-bl from-white/20 via-transparent to-black/10" />
+                  <span className="absolute top-3 right-4 font-display text-[8px] font-bold text-neutral-dark/30 uppercase tracking-widest">Woven Linen</span>
+                </div>
+
+                {/* 4. The Paint Plaster Slab (Center Foreground Focus) */}
+                <div 
+                  className="absolute left-1/4 top-1/6 w-[42%] h-[65%] rounded-2xl shadow-luxury overflow-hidden border border-neutral-dark/10 -rotate-3 transition-colors duration-500 z-10"
+                  style={{ backgroundColor: selectedShade ? selectedShade.hex : '#FCFBF7' }}
+                  title="Dynamic Paint Plaster Board"
+                >
+                  {/* Stipple textured wall overlay via SVG filter */}
+                  <svg className="absolute inset-0 w-full h-full object-cover pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <defs>
+                      <filter id="plaster-stipple">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+                        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.08 0" result="coloredNoise" />
+                        <feComposite operator="in" in2="SourceGraphic" />
+                        <feBlend mode="multiply" in="SourceGraphic" in2="coloredNoise" />
+                      </filter>
+                    </defs>
+                    <rect width="100" height="100" fill="transparent" filter="url(#plaster-stipple)" />
+                  </svg>
+                  
+                  {/* Subtle depth lighting casting across paint panel */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-black/15 via-transparent to-white/20 pointer-events-none" />
+                  
+                  <div className="absolute bottom-4 left-4 text-left z-10 drop-shadow-sm flex flex-col">
+                    <span className="font-sans text-[7px] font-bold text-black/40 uppercase tracking-widest">Base Finish</span>
+                    <strong className="font-display text-primary text-xs font-bold uppercase tracking-wider truncate max-w-[130px]">{selectedShade?.name || 'Selected Paint'}</strong>
+                    <span className="font-sans text-[8px] text-black/50 font-semibold">{selectedShade?.code || ''}</span>
+                  </div>
+                </div>
+
+                {/* 5. Brushed Brass Accent Divider Bar (Vertical Overlay) */}
+                <div 
+                  className="absolute left-[23%] top-1/3 w-3 h-[45%] rounded-full shadow-premium z-20"
+                  style={{
+                    backgroundImage: 'linear-gradient(to bottom, #DFCFB9 0%, #C5A880 50%, #A08055 100%)'
+                  }}
+                  title="Brushed Brass Metal Accent"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-black/30 rounded-full" />
+                </div>
+
+              </div>
+
+              {/* Ambient Lighting Overlay Shifter */}
+              <div 
+                className={`absolute inset-0 pointer-events-none transition-all duration-700 z-30 ${
+                  lightingMode === 'morning' 
+                    ? 'bg-sky-400/5 mix-blend-color-dodge opacity-80' 
+                    : lightingMode === 'evening' 
+                    ? 'bg-orange-500/12 mix-blend-color-burn opacity-90' 
+                    : 'bg-transparent opacity-0'
+                }`} 
+              />
+              <div 
+                className={`absolute inset-0 pointer-events-none transition-all duration-700 z-30 ${
+                  lightingMode === 'morning' 
+                    ? 'bg-[#A5F3FC]/10 mix-blend-color' 
+                    : lightingMode === 'evening' 
+                    ? 'bg-[#F59E0B]/10 mix-blend-color' 
+                    : 'bg-transparent opacity-0'
+                }`} 
               />
 
-              {/* Dynamic Wall Blending Overlay */}
-              <svg viewBox="0 0 800 480" width="100%" height="100%" className="absolute inset-0 w-full h-full object-cover">
-                <defs>
-                  {/* Subtle stipple to blend paint texture seamlessly onto generated plaster */}
-                  <filter id="wall-paint-stipple" x="0%" y="0%" width="100%" height="100%">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
-                    <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.05 0" result="coloredNoise" />
-                    <feComposite operator="in" in2="SourceGraphic" />
-                    <feBlend mode="multiply" in="SourceGraphic" in2="coloredNoise" />
-                  </filter>
-                  
-                  {/* Natural lighting gradients overlays for depth */}
-                  <linearGradient id="wall-corner-shadow" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#000000" stopOpacity="0.3"/>
-                    <stop offset="100%" stopColor="#000000" stopOpacity="0"/>
-                  </linearGradient>
-                  <linearGradient id="wall-top-shadow" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#000000" stopOpacity="0.2"/>
-                    <stop offset="100%" stopColor="#000000" stopOpacity="0"/>
-                  </linearGradient>
-                </defs>
-
-                {activeRoom === 'living' ? (
-                  /* Living Room: Perspective wall on the right */
-                  <g className="multiply-blend" opacity="0.75">
-                    <polygon 
-                      points="310,0 800,0 800,480 395,480" 
-                      fill={activeColors.wall} 
-                      filter="url(#wall-paint-stipple)"
-                    />
-                    {/* Shadow overlay mapped precisely on the wall corners */}
-                    <polygon 
-                      points="310,0 800,0 800,480 395,480" 
-                      fill="url(#wall-corner-shadow)" 
-                      opacity="0.5"
-                    />
-                    <polygon 
-                      points="310,0 800,0 800,480 395,480" 
-                      fill="url(#wall-top-shadow)" 
-                      opacity="0.3"
-                    />
-                  </g>
-                ) : (
-                  /* Bedroom: Flat wall behind bed with a modern horizontal split-paint mask */
-                  <g className="multiply-blend" opacity="0.72">
-                    <polygon 
-                      points="0,0 800,0 800,285 0,285" 
-                      fill={activeColors.wall} 
-                      filter="url(#wall-paint-stipple)"
-                    />
-                    <polygon 
-                      points="0,0 800,0 800,285 0,285" 
-                      fill="url(#wall-top-shadow)" 
-                      opacity="0.4"
-                    />
-                  </g>
-                )}
-              </svg>
-
             </div>
 
-            <div className="flex gap-2 items-center bg-neutral-soft p-4 rounded-xl border border-neutral-light mt-4">
-              <Info className="w-5 h-5 text-accent flex-shrink-0" />
+            <div className="flex gap-2.5 items-center bg-neutral-soft p-4 rounded-xl border border-neutral-light mt-4">
+              <Layers className="w-5 h-5 text-accent flex-shrink-0" />
               <p className="font-sans text-neutral-mid text-[11px] leading-normal text-left">
-                Select any shade from the explorer grid below to colorize the wall in real-time. The visualizer overlays the shade using color multiply blending, maintaining natural sunlight shadows and raw wall striae.
+                Toggling the light modes shifts the color temperature overlay to reflect exactly how paint solids change hue from cool morning casts (blue light) to warm golden lamp glows (orange light).
               </p>
             </div>
           </div>
 
-          {/* Color Details & Palette Panel (Right) */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
-            <div className="bg-white rounded-3xl p-6 border border-neutral-light shadow-sm text-left flex flex-col gap-6">
+          {/* Right Column: Palette details & specs */}
+          <div className="lg:col-span-5 flex flex-col justify-between self-stretch">
+            <div className="bg-white rounded-3xl p-8 border border-neutral-light shadow-sm text-left flex flex-col gap-8 h-full justify-between">
               
-              {/* Active Base Color Card */}
+              {/* Selected Paint details */}
               <div>
-                <span className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider block mb-2.5">Selected Base Shade</span>
+                <span className="text-[9px] font-bold text-neutral-mid uppercase tracking-widest block mb-3">Selected Shade</span>
                 {selectedShade ? (
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-5">
                     <div 
-                      className="w-14 h-14 rounded-2xl border shadow-sm flex-shrink-0" 
+                      className="w-16 h-16 rounded-2xl border shadow-inner flex-shrink-0" 
                       style={{ background: selectedShade.hex }}
                     />
                     <div>
                       <h4 className="font-display font-extrabold text-primary text-xl leading-tight">{selectedShade.name}</h4>
                       <p className="font-sans text-neutral-mid text-xs font-semibold mt-1">
-                        Code: {selectedShade.code} &bull; {selectedShade.category || 'Curated'}
+                        Code: {selectedShade.code} &bull; {selectedShade.category || 'Platinum Series'}
                       </p>
                     </div>
                   </div>
                 ) : (
                   <div className="py-4 text-neutral-mid text-sm italic">
-                    Click a shade card below to load details.
+                    Select a color from the catalogue below.
                   </div>
                 )}
               </div>
 
-              {/* Palette Generator */}
-              <div>
-                <div className="flex justify-between items-baseline mb-1">
-                  <span className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider block">Recommended Contrast Palette</span>
-                  <span className="text-[8px] font-bold text-accent uppercase tracking-wider">Click card to apply</span>
+              {/* Recommender */}
+              <div className="border-t border-neutral-light pt-6">
+                <div className="flex justify-between items-baseline mb-2">
+                  <span className="text-[9px] font-bold text-neutral-mid uppercase tracking-widest">Designer Recommendations</span>
+                  <span className="text-[8px] font-bold text-accent uppercase tracking-widest">Apply to Base</span>
                 </div>
                 
-                <div className="flex flex-col gap-3.5 mt-3">
-                  {/* Monochromatic Accent Wall */}
+                <div className="flex flex-col gap-4 mt-3">
+                  {/* Monochromatic Accent */}
                   <div 
                     onClick={() => applySuggestedColor('accent')}
                     className="flex items-center gap-4 bg-neutral-soft border border-neutral-light hover:border-primary rounded-xl p-3 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-premium"
@@ -245,13 +312,13 @@ Please guide me with pricing and stock availability. Thanks!`;
                       style={{ background: recommendedPalette.accent?.hex || '#FFF' }}
                     />
                     <div className="flex flex-col leading-tight">
-                      <span className="text-[9px] font-bold text-neutral-mid uppercase tracking-wider mb-0.5">Accent Wall (Mono)</span>
+                      <span className="text-[8px] font-bold text-neutral-mid uppercase tracking-wider mb-0.5">Complementary Accent</span>
                       <strong className="font-display text-primary text-sm font-semibold">{recommendedPalette.accent?.name || 'Loading...'}</strong>
-                      <span className="text-[10px] text-neutral-mid font-sans mt-0.5">Shade: {recommendedPalette.accent?.code || ''}</span>
+                      <span className="text-[9px] text-neutral-mid font-sans mt-0.5">Shade: {recommendedPalette.accent?.code || ''}</span>
                     </div>
                   </div>
 
-                  {/* Complementary Contrast */}
+                  {/* Contrast Accent */}
                   <div 
                     onClick={() => applySuggestedColor('contrast')}
                     className="flex items-center gap-4 bg-neutral-soft border border-neutral-light hover:border-primary rounded-xl p-3 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-premium"
@@ -261,41 +328,25 @@ Please guide me with pricing and stock availability. Thanks!`;
                       style={{ background: recommendedPalette.contrast?.hex || '#FFF' }}
                     />
                     <div className="flex flex-col leading-tight">
-                      <span className="text-[9px] font-bold text-neutral-mid uppercase tracking-wider mb-0.5">Contrasting Wall</span>
+                      <span className="text-[8px] font-bold text-neutral-mid uppercase tracking-wider mb-0.5">Contrasting Trim</span>
                       <strong className="font-display text-primary text-sm font-semibold">{recommendedPalette.contrast?.name || 'Loading...'}</strong>
-                      <span className="text-[10px] text-neutral-mid font-sans mt-0.5">Shade: {recommendedPalette.contrast?.code || ''}</span>
-                    </div>
-                  </div>
-
-                  {/* Ceiling Soft Tone */}
-                  <div 
-                    onClick={() => applySuggestedColor('ceiling')}
-                    className="flex items-center gap-4 bg-neutral-soft border border-neutral-light hover:border-primary rounded-xl p-3 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-premium"
-                  >
-                    <div 
-                      className="w-10 h-10 rounded-xl border flex-shrink-0" 
-                      style={{ background: recommendedPalette.ceiling?.hex || '#FFF' }}
-                    />
-                    <div className="flex flex-col leading-tight">
-                      <span className="text-[9px] font-bold text-neutral-mid uppercase tracking-wider mb-0.5">Ceiling Finish</span>
-                      <strong className="font-display text-primary text-sm font-semibold">{recommendedPalette.ceiling?.name || 'Loading...'}</strong>
-                      <span className="text-[10px] text-neutral-mid font-sans mt-0.5">Shade: {recommendedPalette.ceiling?.code || ''}</span>
+                      <span className="text-[9px] text-neutral-mid font-sans mt-0.5">Shade: {recommendedPalette.contrast?.code || ''}</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-            </div>
+              {/* Enquire button */}
+              <button
+                onClick={handleWhatsAppShare}
+                disabled={!selectedShade}
+                className="bg-primary text-white font-display text-xs font-bold uppercase tracking-wider w-full py-4.5 rounded-xl hover:bg-primary-light transition-all shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
+              >
+                <MessageSquare className="w-4 h-4 text-emerald-400" />
+                <span>Enquire Palette Availability</span>
+              </button>
 
-            {/* Share Button */}
-            <button
-              onClick={handleWhatsAppShare}
-              disabled={!selectedShade}
-              className="mt-4 bg-primary text-white font-display text-xs font-bold uppercase tracking-wider w-full py-4.5 rounded-xl hover:bg-primary-light transition-all shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
-            >
-              <MessageSquare className="w-4 h-4 text-emerald-400" />
-              <span>Enquire this Palette on WhatsApp</span>
-            </button>
+            </div>
           </div>
 
         </div>

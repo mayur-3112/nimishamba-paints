@@ -30,7 +30,9 @@
       <li><a href="#" onclick="show('home')">Home</a></li>
       <li><a href="#" onclick="show('about')">About</a></li>
       <li><a href="#" onclick="show('products')">Products</a></li>
-      <li><a href="#" onclick="show('shades')">Colours</a></li>
+      <li><a href="#" onclick="show('shades')">Colours</a>
+      <a href="#" onclick="show('estimator')">Estimator</a></li>
+      <li><a href="#" onclick="show('estimator')">Estimator</a></li>
       <li><a href="#" onclick="show('gallery')">Gallery</a></li>
       <li><a href="#" onclick="show('contact')">Contact</a></li>
     </ul>
@@ -684,6 +686,196 @@
       <div class="shade-grid" id="shadeGrid"></div>
       <div style="text-align:center;margin-top:3rem">
         <button class="btn-fill" id="loadMoreBtn" onclick="loadMore()" style="display:none">Load More Shades</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══ ESTIMATOR (CALCULATOR) ══ -->
+<div id="pg-estimator" class="pg">
+  <div class="inner-hero">
+    <div class="wrap">
+      <p class="eyebrow">Paint Estimator &amp; Price Calculator</p>
+      <h1 class="inner-h1">Estimate paint.<br/><em>Plan your budget.</em></h1>
+      <p style="color:rgba(255,255,255,0.5);margin-top:0.5rem;font-size:0.9rem">Get a detailed material list and tentative cost breakdown for your painting project.</p>
+    </div>
+  </div>
+  
+  <section class="estimator-sec" style="padding:4rem 24px 6rem">
+    <div class="wrap">
+      <div class="estimator-card" id="estimatorCard" data-aos="fade-up">
+        
+        <!-- Progress Bar -->
+        <div class="estimator-progress-bar">
+          <div class="progress-step active" id="prog-1" onclick="goToStep(1)">1. Project Type</div>
+          <div class="progress-step" id="prog-2" onclick="goToStep(2)">2. Size &amp; Area</div>
+          <div class="progress-step" id="prog-3" onclick="goToStep(3)">3. Quality</div>
+          <div class="progress-step" id="prog-4">4. Summary</div>
+          <div class="progress-line-fill" id="progressLine"></div>
+        </div>
+        
+        <!-- STEP 1: Project Type -->
+        <div class="step-content active" id="step-1">
+          <h3>What kind of painting project is this?</h3>
+          <p class="step-sub">Select the surface area to get correct coverage estimates.</p>
+          <div class="calc-options-grid">
+            <div class="calc-opt-card active" id="opt-interior" onclick="selectProjectType('interior')">
+              <div class="opt-icon">🏠</div>
+              <h4>Interior Walls</h4>
+              <p>Rooms, ceilings, living spaces, and kitchen walls.</p>
+            </div>
+            <div class="calc-opt-card" id="opt-exterior" onclick="selectProjectType('exterior')">
+              <div class="opt-icon">🏡</div>
+              <h4>Exterior Walls</h4>
+              <p>Outside surfaces, terraces, compounds, and outer elevations.</p>
+            </div>
+            <div class="calc-opt-card" id="opt-woodmetal" onclick="selectProjectType('woodmetal')">
+              <div class="opt-icon">🚪</div>
+              <h4>Wood &amp; Metal</h4>
+              <p>Doors, windows, metal grilles, cabinets, and polish finishes.</p>
+            </div>
+          </div>
+          <div class="step-actions">
+            <button class="btn-fill" onclick="nextStep()" style="margin-left:auto">Next Step &rarr;</button>
+          </div>
+        </div>
+        
+        <!-- STEP 2: Size & Area -->
+        <div class="step-content" id="step-2">
+          <h3>How large is the space?</h3>
+          <p class="step-sub">Select a configuration or enter custom square footage.</p>
+          <div class="size-selector-row">
+            <div class="size-presets">
+              <button class="preset-btn active" id="preset-1bhk" onclick="setAreaPreset(700, '1 BHK (~700 sq ft)', this)">1 BHK</button>
+              <button class="preset-btn" id="preset-2bhk" onclick="setAreaPreset(1200, '2 BHK (~1200 sq ft)', this)">2 BHK</button>
+              <button class="preset-btn" id="preset-3bhk" onclick="setAreaPreset(1800, '3 BHK (~1800 sq ft)', this)">3 BHK</button>
+              <button class="preset-btn" id="preset-custom" onclick="toggleCustomArea(this)">Custom Area</button>
+            </div>
+            <div class="custom-area-input-wrap" id="customAreaWrap" style="display:none">
+              <label for="customAreaVal">Total Wall Area (sq. ft.)</label>
+              <input type="number" id="customAreaVal" value="1200" oninput="updateCustomAreaVal(this.value)" placeholder="e.g. 1200" min="50" max="50000"/>
+              <small style="color:var(--muted);display:block;margin-top:4px">Tip: Wall area is usually 3.5 to 4 times the carpet area.</small>
+            </div>
+          </div>
+          
+          <div style="margin-top:2rem">
+            <h3>Project Details &amp; Condition</h3>
+            <div class="condition-options">
+              <div class="form-group" style="margin-bottom:0">
+                <label for="paintCondition">Project Painting Condition</label>
+                <select id="paintCondition" onchange="updateProjectCondition(this.value)">
+                  <option value="fresh">Fresh Painting (Requires Putty + Primer + 2 Paint coats)</option>
+                  <option value="repaint" selected>Repainting (Requires 1 Paint touch-up/Primer + 2 Paint coats)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <div class="step-actions" style="margin-top:2.5rem">
+            <button class="btn-line-about" onclick="prevStep()">&larr; Back</button>
+            <button class="btn-fill" onclick="nextStep()">Next Step &rarr;</button>
+          </div>
+        </div>
+        
+        <!-- STEP 3: Quality / Products -->
+        <div class="step-content" id="step-3">
+          <h3>Choose paint quality &amp; finish</h3>
+          <p class="step-sub">We only use genuine Berger products. Select a grade matching your budget.</p>
+          <div class="quality-grid">
+            <div class="quality-card" id="q-economy" onclick="selectQuality('economy')">
+              <div class="q-badge">Budget Friendly</div>
+              <h4>Economy Quality</h4>
+              <span class="q-price">₹12 - ₹15 / sq ft</span>
+              <p>Uses standard **Berger Bison/Tractor Distemper**. Clean finish, suitable for rental properties and ceilings.</p>
+            </div>
+            <div class="quality-card active" id="q-premium" onclick="selectQuality('premium')">
+              <div class="q-badge" style="background:var(--primary);color:white">Most Popular</div>
+              <h4>Premium Quality</h4>
+              <span class="q-price">₹18 - ₹24 / sq ft</span>
+              <p>Uses **Berger Easy Clean / Walmasta**. Rich matte finish, washable walls, long durability.</p>
+            </div>
+            <div class="quality-card" id="q-luxury" onclick="selectQuality('luxury')">
+              <div class="q-badge" style="background:var(--accent);color:white">Luxury Look</div>
+              <h4>Luxury Quality</h4>
+              <span class="q-price">₹28 - ₹36 / sq ft</span>
+              <p>Uses **Berger Silk Luxury / WeatherCoat AllGuard**. Super-sheen luxury finish, high stain resistance, 7+ years lifetime.</p>
+            </div>
+          </div>
+          <div class="step-actions">
+            <button class="btn-line-about" onclick="prevStep()">&larr; Back</button>
+            <button class="btn-fill" onclick="calculateEstimates()">Calculate Now &rarr;</button>
+          </div>
+        </div>
+        
+        <!-- STEP 4: Results -->
+        <div class="step-content" id="step-4">
+          <div class="results-layout">
+            <div class="results-left">
+              <h3>Estimation Summary</h3>
+              <p class="step-sub">Here is your estimated material list and budget breakdown.</p>
+              
+              <!-- Total Cost Display -->
+              <div class="total-cost-box">
+                <span>Estimated Cost Range</span>
+                <h2 id="resultCostRange">₹21,600 - ₹28,800</h2>
+                <small>*Cost includes materials and standard contractor labour charges in Mysuru</small>
+              </div>
+              
+              <div class="results-perks-list">
+                <div class="perk-row"><span>🏠 Project Type:</span><strong id="summaryProjType">Interior Walls</strong></div>
+                <div class="perk-row"><span>📏 Estimated Area:</span><strong id="summaryArea">1200 sq ft</strong></div>
+                <div class="perk-row"><span>💡 Paint Grade:</span><strong id="summaryGrade">Premium Quality</strong></div>
+              </div>
+            </div>
+            
+            <div class="results-right">
+              <h3>Material Checklist (Liters/KG)</h3>
+              <div class="material-list">
+                
+                <!-- Putty -->
+                <div class="material-item" id="puttyRow">
+                  <div class="mat-icon">📦</div>
+                  <div class="mat-info">
+                    <h4>Wall Putty (Base coat)</h4>
+                    <p id="matPuttyLabel">For smooth crack-free surfaces (2 coats)</p>
+                  </div>
+                  <div class="mat-qty"><span id="qtyPutty">120</span> <small>KG</small></div>
+                </div>
+                
+                <!-- Primer -->
+                <div class="material-item" id="primerRow">
+                  <div class="mat-icon">🛢️</div>
+                  <div class="mat-info">
+                    <h4>Undercoat Primer</h4>
+                    <p id="matPrimerLabel">For perfect paint adhesion (1 coat)</p>
+                  </div>
+                  <div class="mat-qty"><span id="qtyPrimer">9</span> <small>Ltrs</small></div>
+                </div>
+                
+                <!-- Paint Emulsion -->
+                <div class="material-item" id="paintRow" style="border:none">
+                  <div class="mat-icon">🎨</div>
+                  <div class="mat-info">
+                    <h4>Wall Emulsion Paint</h4>
+                    <p id="matPaintLabel">Top-coat finish (2 coats)</p>
+                  </div>
+                  <div class="mat-qty"><span id="qtyPaint">18</span> <small>Ltrs</small></div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          
+          <div class="step-actions" style="margin-top:2.5rem;border-top:1px solid var(--border);padding-top:1.5rem">
+            <button class="btn-line-about" onclick="goToStep(3)">&larr; Edit Inputs</button>
+            <button class="btn-fill" onclick="shareEstimatesOnWhatsApp()" style="margin-left:auto">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;vertical-align:-1px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Share Quote on WhatsApp
+            </button>
+          </div>
+        </div>
+        
       </div>
     </div>
   </section>

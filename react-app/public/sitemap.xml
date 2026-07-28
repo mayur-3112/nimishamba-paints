@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The site is a single-document app: navigation switches tabs in place rather
+  than changing the URL, so "/" is the only address a crawler can fetch. Adding
+  per-section URLs here would list pages that 404 on GitHub Pages. If per-page
+  URLs are wanted for SEO, add a router plus a 404.html fallback first, then
+  extend this file.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://nimishamba.in/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

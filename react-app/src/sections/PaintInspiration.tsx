@@ -54,23 +54,38 @@ export default function PaintInspiration({ selectedShade, onSelectShade, allShad
     prevHexRef.current = selectedShade.hex;
   }, [selectedShade]);
 
-  // Recalculate palette on shade change
+  // Recalculate palette on shade change — lightness-aware
   useEffect(() => {
     if (!selectedShade) return;
     prevHexRef.current = selectedShade.hex;
 
     const hsl = hexToHsl(selectedShade.hex);
+    const isDark = hsl.l < 45;
+    const isMedium = hsl.l >= 45 && hsl.l < 65;
 
-    // Accent (darker monochromatic)
-    const accentHex = hslToHex(hsl.h, Math.max(20, hsl.s), Math.max(15, hsl.l - 16));
+    // Accent: for dark shades go LIGHTER, for light shades go darker
+    const accentL = isDark
+      ? Math.min(85, hsl.l + 20)
+      : isMedium
+      ? Math.min(80, hsl.l + 15)
+      : Math.max(20, hsl.l - 16);
+    const accentHex = hslToHex(hsl.h, Math.max(15, hsl.s), accentL);
     const accentShade = findClosestShade(accentHex, allShades);
 
-    // Contrast (complementary 180°)
-    const contrastHex = hslToHex((hsl.h + 180) % 360, Math.max(30, hsl.s), Math.max(35, hsl.l - 5));
+    // Contrast (complementary 180°) — ensure visible lightness range
+    const contrastL = isDark
+      ? Math.min(75, hsl.l + 30)
+      : isMedium
+      ? Math.max(35, hsl.l - 10)
+      : Math.max(35, hsl.l - 5);
+    const contrastHex = hslToHex((hsl.h + 180) % 360, Math.max(25, hsl.s), contrastL);
     const contrastShade = findClosestShade(contrastHex, allShades);
 
-    // Triadic (120° shift)
-    const triadicHex = hslToHex((hsl.h + 120) % 360, Math.max(20, hsl.s - 5), Math.max(30, hsl.l));
+    // Triadic (120° shift) — clamp to mid-lightness
+    const triadicL = isDark
+      ? Math.min(70, hsl.l + 25)
+      : Math.max(30, Math.min(70, hsl.l));
+    const triadicHex = hslToHex((hsl.h + 120) % 360, Math.max(20, hsl.s - 5), triadicL);
     const triadicShade = findClosestShade(triadicHex, allShades);
 
     // Ceiling (near-white tint)
@@ -369,8 +384,12 @@ I'd like to schedule a showroom consultation to examine physical swatches.`;
                   <rect width="200" height="200" fill="transparent" filter="url(#plaster-v2)" />
                 </svg>
 
-                {/* Directional light gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-black/18 pointer-events-none" />
+                {/* Directional light gradient — reduced for dark shades */}
+                <div className="absolute inset-0 pointer-events-none" style={{
+                  background: selectedShade && hexToHsl(selectedShade.hex).l < 45
+                    ? 'linear-gradient(to bottom right, rgba(255,255,255,0.06), transparent 50%, rgba(0,0,0,0.06))'
+                    : 'linear-gradient(to bottom right, rgba(255,255,255,0.18), transparent 50%, rgba(0,0,0,0.12))'
+                }} />
 
                 {/* Paint drip line on color change */}
                 <div 
@@ -383,14 +402,24 @@ I'd like to schedule a showroom consultation to examine physical swatches.`;
                   }}
                 />
 
-                {/* Label badge — bottom left */}
+                {/* Label badge — bottom left, adapts to dark backgrounds */}
                 <div className="absolute bottom-5 left-5 z-10">
-                  <div className="bg-white/90 backdrop-blur-sm rounded-xl px-4 py-3 shadow-sm border border-white/60">
-                    <span className="font-sans text-[7px] font-bold text-neutral-mid uppercase tracking-widest block mb-0.5">Selected Base Finish</span>
-                    <strong className="font-display text-primary text-base font-black uppercase tracking-wide block leading-tight truncate max-w-[160px]">
+                  <div className={`backdrop-blur-sm rounded-xl px-4 py-3 shadow-sm border ${
+                    selectedShade && hexToHsl(selectedShade.hex).l < 45
+                      ? 'bg-black/50 border-white/15'
+                      : 'bg-white/90 border-white/60'
+                  }`}>
+                    <span className={`font-sans text-[7px] font-bold uppercase tracking-widest block mb-0.5 ${
+                      selectedShade && hexToHsl(selectedShade.hex).l < 45 ? 'text-white/60' : 'text-neutral-mid'
+                    }`}>Selected Base Finish</span>
+                    <strong className={`font-display text-base font-black uppercase tracking-wide block leading-tight truncate max-w-[160px] ${
+                      selectedShade && hexToHsl(selectedShade.hex).l < 45 ? 'text-white' : 'text-primary'
+                    }`}>
                       {selectedShade?.name || 'Choose a Shade'}
                     </strong>
-                    <span className="font-sans text-[9px] text-neutral-mid font-bold mt-0.5 block">{selectedShade?.code || '—'} &bull; {selectedShade?.hex || ''}</span>
+                    <span className={`font-sans text-[9px] font-bold mt-0.5 block ${
+                      selectedShade && hexToHsl(selectedShade.hex).l < 45 ? 'text-white/50' : 'text-neutral-mid'
+                    }`}>{selectedShade?.code || '—'} &bull; {selectedShade?.hex || ''}</span>
                   </div>
                 </div>
 

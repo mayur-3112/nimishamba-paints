@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Shade, hexToHsl, hslToHex, findClosestShade } from '../utils/colorUtils';
-import { MessageSquare, Info, Smartphone, RefreshCw } from 'lucide-react';
+import { MessageSquare, Info } from 'lucide-react';
 
 interface PaintInspirationProps {
   selectedShade: Shade | null;
@@ -126,74 +126,129 @@ Please guide me with pricing and stock availability. Thanks!`;
               {activeRoom === 'living' && (
                 <svg viewBox="0 0 800 480" width="100%" height="100%" className="w-full h-full object-cover">
                   <defs>
+                    {/* Realistic Plaster Paint roller stipple texture */}
+                    <filter id="paint-stipple" x="0%" y="0%" width="100%" height="100%">
+                      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+                      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.08 0" result="coloredNoise" />
+                      <feComposite operator="in" in2="SourceGraphic" />
+                      <feBlend mode="multiply" in="SourceGraphic" in2="coloredNoise" />
+                    </filter>
+                    
+                    {/* Lighting gradients */}
                     <linearGradient id="living-wall-shadow" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stopColor="#000000" stopOpacity="0.25"/>
-                      <stop offset="20%" stopColor="#000000" stopOpacity="0.05"/>
+                      <stop offset="35%" stopColor="#000000" stopOpacity="0.06"/>
                       <stop offset="100%" stopColor="#000000" stopOpacity="0"/>
                     </linearGradient>
                     <linearGradient id="corner-shadow" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stopColor="#000000" stopOpacity="0.15"/>
+                      <stop offset="0%" stopColor="#000000" stopOpacity="0.18"/>
                       <stop offset="100%" stopColor="#000000" stopOpacity="0"/>
                     </linearGradient>
+                    <linearGradient id="window-light" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.15"/>
+                      <stop offset="50%" stopColor="#FFFFFF" stopOpacity="0.05"/>
+                      <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0"/>
+                    </linearGradient>
                   </defs>
-                  <rect id="svg-living-wall" x="0" y="0" width="800" height="360" fill={activeColors.wall} />
-                  <rect id="svg-living-accent" x="250" y="0" width="300" height="360" fill={activeColors.accent} />
+                  
+                  {/* Base painted walls with stipple texture */}
+                  <rect id="svg-living-wall" x="0" y="0" width="800" height="360" fill={activeColors.wall} filter="url(#paint-stipple)" />
+                  <rect id="svg-living-accent" x="250" y="0" width="300" height="360" fill={activeColors.accent} filter="url(#paint-stipple)" />
+                  
+                  {/* Shadow overlays */}
                   <rect x="0" y="0" width="800" height="360" fill="url(#living-wall-shadow)" className="multiply-blend pointer-events-none" />
-                  <rect x="0" y="0" width="100" height="360" fill="url(#corner-shadow)" className="multiply-blend pointer-events-none" />
-                  <polygon id="svg-living-ceiling" points="0,0 800,0 720,40 80,40" fill={activeColors.ceiling} />
+                  <rect x="0" y="0" width="120" height="360" fill="url(#corner-shadow)" className="multiply-blend pointer-events-none" />
+                  
+                  {/* Natural sunlight casting from window (blend) */}
+                  <rect x="0" y="0" width="800" height="360" fill="url(#window-light)" className="screen-blend pointer-events-none" />
+                  
+                  {/* Ceiling */}
+                  <polygon id="svg-living-ceiling" points="0,0 800,0 720,40 80,40" fill={activeColors.ceiling} filter="url(#paint-stipple)" />
                   <polygon points="0,0 800,0 720,40 80,40" fill="url(#living-wall-shadow)" opacity="0.3" className="multiply-blend pointer-events-none" />
+                  
+                  {/* Floor and Trim skirting */}
                   <rect x="0" y="352" width="800" height="8" fill="#E2E2E7" />
-                  <rect x="0" y="360" width="800" height="120" fill="#d2b48c" />
+                  <rect x="0" y="360" width="800" height="120" fill="#cfae84" />
                   <polygon points="0,360 800,360 800,480 0,480" fill="rgba(0,0,0,0.06)" className="multiply-blend pointer-events-none" />
-                  <ellipse cx="400" cy="420" rx="220" ry="40" fill="#E2E2E7" opacity="0.8" />
+                  <ellipse cx="400" cy="420" rx="220" ry="40" fill="#b09570" opacity="0.4" />
+                  
+                  {/* Living Room elements / sofa */}
                   <rect x="300" y="280" width="200" height="60" rx="4" fill="#3A3A3C" />
                   <rect x="310" y="160" width="180" height="100" rx="6" fill="#1D1D1F" />
                   <ellipse cx="200" cy="380" rx="140" ry="25" fill="rgba(0,0,0,0.2)" />
-                  <path d="M 80,300 C 80,280 100,270 120,270 L 280,270 C 300,270 320,280 320,300 L 320,350 L 80,350 Z" fill="#152b4c" />
-                  <rect x="90" y="310" width="105" height="40" rx="8" fill="#1e3e6b" />
-                  <rect x="205" y="310" width="105" height="40" rx="8" fill="#1e3e6b" />
-                  <rect x="100" y="280" width="95" height="35" rx="6" fill="#152b4c" />
-                  <rect x="205" y="280" width="95" height="35" rx="6" fill="#152b4c" />
-                  <rect x="90" y="350" width="10" height="15" fill="#3A3A3C" />
-                  <rect x="300" y="350" width="10" height="15" fill="#3A3A3C" />
+                  <path d="M 80,300 C 80,280 100,270 120,270 L 280,270 C 300,270 320,280 320,300 L 320,350 L 80,350 Z" fill="#1b3052" />
+                  <rect x="90" y="310" width="105" height="40" rx="8" fill="#243f6b" />
+                  <rect x="205" y="310" width="105" height="40" rx="8" fill="#243f6b" />
+                  <rect x="100" y="280" width="95" height="35" rx="6" fill="#1b3052" />
+                  <rect x="205" y="280" width="95" height="35" rx="6" fill="#1b3052" />
+                  <rect x="90" y="350" width="10" height="15" fill="#2A2A2C" />
+                  <rect x="300" y="350" width="10" height="15" fill="#2A2A2C" />
+                  
+                  {/* Floor Lamp lighting */}
                   <path d="M 680,370 L 720,370 L 700,360 Z" fill="#1D1D1F" />
                   <line x1="700" y1="360" x2="700" y2="180" stroke="#1D1D1F" strokeWidth="4" />
                   <path d="M 670,180 L 730,180 L 710,140 L 690,140 Z" fill="#ffc830" />
                   <polygon points="700,180 550,380 850,380" fill="rgba(255,200,48,0.12)" className="screen-blend pointer-events-none" />
+                  
+                  {/* Decorative Plant */}
                   <path d="M 40,380 L 60,380 L 55,420 L 45,420 Z" fill="#a58a7f" />
-                  <path d="M 50,380 Q 20,340 10,320 Q 40,350 50,380 Z" fill="#2d7e43" />
-                  <path d="M 50,380 Q 50,320 60,300 Q 65,340 50,380 Z" fill="#34C759" />
-                  <path d="M 50,380 Q 80,345 90,330 Q 70,360 50,380 Z" fill="#2d7e43" />
+                  <path d="M 50,380 Q 20,340 10,320 Q 40,350 50,380 Z" fill="#246937" />
+                  <path d="M 50,380 Q 50,320 60,300 Q 65,340 50,380 Z" fill="#2b8243" />
+                  <path d="M 50,380 Q 80,345 90,330 Q 70,360 50,380 Z" fill="#246937" />
                 </svg>
               )}
 
               {activeRoom === 'bedroom' && (
                 <svg viewBox="0 0 800 480" width="100%" height="100%" className="w-full h-full object-cover">
                   <defs>
+                    <filter id="paint-stipple" x="0%" y="0%" width="100%" height="100%">
+                      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+                      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.08 0" result="coloredNoise" />
+                      <feComposite operator="in" in2="SourceGraphic" />
+                      <feBlend mode="multiply" in="SourceGraphic" in2="coloredNoise" />
+                    </filter>
                     <linearGradient id="bed-wall-shadow" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stopColor="#000000" stopOpacity="0.25"/>
                       <stop offset="100%" stopColor="#000000" stopOpacity="0"/>
                     </linearGradient>
+                    <linearGradient id="bed-corner" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stopColor="#000000" stopOpacity="0.2"/>
+                      <stop offset="100%" stopColor="#000000" stopOpacity="0"/>
+                    </linearGradient>
                   </defs>
-                  <rect id="svg-bedroom-wall" x="0" y="0" width="800" height="360" fill={activeColors.wall} />
-                  <polygon id="svg-bedroom-side" points="0,0 100,40 100,320 0,360" fill={activeColors.accent} />
-                  <polygon id="svg-bedroom-ceiling" points="0,0 800,0 800,40 100,40" fill={activeColors.ceiling} />
+                  
+                  {/* Bed Walls */}
+                  <rect id="svg-bedroom-wall" x="0" y="0" width="800" height="360" fill={activeColors.wall} filter="url(#paint-stipple)" />
+                  <polygon id="svg-bedroom-side" points="0,0 100,40 100,320 0,360" fill={activeColors.accent} filter="url(#paint-stipple)" />
+                  
+                  {/* Corner shadows */}
+                  <polygon points="0,0 100,40 100,320 0,360" fill="url(#bed-corner)" className="multiply-blend pointer-events-none" opacity="0.6" />
+                  
+                  {/* Ceiling */}
+                  <polygon id="svg-bedroom-ceiling" points="0,0 800,0 800,40 100,40" fill={activeColors.ceiling} filter="url(#paint-stipple)" />
                   <polygon points="0,0 800,0 800,40 100,40" fill="url(#bed-wall-shadow)" opacity="0.3" className="multiply-blend pointer-events-none" />
+                  
+                  {/* Shadows and floor */}
                   <rect x="100" y="40" width="700" height="280" fill="url(#bed-wall-shadow)" opacity="0.6" className="multiply-blend pointer-events-none" />
-                  <polygon points="0,360 100,320 800,320 800,480 0,480" fill="#a17d58" />
+                  <polygon points="0,360 100,320 800,320 800,480 0,480" fill="#916c49" />
+                  
+                  {/* Headboard and Bed structure */}
                   <rect id="svg-bedroom-headboard" x="200" y="140" width="400" height="180" rx="8" fill="#152b4c" />
                   <rect x="220" y="300" width="360" height="100" fill="rgba(0,0,0,0.25)" />
                   <rect x="230" y="280" width="340" height="60" rx="6" fill="#F5F5F7" />
-                  <path d="M 230,300 L 570,300 L 570,380 C 570,390 560,400 550,400 L 250,400 C 240,400 230,390 230,380 Z" fill="#6750a0" />
+                  <path d="M 230,300 L 570,300 L 570,380 C 570,390 560,400 550,400 L 250,400 C 240,400 230,390 230,380 Z" fill="#58438a" />
                   <rect x="260" y="240" width="120" height="50" rx="8" fill="#FFFFFF" stroke="#E2E2E7" strokeWidth="2" />
                   <rect x="420" y="240" width="120" height="50" rx="8" fill="#FFFFFF" stroke="#E2E2E7" strokeWidth="2" />
-                  <rect x="280" y="250" width="90" height="40" rx="6" fill="#e31959" opacity="0.9" />
-                  <rect x="430" y="250" width="90" height="40" rx="6" fill="#e31959" opacity="0.9" />
-                  <rect x="110" y="240" width="70" height="80" rx="4" fill="#3A3A3C" />
+                  <rect x="280" y="250" width="90" height="40" rx="6" fill="#d61a56" opacity="0.9" />
+                  <rect x="430" y="250" width="90" height="40" rx="6" fill="#d61a56" opacity="0.9" />
+                  
+                  {/* Side lamps */}
+                  <rect x="110" y="240" width="70" height="80" rx="4" fill="#2E2E30" />
                   <line x1="145" y1="240" x2="145" y2="210" stroke="#1D1D1F" strokeWidth="3" />
                   <path d="M 130,210 L 160,210 L 155,190 L 135,190 Z" fill="#ffc830" />
                   <polygon points="145,190 100,280 190,280" fill="rgba(255,200,48,0.15)" className="screen-blend pointer-events-none" />
-                  <rect x="620" y="240" width="70" height="80" rx="4" fill="#3A3A3C" />
+                  
+                  <rect x="620" y="240" width="70" height="80" rx="4" fill="#2E2E30" />
                   <line x1="655" y1="240" x2="655" y2="210" stroke="#1D1D1F" strokeWidth="3" />
                   <path d="M 640,210 L 670,210 L 665,190 L 645,190 Z" fill="#ffc830" />
                   <polygon points="655,190 610,280 700,280" fill="rgba(255,200,48,0.15)" className="screen-blend pointer-events-none" />
@@ -203,33 +258,57 @@ Please guide me with pricing and stock availability. Thanks!`;
               {activeRoom === 'exterior' && (
                 <svg viewBox="0 0 800 480" width="100%" height="100%" className="w-full h-full object-cover">
                   <defs>
+                    <filter id="paint-stipple" x="0%" y="0%" width="100%" height="100%">
+                      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+                      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.08 0" result="coloredNoise" />
+                      <feComposite operator="in" in2="SourceGraphic" />
+                      <feBlend mode="multiply" in="SourceGraphic" in2="coloredNoise" />
+                    </filter>
                     <linearGradient id="sky-grad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#BAE6FD"/>
-                      <stop offset="100%" stopColor="#E0F2FE"/>
+                      <stop offset="0%" stopColor="#A5F3FC"/>
+                      <stop offset="100%" stopColor="#CFFAFE"/>
                     </linearGradient>
                     <linearGradient id="roof-shadow" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#000000" stopOpacity="0.3"/>
+                      <stop offset="0%" stopColor="#000000" stopOpacity="0.45"/>
                       <stop offset="100%" stopColor="#000000" stopOpacity="0"/>
                     </linearGradient>
+                    <linearGradient id="sun-glare" x1="1" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#FFF" stopOpacity="0.25"/>
+                      <stop offset="100%" stopColor="#FFF" stopOpacity="0"/>
+                    </linearGradient>
                   </defs>
+                  
+                  {/* Sky & clouds */}
                   <rect x="0" y="0" width="800" height="200" fill="url(#sky-grad)" />
-                  <path d="M 600,100 C 590,100 580,110 580,120 C 580,121 581,122 581,123 C 570,125 560,135 560,145 C 560,155 570,165 580,165 L 640,165 C 650,165 660,155 660,145 C 660,141 658,138 656,135 C 659,132 660,129 660,125 C 660,115 650,105 640,105 C 638,105 635,106 633,107 C 625,103 615,100 600,100 Z" fill="#FFFFFF" opacity="0.6" />
-                  <rect x="0" y="380" width="800" height="100" fill="#4ade80" />
-                  <polygon points="350,380 450,380 500,480 300,480" fill="#E2E2E7" />
-                  <rect id="svg-exterior-wall" x="200" y="180" width="400" height="200" fill={activeColors.wall} />
-                  <polygon id="svg-exterior-trim" points="200,180 400,80 600,180" fill={activeColors.accent} />
-                  <polygon id="svg-exterior-roof" points="180,185 400,70 620,185 605,195 400,90 195,195" fill={activeColors.ceiling} />
-                  <polygon points="200,180 400,80 600,180 600,195 400,95 200,195" fill="url(#roof-shadow)" opacity="0.5" className="multiply-blend pointer-events-none" />
+                  <path d="M 600,80 C 590,80 580,90 580,100 C 580,101 581,102 581,103 C 570,105 560,115 560,125 C 560,135 570,145 580,145 L 640,145 C 650,145 660,135 660,125 C 660,121 658,118 656,115 C 659,112 660,109 660,105 C 660,95 650,85 640,85 C 638,85 635,86 633,87 C 625,83 615,80 600,80 Z" fill="#FFFFFF" opacity="0.75" />
+                  <rect x="0" y="380" width="800" height="100" fill="#34d399" />
+                  <polygon points="350,380 450,380 500,480 300,480" fill="#D1D5DB" />
+                  
+                  {/* Main exterior wall render */}
+                  <rect id="svg-exterior-wall" x="200" y="180" width="400" height="200" fill={activeColors.wall} filter="url(#paint-stipple)" />
+                  <polygon id="svg-exterior-trim" points="200,180 400,80 600,180" fill={activeColors.accent} filter="url(#paint-stipple)" />
+                  
+                  {/* Roof and structural shadows */}
+                  <polygon id="svg-exterior-roof" points="180,185 400,70 620,185 605,195 400,90 195,195" fill={activeColors.ceiling} filter="url(#paint-stipple)" />
+                  <polygon points="200,180 400,80 600,180 600,195 400,95 200,195" fill="url(#roof-shadow)" opacity="0.6" className="multiply-blend pointer-events-none" />
+                  
+                  {/* Sunlight Glare */}
+                  <rect x="0" y="0" width="800" height="480" fill="url(#sun-glare)" className="screen-blend pointer-events-none" />
+                  
+                  {/* Door */}
                   <rect id="svg-exterior-door" x="370" y="270" width="60" height="110" fill={activeColors.contrast} rx="2" />
                   <rect x="367" y="267" width="66" height="113" fill="none" stroke="#FFFFFF" strokeWidth="3" />
-                  <circle cx="420" cy="325" r="4" fill="#3A3A3C" />
+                  <circle cx="420" cy="325" r="4" fill="#2E2E30" />
+                  
+                  {/* Windows */}
                   <rect x="250" y="240" width="70" height="80" fill="#FFFFFF" rx="4" />
-                  <rect x="255" y="245" width="60" height="70" fill="#E0F2FE" />
+                  <rect x="255" y="245" width="60" height="70" fill="#BAE6FD" />
                   <line x1="285" y1="245" x2="285" y2="315" stroke="#FFFFFF" strokeWidth="2" />
                   <line x1="255" y1="280" x2="315" y2="280" stroke="#FFFFFF" strokeWidth="2" />
                   <rect x="248" y="238" width="74" height="84" fill="none" stroke="#152b4c" strokeWidth="3" />
+                  
                   <rect x="480" y="240" width="70" height="80" fill="#FFFFFF" rx="4" />
-                  <rect x="485" y="245" width="60" height="70" fill="#E0F2FE" />
+                  <rect x="485" y="245" width="60" height="70" fill="#BAE6FD" />
                   <line x1="515" y1="245" x2="515" y2="315" stroke="#FFFFFF" strokeWidth="2" />
                   <line x1="485" y1="280" x2="545" y2="280" stroke="#FFFFFF" strokeWidth="2" />
                   <rect x="478" y="238" width="74" height="84" fill="none" stroke="#152b4c" strokeWidth="3" />

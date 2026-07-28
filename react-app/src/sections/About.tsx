@@ -10,7 +10,7 @@ export default function About() {
         <div className="absolute top-0 right-0 w-80 h-80 bg-gold bg-opacity-10 rounded-full filter blur-3xl pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <span className="text-[10px] font-bold text-gold uppercase tracking-widest block mb-3">Our Legacy</span>
-          <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl leading-tight max-w-2xl">
+          <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl leading-tight max-w-2xl text-white">
             Trusted since 2005.<br />
             <span className="text-gold-light">Built on quality.</span>
           </h1>

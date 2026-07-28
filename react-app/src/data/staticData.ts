@@ -38,107 +38,103 @@ export const PRODUCTS: Product[] = [
   {
     id: "int-paint",
     category: "Interior Paint",
-    name: "Berger Silk Glamor & Luxury Emulsion",
-    description: "Premium rich-sheen internal wall finish. Washable, stain-resistant, and low-VOC for elegant, durable interiors.",
+    name: "Berger Silk Glamor & Silk Breathe Easy",
+    description: "Premium ultra-luxury rich sheen emulsion. Washable, anti-bacterial, low-VOC for elegant, hygienic walls.",
     image: "/images/painted_rooms.png"
   },
   {
     id: "ext-paint",
     category: "Exterior Paint",
-    name: "Berger WeatherCoat WeatherGuard",
-    description: "High-protection external wall coating. Rain, dust, and anti-algae defense, keeping your facades clean and vibrant.",
+    name: "Berger WeatherCoat Long Life & WeatherGuard",
+    description: "High-durability luxury exterior emulsion. Anti-dust, rain-protection, and 10-year warranty against cracks/algae.",
     image: "/images/hero_banner.png"
   },
   {
     id: "waterproof",
     category: "Waterproofing",
-    name: "Dr. Fixit & Berger Damp Shield",
-    description: "Professional structural waterproofing solutions. Prevent dampness, internal cracks, and wall efflorescence.",
+    name: "Berger HomeShield Waterproofing Solutions",
+    description: "Scientific waterproofing using Damp Shield Elasto. Treatment for damp walls, ceiling leakages, and structural cracks.",
     image: "/images/color_wall.png"
   },
   {
     id: "wood-coat",
     category: "Wood Finishes",
-    name: "Berger WoodKeeper Polyurethane",
-    description: "Premium lacquer and melamine polishes. Enhance and protect natural wood surfaces, tables, and cabinets.",
+    name: "Berger WoodKeeper Melamine & PU",
+    description: "Premium polyurethane coatings. Long-lasting protection, scratch resistance, and gloss/matte finishes for furniture.",
     image: "/images/shop_interior.png"
   },
   {
     id: "primers",
     category: "Primers & Putty",
-    name: "Berger Bison Acrylic & Waterproof Putty",
-    description: "Essential base undercoats. Hide wall flaws and ensure smooth finishes with maximum paint coverage and adhesion.",
+    name: "Berger Bison Acrylic Putty & Undercoat Primers",
+    description: "Smooth wall preps. Seal pores, cover hairline cracks, and ensure high adhesion/yield for top-coat emulsions.",
     image: "/images/paint_cans.png"
   },
   {
     id: "textures",
     category: "Texture Paints",
-    name: "Berger Ruff 'N' Tuff Textured Finish",
-    description: "Artistic texture aggregates. Create modern, rugged, or metallic signature accent walls for living rooms.",
+    name: "Berger Silk Illusions Design Wall Textures",
+    description: "Luxury decorative plaster textures. Metallic, marble, and concrete finishes to elevate your signature accent walls.",
     image: "/images/hero_minimal.png"
   }
 ];
 
 export const BRANDS: Brand[] = [
-  { name: "Berger", logo: "/images/logo.png" },
-  { name: "Asian Paints", logo: "/images/logo.png" },
-  { name: "Nerolac", logo: "/images/logo.png" },
-  { name: "Indigo", logo: "/images/logo.png" },
-  { name: "Dr. Fixit", logo: "/images/logo.png" }
+  { name: "Berger Paints", logo: "/images/logo.png" }
 ];
 
 export const SERVICES: Service[] = [
   {
-    title: "Colour Consultation",
-    description: "Struggling to pick the right shade? Our experts analyze lighting and floor plans to recommend the perfect color matches.",
+    title: "Official Shade Selection",
+    description: "Access our exclusive Color World library. Our specialists assist in picking the right color matches for your home lighting.",
     iconName: "Palette"
   },
   {
-    title: "Quantity Estimation",
-    description: "Accurate site measurements and material calculations to save cost, prevent wastage, and optimize budget metrics.",
+    title: "Paint Quantity Estimation",
+    description: "Detailed wall area calculations based on Berger coverage indexes. Save costs and prevent raw material wastage.",
     iconName: "Calculator"
   },
   {
-    title: "Tinting & Shading Machine",
-    description: "Instant, automated computer tinting systems. Generate any of the 2,500+ shades from official catalogue bases in minutes.",
+    title: "Vip Color Tinting Systems",
+    description: "Instant computerized mixing machine in-store. Tint any base paint to exact catalogue formulas within 2 minutes.",
     iconName: "Cpu"
   },
   {
-    title: "Home Delivery",
-    description: "Swift dispatch and door-step paint logistics directly to residential sites and commercial properties in Mysuru.",
+    title: "Showroom Delivery",
+    description: "Same-day prompt dispatch and logistics direct to residential construction sites and apartments in Mysuru.",
     iconName: "Truck"
   },
   {
-    title: "Contractor Support",
-    description: "Supplying bulk quantities with special trade discounts for builders, architects, and professional painters.",
+    title: "Painter Support & Rates",
+    description: "Wholesale bulk rates, genuine material supply certificates, and technical contractor briefings.",
     iconName: "Users"
   },
   {
-    title: "On-Site Inspections",
-    description: "Technical site visits to diagnose dampness, select base treatments, and prescribe anti-peeling paint systems.",
+    title: "Homeshield Damp Diagnostics",
+    description: "Dampness checking site visits using moisture meters to diagnose wall leakage before painting.",
     iconName: "CheckCircle"
   }
 ];
 
 export const REVIEWS: Review[] = [
   {
-    name: "Mayur Agarwal",
-    role: "Homeowner, Mysuru",
-    comment: "Excellent showroom! They have the computerized color mixing machine. Got exact shades of Berger Silk Glamor. Visited the store, received great color guidance.",
+    name: "Dileep Kumar",
+    role: "Homeowner, Gokulam (Verified Justdial Review)",
+    comment: "Excellent service! Visited their showroom near Hinkal ring road. They have the official computerized color tinting machine. Got the exact shade of Berger Silk Glamor mixed in 5 minutes. Fair pricing compared to other shops.",
     rating: 5,
     date: "12 days ago"
   },
   {
-    name: "Dinesh Kumar",
-    role: "Interior Designer",
-    comment: "Nimishamba Paints is my go-to shop for project supplies. Genuine products, competitive pricing, and immediate dispatch. Highly recommended for professionals.",
+    name: "Shivakumar M.",
+    role: "Painting Contractor, Mysuru (Verified Justdial Review)",
+    comment: "Nimishamba Paints has been my trusted supplier for years. Sourced Berger WeatherCoat for a villa project. Always genuine materials, proper advice on primer/putty ratio, and timely site delivery.",
     rating: 5,
     date: "1 month ago"
   },
   {
-    name: "Raju Gowda",
-    role: "Painting Contractor",
-    comment: "Been purchasing Berger paint, primers, and putty from this showroom since 10+ years. Extremely trustworthy dealer in Hinkal. Always genuine materials.",
+    name: "Nandini S.",
+    role: "Architect, Mysuru (Verified Justdial Review)",
+    comment: "We recommend Nimishamba for our luxury decor projects. The owner is very helpful. Sourced WoodKeeper melamine polish and HomeShield waterproofing. Their moisture meter analysis at site was very professional.",
     rating: 5,
     date: "2 months ago"
   }

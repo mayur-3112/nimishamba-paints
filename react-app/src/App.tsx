@@ -186,7 +186,7 @@ export default function App() {
               <div className="absolute top-0 right-0 w-80 h-80 bg-gold bg-opacity-10 rounded-full filter blur-3xl pointer-events-none" />
               <div className="max-w-7xl mx-auto px-6 relative z-10 text-left">
                 <span className="text-[10px] font-bold text-gold uppercase tracking-widest block mb-2">Berger Experience Hub</span>
-                <h1 className="font-display font-extrabold text-3xl sm:text-5xl leading-tight max-w-xl">
+                <h1 className="font-display font-extrabold text-3xl sm:text-5xl leading-tight max-w-xl text-white">
                   Interactive Room Color Renders
                 </h1>
                 <p className="font-sans text-neutral-light opacity-65 text-sm max-w-md mt-4 leading-relaxed">

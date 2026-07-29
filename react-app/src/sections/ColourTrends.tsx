@@ -13,7 +13,7 @@ export default function ColourTrends({ allShades, selectedShade, onSelectShade }
   const [activeCategory, setActiveCategory] = useState('All');
   const [shownCount, setShownCount] = useState(120);
 
-  const categories = ['All', 'Light', 'Pastel', 'Medium', 'Deep', 'Dark'];
+  const categories = ['All', 'Light', 'Pastel', 'Warm', 'Cool', 'Vibrant', 'Dark', 'Neutrals', 'Earthtones'];
 
   // Reset pagination on search/filter change
   useEffect(() => {

@@ -15,7 +15,6 @@ import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 import About from './sections/About';
 import InstagramReels from './sections/InstagramReels';
-import ArchitecturalColourReveal from './components/ArchitecturalColourReveal';
 
 // Load the Berger colors database statically
 import colorsData from './data/berger_colors.json';
@@ -29,7 +28,6 @@ export default function App() {
   const [selectedShade, setSelectedShade] = useState<Shade | null>(null);
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [quoteCategory, setQuoteCategory] = useState('');
-  const [forceLaunchTrigger, setForceLaunchTrigger] = useState(0);
 
   const openQuoteModal = (category: string = '') => {
     setQuoteCategory(category);
@@ -45,10 +43,6 @@ export default function App() {
     setSelectedShade(shade);
   };
 
-  const handleTriggerColorMyWorld = () => {
-    setForceLaunchTrigger((prev) => prev + 1);
-  };
-
   // Bento Strip sampling for Home Page
   const bentoShades = allShades
     .filter(s => s.hex && s.hex !== '#FFFFFF' && s.hex !== '#000000')
@@ -62,24 +56,20 @@ export default function App() {
     .slice(0, 12);
 
   return (
-    <div className="min-h-screen flex flex-col justify-between relative">
+    <div className="min-h-screen flex flex-col justify-between relative bg-white text-primary">
       
-      {/* Global Architectural Cinematic Light & Colour Reveal (3.4s duration, Apple & Porsche inspired) */}
-      <ArchitecturalColourReveal autoPlay={true} isButtonOnly={true} forceTrigger={forceLaunchTrigger > 0} key={forceLaunchTrigger} />
-
       {/* Navbar Navigation */}
       <Navigation 
         currentTab={currentTab} 
         setCurrentTab={setCurrentTab} 
         openQuoteModal={() => openQuoteModal()} 
-        triggerColorMyWorld={handleTriggerColorMyWorld}
       />
 
       {/* Main View Routing */}
       <main id="main-content" className="flex-grow">
         {currentTab === 'home' && (
           <div className="animate-fade-in">
-            {/* Hero Section */}
+            {/* Hero Section with Interactive Architectural Ambient Color Experience */}
             <Hero setCurrentTab={setCurrentTab} openQuoteModal={() => openQuoteModal()} />
             
             {/* Brands / Dealer Credentials */}

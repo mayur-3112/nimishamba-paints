@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, MessageSquare, MapPin, Clock, ArrowRight, ShieldCheck, Sun } from 'lucide-react';
+import { Menu, X, Phone, MessageSquare, MapPin, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
 
 interface NavigationProps {
   currentTab: string;
   setCurrentTab: (tab: string) => void;
   openQuoteModal: (category?: string) => void;
-  triggerColorMyWorld?: () => void;
 }
 
-export default function Navigation({ currentTab, setCurrentTab, openQuoteModal, triggerColorMyWorld }: NavigationProps) {
+export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -59,18 +58,9 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal, 
             </div>
           </div>
 
-          {/* Right info + Architectural Light Reveal Trigger */}
-          <div className="flex items-center gap-6">
-            <button
-              onClick={triggerColorMyWorld}
-              className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#E31959]/20 via-gold/20 to-accent/20 border border-gold/40 hover:border-gold px-3 py-0.5 rounded-full text-gold-light hover:text-white transition-all text-[10px] font-display font-extrabold uppercase tracking-wider cursor-pointer"
-              title="Experience Architectural Light & Colour Reveal"
-            >
-              <Sun className="w-3 h-3 text-gold animate-pulse" />
-              <span>Experience Colour Reveal</span>
-            </button>
-
-            <div className="flex items-center gap-1.5 opacity-75 border-l border-white/15 pl-6">
+          {/* Right info */}
+          <div className="flex items-center gap-8">
+            <div className="flex items-center gap-1.5 opacity-75">
               <Clock className="w-3.5 h-3.5" />
               <span>🕘 Mon &ndash; Sat: 9:00 AM &ndash; 8:30 PM</span>
             </div>
@@ -79,7 +69,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal, 
               href="https://wa.me/919448084351"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-emerald-400 hover:text-white transition-colors font-medium border-l border-white/15 pl-6"
+              className="flex items-center gap-1.5 text-emerald-400 hover:text-white transition-colors font-medium"
             >
               <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
               <span>WhatsApp Desk</span>
@@ -228,17 +218,6 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal, 
 
           {/* Mobile Direct Contacts */}
           <div className="mt-auto pt-6 border-t border-neutral-light flex flex-col gap-4">
-            <button
-              onClick={() => {
-                setIsOpen(false);
-                if (triggerColorMyWorld) triggerColorMyWorld();
-              }}
-              className="w-full bg-gradient-to-r from-[#E31959] via-accent to-gold text-white font-display text-xs font-bold uppercase tracking-wider py-3.5 rounded-xl text-center flex items-center justify-center gap-2 shadow-md cursor-pointer"
-            >
-              <Sun className="w-4 h-4 text-gold-light" />
-              <span>Experience Colour Reveal</span>
-            </button>
-
             <div className="flex flex-col gap-2 bg-neutral-soft p-3.5 rounded-2xl border border-neutral-light">
               <div className="flex justify-between items-center text-xs">
                 <span className="font-display font-bold text-primary">Ajay Kedia (Owner)</span>

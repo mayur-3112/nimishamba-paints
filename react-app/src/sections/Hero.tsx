@@ -1,94 +1,215 @@
-import React from 'react';
-import { ArrowDown, ArrowRight } from 'lucide-react';
-import ArchitecturalColourReveal from '../components/ArchitecturalColourReveal';
+import React, { useState, useEffect } from 'react';
+import { ArrowDown, ArrowRight, Sparkles, Sliders } from 'lucide-react';
 
 interface HeroProps {
   setCurrentTab: (tab: string) => void;
   openQuoteModal: (category?: string) => void;
 }
 
+interface PaletteOption {
+  id: string;
+  name: string;
+  subtitle: string;
+  hex: string;
+  accentGlow: string;
+  textColor: string;
+  badgeBorder: string;
+  roomImage: string;
+}
+
+const PALETTES: PaletteOption[] = [
+  {
+    id: 'crimson',
+    name: 'Berger Crimson',
+    subtitle: 'Signature Passion & Elegance',
+    hex: '#E31959',
+    accentGlow: 'rgba(227, 25, 89, 0.25)',
+    textColor: 'text-[#E31959]',
+    badgeBorder: 'border-[#E31959]/30 bg-[#E31959]/10 text-[#E31959]',
+    roomImage: '/images/painted_rooms.png'
+  },
+  {
+    id: 'gold',
+    name: 'Royal Gold',
+    subtitle: 'Warm Metallic Architectural Polish',
+    hex: '#D4AF37',
+    accentGlow: 'rgba(212, 175, 55, 0.25)',
+    textColor: 'text-gold',
+    badgeBorder: 'border-gold/30 bg-gold/10 text-gold-dark',
+    roomImage: '/images/sol_texture.jpg'
+  },
+  {
+    id: 'teal',
+    name: 'Imperial Teal',
+    subtitle: 'Deep Serene Interior Balance',
+    hex: '#008080',
+    accentGlow: 'rgba(0, 128, 128, 0.25)',
+    textColor: 'text-emerald-700',
+    badgeBorder: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-800',
+    roomImage: '/images/rooms/dining.png'
+  },
+  {
+    id: 'sapphire',
+    name: 'Deep Sapphire',
+    subtitle: 'Quiet Executive Sophistication',
+    hex: '#1E3A5F',
+    accentGlow: 'rgba(30, 58, 95, 0.25)',
+    textColor: 'text-primary',
+    badgeBorder: 'border-primary/30 bg-primary/10 text-primary',
+    roomImage: '/images/sol_office_interior.png'
+  },
+];
+
 export default function Hero({ setCurrentTab, openQuoteModal }: HeroProps) {
+  const [activePalette, setActivePalette] = useState<PaletteOption>(PALETTES[0]);
+  const [isRevealed, setIsRevealed] = useState(false);
+
+  // Smooth architectural lighting entrance
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsRevealed(true);
+    }, 400);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-between bg-neutral-soft overflow-hidden px-6 md:px-12 pt-28 pb-12 border-b border-neutral-light text-left">
+    <section className="relative min-h-[92vh] flex flex-col justify-between bg-neutral-soft overflow-hidden px-6 md:px-12 pt-32 pb-12 border-b border-neutral-light text-left transition-colors duration-1000">
       
-      {/* Background Subtle Elements */}
-      <div className="absolute top-1/4 right-10 w-96 h-96 bg-gold/5 rounded-full filter blur-3xl pointer-events-none" />
+      {/* ── ARCHITECTURAL LIGHTING BEAMS & AMBIENT GLOW ──────────────── */}
+      <div 
+        className="absolute top-1/4 right-10 w-[600px] h-[600px] rounded-full filter blur-3xl pointer-events-none transition-all duration-1000 ease-out"
+        style={{
+          background: activePalette.accentGlow,
+          opacity: isRevealed ? 0.9 : 0.2,
+          transform: isRevealed ? 'scale(1)' : 'scale(0.6)'
+        }}
+      />
+
+      <div 
+        className="absolute bottom-10 left-10 w-[500px] h-[500px] rounded-full filter blur-3xl pointer-events-none transition-all duration-1000 ease-out"
+        style={{
+          background: 'rgba(212, 175, 55, 0.12)',
+          opacity: isRevealed ? 0.8 : 0.1,
+        }}
+      />
 
       {/* Main Asymmetric Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-7xl mx-auto w-full my-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center max-w-7xl mx-auto w-full my-auto relative z-10">
         
         {/* Left Big Typographic Statement */}
-        <div className="lg:col-span-8 text-left">
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="text-[10px] font-bold text-accent uppercase tracking-widest">
-              Residential · Commercial · Industrial / Est. 2005
+        <div className="lg:col-span-7 text-left">
+          
+          <div className="flex flex-wrap items-center gap-3 mb-5">
+            <span className="text-[10px] font-extrabold text-neutral-mid uppercase tracking-widest">
+              Residential &middot; Commercial &middot; Industrial &middot; Est. 2005
+            </span>
+            <span className={`text-[9px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full border transition-all duration-500 ${activePalette.badgeBorder}`}>
+              {activePalette.name} Palette
             </span>
           </div>
 
-          <h1 className="font-display font-black text-primary text-5xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tight uppercase">
+          <h1 className="font-display font-black text-primary text-5xl sm:text-7xl lg:text-8xl leading-[0.92] tracking-tight uppercase">
             Sri Nimishamba<br />
-            Paints<span className="text-gold">.</span>
+            Paints<span className={`transition-colors duration-700 ${activePalette.textColor}`}>.</span>
           </h1>
           
-          <p className="font-display font-bold text-gold-dark text-lg sm:text-xl uppercase tracking-wider mt-4">
+          <p className={`font-display font-extrabold text-lg sm:text-xl uppercase tracking-wider mt-4 transition-colors duration-700 ${activePalette.textColor}`}>
             Premium Surface Solutions
           </p>
 
           <p className="font-sans text-neutral-mid text-sm sm:text-base max-w-lg mt-6 leading-relaxed">
-            From luxury homes to industrial facilities. We deliver surface protection, decorative finishes, and project-grade coating systems — backed by Berger's authorised product portfolio and 20 years of technical expertise.
+            From luxury homes to industrial facilities. We deliver surface protection, decorative finishes, and project-grade coating systems &mdash; backed by Berger's authorised product portfolio and 20 years of technical expertise.
           </p>
 
-          {/* Architectural Cinematic Reveal Button */}
+          {/* Interactive Architectural Swatch Controls */}
+          <div className="mt-8 pt-6 border-t border-neutral-light/80">
+            <div className="flex items-center gap-2 mb-3">
+              <Sliders className="w-3.5 h-3.5 text-neutral-mid" />
+              <span className="font-sans text-[10px] font-bold text-neutral-mid uppercase tracking-widest">
+                Interactive Palette Experience
+              </span>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3">
+              {PALETTES.map((palette) => {
+                const isSelected = activePalette.id === palette.id;
+                return (
+                  <button
+                    key={palette.id}
+                    onClick={() => setActivePalette(palette)}
+                    className={`group relative flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                      isSelected
+                        ? 'bg-white shadow-luxury border-primary/40 scale-105'
+                        : 'bg-white/60 hover:bg-white border-neutral-light/80 hover:border-neutral-mid/40'
+                    }`}
+                  >
+                    <span 
+                      className="w-4 h-4 rounded-full shadow-inner flex-shrink-0 transition-transform group-hover:scale-110"
+                      style={{ background: palette.hex }}
+                    />
+                    <div className="flex flex-col text-left">
+                      <span className="font-display text-xs font-bold text-primary leading-none">
+                        {palette.name}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Primary Action Buttons */}
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <ArchitecturalColourReveal autoPlay={true} />
-            
             <button
               onClick={() => openQuoteModal('Book Colour Consultation')}
-              className="border border-neutral-light hover:border-primary text-primary font-display text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-xl hover:bg-white transition-all cursor-pointer shadow-sm"
+              className="bg-[#E31959] hover:bg-[#C20F4B] text-white font-display text-xs font-bold uppercase tracking-wider px-8 py-4 rounded-xl shadow-luxury hover:-translate-y-0.5 transition-all duration-300 inline-flex items-center gap-2 cursor-pointer border border-[#E31959]/30"
             >
-              Book Consultation
+              <span>Book Colour Consultation</span>
+              <ArrowRight className="w-4 h-4 text-white" />
+            </button>
+
+            <button
+              onClick={() => setCurrentTab('solutions')}
+              className="border border-neutral-light hover:border-primary text-primary font-display text-xs font-bold uppercase tracking-wider px-7 py-4 rounded-xl hover:bg-white transition-all cursor-pointer shadow-sm"
+            >
+              Explore Solutions
             </button>
           </div>
+
         </div>
 
-        {/* Right Atmospheric Card with Grid Break */}
-        <div className="lg:col-span-4 lg:mt-6 w-full">
-          <div className="relative group overflow-hidden rounded-3xl border border-neutral-light bg-white p-4 shadow-premium hover:shadow-luxury transition-all duration-300">
+        {/* Right Atmospheric Interactive Card */}
+        <div className="lg:col-span-5 w-full">
+          <div className="relative group overflow-hidden rounded-3xl border border-neutral-light bg-white p-5 shadow-luxury transition-all duration-500">
             <div className="overflow-hidden rounded-2xl aspect-[4/3] bg-neutral-light relative">
               <img 
-                src="/images/shop_interior.png" 
-                alt="Nimishamba showroom interior with Berger Colour World" 
-                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-90"
+                src={activePalette.roomImage} 
+                alt={`${activePalette.name} interior preview`} 
+                className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
+              <div 
+                className="absolute inset-0 transition-opacity duration-700 mix-blend-multiply"
+                style={{ background: activePalette.accentGlow }}
+              />
             </div>
             
-            <div className="text-left mt-4 px-2">
-              <span className="text-[9px] font-bold text-accent uppercase tracking-wider block mb-1">
-                Colour Studio
-              </span>
-              <h3 className="font-display font-bold text-primary text-lg">
-                Explore 2,500+ Shades
-              </h3>
-              <p className="font-sans text-neutral-mid text-xs mt-1">
-                Visualise finishes against real materials in our digital studio.
-              </p>
-              
-              <div className="flex gap-3 mt-4">
-                <button
-                  onClick={() => setCurrentTab('solutions')}
-                  className="flex-1 bg-primary text-white text-[10px] font-display font-bold uppercase tracking-wider py-3.5 rounded-xl hover:bg-primary-light transition-colors text-center cursor-pointer inline-flex items-center justify-center gap-1.5"
-                >
-                  <span>Explore Solutions</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-gold" />
-                </button>
-                <button
-                  onClick={() => openQuoteModal('Project Consultation')}
-                  className="flex-1 border border-neutral-light text-primary text-[10px] font-display font-bold uppercase tracking-wider py-3.5 rounded-xl hover:bg-neutral-light transition-colors text-center cursor-pointer"
-                >
-                  Talk to Our Experts
-                </button>
+            <div className="text-left mt-5 px-1 flex justify-between items-end">
+              <div>
+                <span className="text-[9px] font-bold text-accent uppercase tracking-wider block mb-1">
+                  Selected Atmosphere &middot; {activePalette.name}
+                </span>
+                <h3 className="font-display font-bold text-primary text-lg sm:text-xl">
+                  {activePalette.subtitle}
+                </h3>
               </div>
+
+              <button
+                onClick={() => setCurrentTab('shades')}
+                className="bg-neutral-soft hover:bg-primary hover:text-white border border-neutral-light p-3 rounded-xl transition-all cursor-pointer flex-shrink-0"
+                title="Open Material Mood Board"
+              >
+                <Sparkles className="w-4 h-4 text-gold" />
+              </button>
             </div>
           </div>
         </div>
@@ -96,7 +217,7 @@ export default function Hero({ setCurrentTab, openQuoteModal }: HeroProps) {
       </div>
 
       {/* Bottom Layout Row */}
-      <div className="max-w-7xl mx-auto w-full flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 pt-12 border-t border-neutral-light/50">
+      <div className="max-w-7xl mx-auto w-full flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 pt-10 border-t border-neutral-light/60 relative z-10">
         <div className="flex gap-12 text-left">
           <div>
             <span className="text-[9px] font-bold text-neutral-mid uppercase tracking-wider block mb-1">Experience Centre</span>
@@ -104,7 +225,7 @@ export default function Hero({ setCurrentTab, openQuoteModal }: HeroProps) {
           </div>
           <div>
             <span className="text-[9px] font-bold text-neutral-mid uppercase tracking-wider block mb-1">Opening Hours</span>
-            <span className="font-sans text-xs text-primary font-bold">Mon - Sat: 9 AM - 8:30 PM</span>
+            <span className="font-sans text-xs text-primary font-bold">Mon &ndash; Sat: 9:00 AM &ndash; 8:30 PM</span>
           </div>
         </div>
 
@@ -116,7 +237,7 @@ export default function Hero({ setCurrentTab, openQuoteModal }: HeroProps) {
           className="flex items-center gap-2 group text-neutral-mid hover:text-primary transition-colors cursor-pointer"
         >
           <span className="font-display text-[9px] font-bold uppercase tracking-widest">Scroll to Explore</span>
-          <ArrowDown className="w-4 h-4 text-accent transform group-hover:translate-y-1 transition-transform" />
+          <ArrowDown className="w-4 h-4 text-[#E31959] transform group-hover:translate-y-1 transition-transform" />
         </button>
       </div>
 

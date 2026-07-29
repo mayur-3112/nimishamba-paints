@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Instagram, ArrowUpRight } from 'lucide-react';
+import { Play, ArrowUpRight } from 'lucide-react';
 
 export default function InstagramReels() {
   // We use high-quality proxy images instead of heavy iframes to maintain >95 Performance score.
@@ -57,7 +57,7 @@ export default function InstagramReels() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 border-b border-neutral-light pb-12">
           <div className="max-w-2xl">
             <span className="flex items-center gap-2 text-[10px] font-bold text-accent uppercase tracking-widest mb-4">
-              <Instagram className="w-3.5 h-3.5" />
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
               Social Showcase
             </span>
             <h1 className="font-display font-extrabold text-4xl sm:text-6xl text-primary leading-tight tracking-tight">

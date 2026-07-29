@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Send, MessageSquare, Check } from 'lucide-react';
+import { X, MessageSquare } from 'lucide-react';
 
 interface QuoteFormProps {
   isModal?: boolean;
@@ -56,62 +56,66 @@ Please contact me to discuss requirements and arrange a site assessment. Thanks!
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-left">
       {/* Name */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="quote-name" className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider">
+        <label htmlFor="quote-name" className="text-[10px] font-extrabold text-neutral-mid uppercase tracking-widest">
           Full Name
         </label>
         <input
           id="quote-name"
           type="text"
           required
+          autoComplete="name"
           placeholder="e.g. Mayur Agarwal"
           value={formData.name}
           onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-          className="bg-neutral-soft border border-neutral-light focus:border-primary focus:bg-white rounded-xl px-4 py-3.5 font-sans text-sm font-semibold text-primary outline-none transition-all"
+          className="bg-neutral-soft border border-neutral-light/80 focus:border-[#E31959] focus:bg-white rounded-2xl px-4 py-3.5 min-h-[50px] font-sans text-sm font-semibold text-primary outline-none transition-all"
         />
       </div>
 
       {/* Phone */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="quote-phone" className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider">
+        <label htmlFor="quote-phone" className="text-[10px] font-extrabold text-neutral-mid uppercase tracking-widest">
           Phone Number
         </label>
         <input
           id="quote-phone"
           type="tel"
+          inputMode="tel"
           required
+          autoComplete="tel"
           placeholder="e.g. +91 94480 84351"
           value={formData.phone}
           onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-          className="bg-neutral-soft border border-neutral-light focus:border-primary focus:bg-white rounded-xl px-4 py-3.5 font-sans text-sm font-semibold text-primary outline-none transition-all"
+          className="bg-neutral-soft border border-neutral-light/80 focus:border-[#E31959] focus:bg-white rounded-2xl px-4 py-3.5 min-h-[50px] font-sans text-sm font-semibold text-primary outline-none transition-all"
         />
       </div>
 
       {/* Location */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="quote-loc" className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider">
+        <label htmlFor="quote-loc" className="text-[10px] font-extrabold text-neutral-mid uppercase tracking-widest">
           Project Location / Site
         </label>
         <input
           id="quote-loc"
           type="text"
           required
+          autoComplete="street-address"
           placeholder="e.g. Hinkal, Gokulam, Mysuru"
           value={formData.location}
           onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
-          className="bg-neutral-soft border border-neutral-light focus:border-primary focus:bg-white rounded-xl px-4 py-3.5 font-sans text-sm font-semibold text-primary outline-none transition-all"
+          className="bg-neutral-soft border border-neutral-light/80 focus:border-[#E31959] focus:bg-white rounded-2xl px-4 py-3.5 min-h-[50px] font-sans text-sm font-semibold text-primary outline-none transition-all"
         />
       </div>
 
       {/* Category Selector */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="quote-cat" className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider">
+        <label htmlFor="quote-cat" className="text-[10px] font-extrabold text-neutral-mid uppercase tracking-widest">
           Solution Category
         </label>
         <select
           id="quote-cat"
           value={formData.category}
           onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
-          className="bg-neutral-soft border border-neutral-light focus:border-primary focus:bg-white rounded-xl px-4 py-3.5 font-sans text-sm font-semibold text-primary outline-none transition-all"
+          className="bg-neutral-soft border border-neutral-light/80 focus:border-[#E31959] focus:bg-white rounded-2xl px-4 py-3.5 min-h-[50px] font-sans text-sm font-semibold text-primary outline-none transition-all"
         >
           {categories.map((cat, idx) => (
             <option key={idx} value={cat}>{cat}</option>
@@ -121,65 +125,67 @@ Please contact me to discuss requirements and arrange a site assessment. Thanks!
 
       {/* Message */}
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="quote-msg" className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider">
+        <label htmlFor="quote-msg" className="text-[10px] font-extrabold text-neutral-mid uppercase tracking-widest">
           Project Details (Optional)
         </label>
         <textarea
           id="quote-msg"
           rows={3}
-          placeholder="e.g. 3BHK apartment interior repaint, or factory floor epoxy coating for 2,000 sq ft."
+          placeholder="e.g. 3BHK apartment interior repaint, or factory floor epoxy coating."
           value={formData.message}
           onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-          className="bg-neutral-soft border border-neutral-light focus:border-primary focus:bg-white rounded-xl px-4 py-3.5 font-sans text-sm font-semibold text-primary outline-none resize-none transition-all"
+          className="bg-neutral-soft border border-neutral-light/80 focus:border-[#E31959] focus:bg-white rounded-2xl px-4 py-3.5 font-sans text-sm font-semibold text-primary outline-none resize-none transition-all"
         />
       </div>
 
-      {/* Submit CTA */}
+      {/* Mobile-Friendly Submit CTA */}
       <button
         type="submit"
-        className="mt-2 bg-primary text-white font-display text-xs font-bold uppercase tracking-wider py-4.5 rounded-xl hover:bg-primary-light transition-all shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2"
+        className="mt-2 min-h-[52px] bg-[#E31959] hover:bg-[#C20F4B] active:scale-[0.98] text-white font-display text-xs font-black uppercase tracking-wider py-4 rounded-2xl transition-all shadow-luxury flex items-center justify-center gap-2 cursor-pointer"
       >
         <MessageSquare className="w-4 h-4 text-emerald-400" />
-        <span>Submit & Connect on WhatsApp</span>
+        <span>Submit &amp; Connect on WhatsApp</span>
       </button>
     </form>
   );
 
   if (isModal) {
     return (
-      <div className="fixed inset-0 z-50 bg-primary bg-opacity-40 backdrop-blur-sm flex items-center justify-center p-6 animate-fade-in">
+      <div 
+        className="fixed inset-0 z-50 bg-[#0B111A]/70 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-6 animate-fade-in"
+        onClick={onClose}
+      >
         <div 
-          className="bg-white rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden border border-neutral-light flex flex-col relative"
+          className="bg-white rounded-t-3xl sm:rounded-3xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl border border-neutral-light flex flex-col relative p-6 sm:p-8"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Close button */}
           <button 
             onClick={onClose}
-            className="absolute top-5 right-5 text-primary hover:text-accent p-1.5 rounded-lg hover:bg-neutral-light transition-colors"
+            className="absolute top-5 right-5 text-primary hover:text-accent w-10 h-10 rounded-full bg-neutral-soft flex items-center justify-center transition-colors cursor-pointer"
+            aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
 
-          <div className="p-8">
-            <div className="text-left mb-6 pr-8">
-              <span className="text-[9px] font-bold text-accent uppercase tracking-wider block mb-1">Project Enquiry</span>
-              <h3 className="font-display font-extrabold text-primary text-2xl">Request Project Consultation</h3>
-              <p className="font-sans text-neutral-mid text-xs mt-1">
-                Share your project details and our experts will get back to you with a tailored solution and quotation.
-              </p>
-            </div>
-            {formContent}
+          <div className="text-left mb-6 pr-8">
+            <span className="text-[9px] font-extrabold text-[#E31959] uppercase tracking-widest block mb-1">Project Enquiry</span>
+            <h3 className="font-display font-black text-primary text-2xl">Request Consultation</h3>
+            <p className="font-sans text-neutral-mid text-xs mt-1">
+              Share your requirements and our team will provide expert guidance and quotation.
+            </p>
           </div>
+          {formContent}
         </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-white border border-neutral-light rounded-3xl p-8 shadow-premium w-full">
+    <div className="bg-white border border-neutral-light/80 rounded-3xl p-6 sm:p-8 shadow-luxury w-full">
       <div className="text-left mb-6">
-        <span className="text-[9px] font-bold text-accent uppercase tracking-wider block mb-1">Project Desk</span>
-        <h3 className="font-display font-extrabold text-primary text-2xl">Request Project Consultation</h3>
+        <span className="text-[9px] font-extrabold text-[#E31959] uppercase tracking-widest block mb-1">Project Desk</span>
+        <h3 className="font-display font-black text-primary text-2xl">Request Consultation</h3>
         <p className="font-sans text-neutral-mid text-xs mt-1">
           Residential, commercial, or industrial — share your requirements and we'll provide expert guidance.
         </p>

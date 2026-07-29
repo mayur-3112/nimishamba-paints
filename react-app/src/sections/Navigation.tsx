@@ -103,15 +103,23 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
             </div>
             <div className="flex flex-col leading-none">
               <div className="flex items-center gap-2">
-                <span className="font-display font-black text-primary tracking-tight text-lg group-hover:text-[#E31959] transition-colors">
+                <span className={`font-display font-black tracking-tight text-lg transition-colors ${
+                  isScrolled ? 'text-primary group-hover:text-[#E31959]' : 'text-white group-hover:text-gold'
+                }`}>
                   SRI NIMISHAMBA
                 </span>
-                <span className="bg-[#E31959]/10 text-[#E31959] text-[8px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full border border-[#E31959]/20 flex items-center gap-1">
-                  <ShieldCheck className="w-2.5 h-2.5 text-[#E31959]" />
+                <span className={`text-[8px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full flex items-center gap-1 border ${
+                  isScrolled 
+                    ? 'bg-[#E31959]/10 text-[#E31959] border-[#E31959]/20' 
+                    : 'bg-white/10 text-gold border-white/20'
+                }`}>
+                  <ShieldCheck className={`w-2.5 h-2.5 ${isScrolled ? 'text-[#E31959]' : 'text-gold'}`} />
                   Authorised Berger Partner
                 </span>
               </div>
-              <span className="font-sans text-[9px] font-bold text-neutral-mid tracking-widest uppercase mt-1">
+              <span className={`font-sans text-[9px] font-bold tracking-widest uppercase mt-1 ${
+                isScrolled ? 'text-neutral-mid' : 'text-neutral-light/70'
+              }`}>
                 BERGER COLOUR WORLD EXPERIENCE CENTRE
               </span>
             </div>
@@ -119,24 +127,29 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
 
           {/* Quiet, Minimal, Calm Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-9">
-            {navLinks.map((link) => (
-              <a
-                key={link.id}
-                href={`#${link.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(link.id);
-                }}
-                className={`font-display text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer relative group ${
-                  currentTab === link.id || (link.id === 'solutions' && currentTab === 'products')
-                    ? 'text-[#E31959] font-bold'
-                    : 'text-primary hover:text-[#E31959]'
-                }`}
-              >
-                <span>{link.label}</span>
-                <span className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-[#E31959] rounded-full transform origin-left transition-transform duration-300 ${currentTab === link.id ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = currentTab === link.id || (link.id === 'solutions' && currentTab === 'products');
+              return (
+                <a
+                  key={link.id}
+                  href={`#${link.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(link.id);
+                  }}
+                  className={`font-display text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer relative group ${
+                    isActive
+                      ? isScrolled ? 'text-[#E31959] font-bold' : 'text-gold font-bold'
+                      : isScrolled ? 'text-primary hover:text-[#E31959]' : 'text-white/90 hover:text-white'
+                  }`}
+                >
+                  <span>{link.label}</span>
+                  <span className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full transform origin-left transition-transform duration-300 ${
+                    isScrolled ? 'bg-[#E31959]' : 'bg-gold'
+                  } ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
+                </a>
+              );
+            })}
           </nav>
 
           {/* Primary CTA (Using Berger Red ONLY for this CTA) */}
@@ -153,7 +166,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
           {/* Mobile Toggle Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-primary p-2"
+            className={`lg:hidden p-2 ${isScrolled ? 'text-primary' : 'text-white'}`}
             aria-label="Toggle Menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

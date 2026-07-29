@@ -15,6 +15,7 @@ import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 import About from './sections/About';
 import InstagramReels from './sections/InstagramReels';
+import ColorMyWorldLaunch from './components/ColorMyWorldLaunch';
 
 // Load the Berger colors database statically
 import colorsData from './data/berger_colors.json';
@@ -28,6 +29,7 @@ export default function App() {
   const [selectedShade, setSelectedShade] = useState<Shade | null>(null);
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [quoteCategory, setQuoteCategory] = useState('');
+  const [forceLaunchTrigger, setForceLaunchTrigger] = useState(0);
 
   const openQuoteModal = (category: string = '') => {
     setQuoteCategory(category);
@@ -43,6 +45,10 @@ export default function App() {
     setSelectedShade(shade);
   };
 
+  const handleTriggerColorMyWorld = () => {
+    setForceLaunchTrigger((prev) => prev + 1);
+  };
+
   // Bento Strip sampling for Home Page
   const bentoShades = allShades
     .filter(s => s.hex && s.hex !== '#FFFFFF' && s.hex !== '#000000')
@@ -56,12 +62,17 @@ export default function App() {
     .slice(0, 12);
 
   return (
-    <div className="min-h-screen flex flex-col justify-between">
+    <div className="min-h-screen flex flex-col justify-between relative">
+      
+      {/* Global Cinematic Launch Animation (Auto-plays once per session + on demand trigger) */}
+      <ColorMyWorldLaunch autoPlay={true} isButtonOnly={true} forceTrigger={forceLaunchTrigger > 0} key={forceLaunchTrigger} />
+
       {/* Navbar Navigation */}
       <Navigation 
         currentTab={currentTab} 
         setCurrentTab={setCurrentTab} 
         openQuoteModal={() => openQuoteModal()} 
+        triggerColorMyWorld={handleTriggerColorMyWorld}
       />
 
       {/* Main View Routing */}
@@ -75,7 +86,7 @@ export default function App() {
             <Brands />
 
             {/* Curated Color Bento Strip & Trends (Home view) */}
-            <section className="py-24 bg-white border-b border-neutral-light">
+            <section className="py-24 bg-white border-b border-neutral-light text-left">
               <div className="max-w-7xl mx-auto px-6">
                 
                 <div className="text-center max-w-xl mx-auto mb-16">
@@ -132,7 +143,7 @@ export default function App() {
                 <div className="text-center mt-12">
                   <button
                     onClick={() => setCurrentTab('shades')}
-                    className="bg-primary text-white font-display text-xs font-bold uppercase tracking-wider px-8 py-4.5 rounded-xl hover:bg-primary-light transition-all shadow-premium inline-flex items-center gap-2"
+                    className="bg-primary text-white font-display text-xs font-bold uppercase tracking-wider px-8 py-4.5 rounded-xl hover:bg-primary-light transition-all shadow-premium inline-flex items-center gap-2 cursor-pointer"
                   >
                     <span>Open Material Mood Board</span>
                     <ArrowRight className="w-4 h-4 text-gold" />
@@ -142,10 +153,10 @@ export default function App() {
               </div>
             </section>
 
-            {/* Who We Serve (replaces WhyChooseUs) */}
+            {/* Who We Serve */}
             <WhoWeServe openQuoteModal={openQuoteModal} />
 
-            {/* Featured Schemes with drag-to-compare shade preview */}
+            {/* Featured Schemes */}
             <Projects openQuoteModal={openQuoteModal} />
 
             {/* Verified customer reviews */}
@@ -165,7 +176,7 @@ export default function App() {
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <button
                     onClick={() => openQuoteModal('Project Consultation')}
-                    className="bg-white text-primary font-display text-xs font-bold uppercase tracking-wider px-8 py-4 rounded-xl hover:bg-neutral-light transition-all shadow-md text-center"
+                    className="bg-white text-primary font-display text-xs font-bold uppercase tracking-wider px-8 py-4 rounded-xl hover:bg-neutral-light transition-all shadow-md text-center cursor-pointer"
                   >
                     Request Project Consultation
                   </button>

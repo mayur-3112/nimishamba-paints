@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, MessageSquare, MapPin, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Menu, X, Phone, MessageSquare, MapPin, Clock, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 
 interface NavigationProps {
   currentTab: string;
   setCurrentTab: (tab: string) => void;
   openQuoteModal: (category?: string) => void;
+  triggerColorMyWorld?: () => void;
 }
 
-export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }: NavigationProps) {
+export default function Navigation({ currentTab, setCurrentTab, openQuoteModal, triggerColorMyWorld }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -39,7 +40,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
     <>
       {/* ── TOP BAR (ELEGANT MINIMAL STRIP) ───────────────────────── */}
       <div className="bg-[#0B111A] text-neutral-light/80 border-b border-white/10 hidden lg:block text-left relative z-50">
-        <div className="max-w-7xl mx-auto px-8 py-2.5 flex justify-between items-center text-[11px] font-sans">
+        <div className="max-w-7xl mx-auto px-8 py-2 flex justify-between items-center text-[11px] font-sans">
           
           {/* Left info */}
           <div className="flex items-center gap-8">
@@ -58,9 +59,18 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
             </div>
           </div>
 
-          {/* Right info */}
-          <div className="flex items-center gap-8">
-            <div className="flex items-center gap-1.5 opacity-75">
+          {/* Right info + Cinematic Launch Trigger */}
+          <div className="flex items-center gap-6">
+            <button
+              onClick={triggerColorMyWorld}
+              className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#E31959]/20 via-gold/20 to-accent/20 border border-gold/40 hover:border-gold px-3 py-0.5 rounded-full text-gold-light hover:text-white transition-all text-[10px] font-display font-extrabold uppercase tracking-wider cursor-pointer"
+              title="Experience Cinematic Liquid Paint Animation"
+            >
+              <Sparkles className="w-3 h-3 text-gold animate-pulse" />
+              <span>Colour My World</span>
+            </button>
+
+            <div className="flex items-center gap-1.5 opacity-75 border-l border-white/15 pl-6">
               <Clock className="w-3.5 h-3.5" />
               <span>🕘 Mon &ndash; Sat: 9:00 AM &ndash; 8:30 PM</span>
             </div>
@@ -69,7 +79,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
               href="https://wa.me/919448084351"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-emerald-400 hover:text-white transition-colors font-medium"
+              className="flex items-center gap-1.5 text-emerald-400 hover:text-white transition-colors font-medium border-l border-white/15 pl-6"
             >
               <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
               <span>WhatsApp Desk</span>
@@ -81,7 +91,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
 
       {/* ── MAIN GLASSMORPHISM STICKY HEADER ─────────────────────── */}
       <header
-        className={`fixed top-0 lg:top-[37px] left-0 right-0 z-40 transition-all duration-300 text-left ${
+        className={`fixed top-0 lg:top-[33px] left-0 right-0 z-40 transition-all duration-300 text-left ${
           isScrolled
             ? 'bg-white/95 backdrop-blur-2xl shadow-luxury py-3.5 border-b border-neutral-light'
             : 'bg-white/80 backdrop-blur-xl shadow-xs py-4.5 border-b border-neutral-light/60'
@@ -218,7 +228,17 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
 
           {/* Mobile Direct Contacts */}
           <div className="mt-auto pt-6 border-t border-neutral-light flex flex-col gap-4">
-            <span className="text-[9px] font-bold text-neutral-mid uppercase tracking-wider block">Direct Leadership Contacts</span>
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                if (triggerColorMyWorld) triggerColorMyWorld();
+              }}
+              className="w-full bg-gradient-to-r from-[#E31959] via-accent to-gold text-white font-display text-xs font-bold uppercase tracking-wider py-3.5 rounded-xl text-center flex items-center justify-center gap-2 shadow-md cursor-pointer"
+            >
+              <Sparkles className="w-4 h-4 text-gold-light" />
+              <span>Colour My World</span>
+            </button>
+
             <div className="flex flex-col gap-2 bg-neutral-soft p-3.5 rounded-2xl border border-neutral-light">
               <div className="flex justify-between items-center text-xs">
                 <span className="font-display font-bold text-primary">Ajay Kedia (Owner)</span>

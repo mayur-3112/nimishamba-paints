@@ -55,7 +55,7 @@ export interface Project {
 }
 
 /* ─────────────────────────────────────────────────
-   SOLUTIONS — Curated market tier surface solutions.
+   SOLUTIONS — Curated market tier surface solutions (Unique Images).
    ───────────────────────────────────────────────── */
 
 export const SOLUTIONS: Solution[] = [
@@ -66,7 +66,7 @@ export const SOLUTIONS: Solution[] = [
     category: "Interior Finishes",
     name: "Premium Interior Wall Systems",
     description: "Luxury emulsions, anti-bacterial coatings, and low-VOC formulations for healthy, beautiful living spaces. Washable, stain-resistant, and architect-specified.",
-    image: "/images/painted_rooms.png"
+    image: "/images/bedroom_visualizer.png"
   },
   {
     id: "res-exterior",
@@ -281,7 +281,7 @@ export const INSPIRATIONS: Inspiration[] = [
     title: "Modern Minimalist Living Room",
     category: "Living Room",
     description: "Soft warm neutrals on main walls paired with rich pastel teal accents to create an open, tranquil space.",
-    image: "/images/painted_rooms.png",
+    image: "/images/living_room_visualizer.png",
     colors: ["#FCFBF7", "#F5F3EE", "#1E3A5F", "#FAF0DC"]
   },
   {
@@ -289,15 +289,15 @@ export const INSPIRATIONS: Inspiration[] = [
     title: "Warm Elegance Master Bedroom",
     category: "Bedroom",
     description: "Soothing pink-cream base shades paired with luxurious gold or deep red upholstery finishes.",
-    image: "/images/sol_texture.jpg",
+    image: "/images/color_wall.png",
     colors: ["#F5E2E9", "#FAF0DC", "#C97152", "#FFFFFF"]
   },
   {
     id: "exterior",
-    title: "Contemporary Villa Exterior",
+    title: "Contemporary Facility Exterior",
     category: "Exterior",
     description: "Premium stone-greys with classic navy accents on gables and door trims for a modern look.",
-    image: "/images/hero_banner.png",
+    image: "/images/sol_heavy_industry.jpg",
     colors: ["#FAF0DC", "#BDD5C0", "#152B4C", "#B8D4E8"]
   }
 ];

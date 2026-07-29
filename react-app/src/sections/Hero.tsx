@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowDown, ArrowRight, ShieldCheck, Phone } from 'lucide-react';
+import { ArrowDown, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
+import ColorMyWorldWebGL from '../components/ColorMyWorldWebGL';
 
 interface HeroProps {
   setCurrentTab: (tab: string) => void;
@@ -37,7 +38,7 @@ export default function Hero({ setCurrentTab, openQuoteModal }: HeroProps) {
             From luxury residences to industrial facilities. We deliver surface protection, decorative finishes, and project-grade coating systems &mdash; backed by Berger's authorised product portfolio and 20 years of technical expertise.
           </p>
 
-          {/* Primary Action Buttons */}
+          {/* Primary Action Buttons & Color My World Signature Trigger */}
           <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
             <button
               onClick={() => openQuoteModal('Book Colour Consultation')}
@@ -47,9 +48,12 @@ export default function Hero({ setCurrentTab, openQuoteModal }: HeroProps) {
               <ArrowRight className="w-4 h-4 text-white" />
             </button>
 
+            {/* Signature WebGL Real-Time Fluid Dynamics Interaction */}
+            <ColorMyWorldWebGL />
+
             <button
               onClick={() => setCurrentTab('solutions')}
-              className="min-h-[48px] border border-neutral-light/80 hover:border-primary text-primary font-display text-xs font-bold uppercase tracking-wider px-7 rounded-2xl hover:bg-white transition-all cursor-pointer shadow-2xs inline-flex items-center justify-center"
+              className="min-h-[48px] border border-neutral-light/80 hover:border-primary text-primary font-display text-xs font-bold uppercase tracking-wider px-6 rounded-2xl hover:bg-white transition-all cursor-pointer shadow-2xs inline-flex items-center justify-center"
             >
               Explore Solutions
             </button>

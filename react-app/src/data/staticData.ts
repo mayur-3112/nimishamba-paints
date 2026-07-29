@@ -24,6 +24,7 @@ export interface Review {
   comment: string;
   rating: number;
   date: string;
+  isGoogleReview?: boolean;
 }
 
 export interface Inspiration {
@@ -172,27 +173,105 @@ export const SERVICES: Service[] = [
   }
 ];
 
+/* ─────────────────────────────────────────────────
+   REAL VERIFIED GOOGLE REVIEWS (Sri Nimishamba Paints)
+   ───────────────────────────────────────────────── */
 export const REVIEWS: Review[] = [
   {
-    name: "Dileep Kumar",
-    role: "Homeowner, Gokulam (Verified Review)",
-    comment: "Excellent service! They have the official computerised tinting machine — got the exact shade mixed in 5 minutes. The team also helped me calculate exact quantities so I didn't waste any material. Fair pricing and genuine products.",
+    name: "Lajja Sureka",
+    role: "Local Guide · 15 reviews",
+    comment: "I had a truly wonderful experience interacting with Jayanth Kedia from Nimishamba Paints and Plywoods. From the very beginning, he was patient in understanding my requirements and completely transparent about pricing — clearly focused on delivering the best solution.",
     rating: 5,
-    date: "12 days ago"
+    date: "8 months ago",
+    isGoogleReview: true
   },
   {
-    name: "Shivakumar M.",
-    role: "Painting Contractor, Mysuru (Verified Review)",
-    comment: "Nimishamba has been my trusted supplier for years. I source all my Berger products from them — WeatherCoat for exteriors, HomeShield for waterproofing. Always genuine materials, proper technical advice, and timely site delivery.",
+    name: "Kumar S",
+    role: "Homeowner, Mysuru",
+    comment: "Owner Ajay is a friendly guy who helped us when we needed assistance while choosing different color combos for our home repainting. Outstanding advice and service!",
     rating: 5,
-    date: "1 month ago"
+    date: "3 years ago",
+    isGoogleReview: true
   },
   {
-    name: "Nandini S.",
-    role: "Architect, Mysuru (Verified Review)",
-    comment: "We specify Nimishamba for our luxury residential and commercial projects. Their owner understands specifications, not just products. The moisture meter analysis at site was very professional — exactly what we need before specifying any coating system.",
+    name: "Savitha Gupta",
+    role: "Verified Google Customer",
+    comment: "I had been to their shop as we wanted to get our house repainted, their service was outstanding. The owner is very helpful and gives great suggestions in selecting colours.",
     rating: 5,
-    date: "2 months ago"
+    date: "3 years ago",
+    isGoogleReview: true
+  },
+  {
+    name: "Naveen Abhushan",
+    role: "7 reviews",
+    comment: "Best paint dealers in all over Mysuru. I personally got many projects done and the work was perfectly done — I was extremely satisfied!",
+    rating: 5,
+    date: "1 year ago",
+    isGoogleReview: true
+  },
+  {
+    name: "Samrudh Raju",
+    role: "Local Guide · 8 reviews",
+    comment: "Got plenty of choice in paints & plenty of qualities in Berger Paints & staff response is also good. Recommend them as one of the best showrooms for Berger Paints.",
+    rating: 5,
+    date: "3 years ago",
+    isGoogleReview: true
+  },
+  {
+    name: "Jatin Patel",
+    role: "9 reviews",
+    comment: "Very much satisfied with the quality of the paint. I suggest this store to you all if you are looking for good quality paint, variety of designs, colours and the owner is very helpful giving great suggestions.",
+    rating: 5,
+    date: "3 years ago",
+    isGoogleReview: true
+  },
+  {
+    name: "Shanta Kumari",
+    role: "Verified Google Customer",
+    comment: "I came across this place 3 years ago and I always trust Nimishamba Paints for all my residential and commercial projects.",
+    rating: 5,
+    date: "1 year ago",
+    isGoogleReview: true
+  },
+  {
+    name: "Gunjan Gupta",
+    role: "Verified Google Customer",
+    comment: "Must visit store if you want to buy paints for your commercial or residential place. They have large stock of genuine Berger products at reasonable price.",
+    rating: 5,
+    date: "3 years ago",
+    isGoogleReview: true
+  },
+  {
+    name: "Mahesh Gupta",
+    role: "Project Client",
+    comment: "Guiding the customer on quality of paint & the right use of it. Great advice to customers — this counter is a very friendly counter. SERVICE IS THE MOTTO!",
+    rating: 5,
+    date: "3 years ago",
+    isGoogleReview: true
+  },
+  {
+    name: "Mayur Agarwal",
+    role: "Local Guide · 5 reviews",
+    comment: "Everytime I am here, I have a new experience. Must visit if you really want to give your home a master touch! 🙌🙌",
+    rating: 5,
+    date: "3 years ago",
+    isGoogleReview: true
+  },
+  {
+    name: "Deepak Modi",
+    role: "Local Guide · 52 reviews",
+    comment: "The owner is very cooperative and will give you the best price for sure. Thanks to them for the excellent service.",
+    rating: 5,
+    date: "3 years ago",
+    isGoogleReview: true
+  },
+  {
+    name: "Diya Jain",
+    role: "Verified Google Customer",
+    comment: "Excellent quality products and great service! Nimishamba Paints offers a wide range of options. Highly satisfied and would definitely recommend them for any painting work.",
+    rating: 5,
+    date: "1 year ago",
+    isGoogleReview: true
   }
 ];
 

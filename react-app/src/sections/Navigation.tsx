@@ -38,7 +38,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
   return (
     <>
       {/* ── TOP BAR (ELEGANT MINIMAL STRIP) ───────────────────────── */}
-      <div className="bg-primary-dark text-neutral-light/80 border-b border-white/10 hidden lg:block text-left relative z-50">
+      <div className="bg-[#0B111A] text-neutral-light/80 border-b border-white/10 hidden lg:block text-left relative z-50">
         <div className="max-w-7xl mx-auto px-8 py-2.5 flex justify-between items-center text-[11px] font-sans">
           
           {/* Left info */}
@@ -71,7 +71,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-emerald-400 hover:text-white transition-colors font-medium"
             >
-              <MessageSquare className="w-3.5 h-3.5" />
+              <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
               <span>WhatsApp Desk</span>
             </a>
           </div>
@@ -81,10 +81,10 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
 
       {/* ── MAIN GLASSMORPHISM STICKY HEADER ─────────────────────── */}
       <header
-        className={`fixed top-0 lg:top-[37px] left-0 right-0 z-40 transition-all duration-500 text-left ${
+        className={`fixed top-0 lg:top-[37px] left-0 right-0 z-40 transition-all duration-300 text-left ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-xl shadow-luxury py-4 border-b border-neutral-light/80'
-            : 'bg-transparent py-6'
+            ? 'bg-white/95 backdrop-blur-2xl shadow-luxury py-3.5 border-b border-neutral-light'
+            : 'bg-white/80 backdrop-blur-xl shadow-xs py-4.5 border-b border-neutral-light/60'
         }`}
       >
         <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
@@ -96,37 +96,29 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
               e.preventDefault();
               handleNavClick('home');
             }}
-            className="flex items-center gap-4 cursor-pointer group"
+            className="flex items-center gap-3.5 cursor-pointer group"
           >
-            <div className="overflow-hidden w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-neutral-light/40 group-hover:scale-105 transition-transform duration-300">
+            <div className="overflow-hidden w-11 h-11 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-neutral-light/80 group-hover:scale-105 transition-transform duration-300">
               <img src="/images/logo.png" alt="Berger Colour World" className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col leading-none">
               <div className="flex items-center gap-2">
-                <span className={`font-display font-black tracking-tight text-lg transition-colors ${
-                  isScrolled ? 'text-primary group-hover:text-[#E31959]' : 'text-white group-hover:text-gold'
-                }`}>
+                <span className="font-display font-black text-primary tracking-tight text-lg group-hover:text-[#E31959] transition-colors">
                   SRI NIMISHAMBA
                 </span>
-                <span className={`text-[8px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full flex items-center gap-1 border ${
-                  isScrolled 
-                    ? 'bg-[#E31959]/10 text-[#E31959] border-[#E31959]/20' 
-                    : 'bg-white/10 text-gold border-white/20'
-                }`}>
-                  <ShieldCheck className={`w-2.5 h-2.5 ${isScrolled ? 'text-[#E31959]' : 'text-gold'}`} />
+                <span className="bg-[#E31959]/10 text-[#E31959] text-[8px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full border border-[#E31959]/20 flex items-center gap-1">
+                  <ShieldCheck className="w-2.5 h-2.5 text-[#E31959]" />
                   Authorised Berger Partner
                 </span>
               </div>
-              <span className={`font-sans text-[9px] font-bold tracking-widest uppercase mt-1 ${
-                isScrolled ? 'text-neutral-mid' : 'text-neutral-light/70'
-              }`}>
+              <span className="font-sans text-[9px] font-bold text-neutral-mid tracking-widest uppercase mt-1">
                 BERGER COLOUR WORLD EXPERIENCE CENTRE
               </span>
             </div>
           </a>
 
           {/* Quiet, Minimal, Calm Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-9">
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => {
               const isActive = currentTab === link.id || (link.id === 'solutions' && currentTab === 'products');
               return (
@@ -139,14 +131,14 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
                   }}
                   className={`font-display text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer relative group ${
                     isActive
-                      ? isScrolled ? 'text-[#E31959] font-bold' : 'text-gold font-bold'
-                      : isScrolled ? 'text-primary hover:text-[#E31959]' : 'text-white/90 hover:text-white'
+                      ? 'text-[#E31959] font-bold'
+                      : 'text-primary hover:text-[#E31959]'
                   }`}
                 >
                   <span>{link.label}</span>
-                  <span className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full transform origin-left transition-transform duration-300 ${
-                    isScrolled ? 'bg-[#E31959]' : 'bg-gold'
-                  } ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
+                  <span className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-[#E31959] rounded-full transform origin-left transition-transform duration-300 ${
+                    isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  }`} />
                 </a>
               );
             })}
@@ -166,7 +158,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
           {/* Mobile Toggle Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-2 ${isScrolled ? 'text-primary' : 'text-white'}`}
+            className="lg:hidden text-primary p-2 cursor-pointer"
             aria-label="Toggle Menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -198,7 +190,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
                   <span className="font-sans text-[8px] font-bold text-[#E31959] uppercase tracking-wider">Berger Experience Centre</span>
                 </div>
               </div>
-              <button onClick={() => setIsOpen(false)} className="text-primary p-2">
+              <button onClick={() => setIsOpen(false)} className="text-primary p-2 cursor-pointer">
                 <X className="w-6 h-6" />
               </button>
             </div>
@@ -247,7 +239,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
                 setIsOpen(false);
                 openQuoteModal('Book Colour Consultation');
               }}
-              className="bg-[#E31959] text-white font-display text-xs font-bold uppercase tracking-wider py-4 rounded-xl text-center hover:bg-[#C20F4B] transition-all shadow-md"
+              className="bg-[#E31959] text-white font-display text-xs font-bold uppercase tracking-wider py-4 rounded-xl text-center hover:bg-[#C20F4B] transition-all shadow-md cursor-pointer"
             >
               Book Colour Consultation
             </button>
@@ -276,7 +268,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
         </a>
         <button
           onClick={() => openQuoteModal('Book Consultation')}
-          className="flex-[1.4] flex flex-col justify-center items-center gap-1 bg-[#E31959] text-white hover:bg-[#C20F4B] transition-colors"
+          className="flex-[1.4] flex flex-col justify-center items-center gap-1 bg-[#E31959] text-white hover:bg-[#C20F4B] transition-colors cursor-pointer"
         >
           <span className="font-display text-[10px] font-bold uppercase tracking-wider">Book Consultation</span>
         </button>

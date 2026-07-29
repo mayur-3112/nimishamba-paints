@@ -8,9 +8,9 @@ export default function Contact() {
   };
 
   const contacts = [
+    { name: 'Ajay Kedia', phone: '+91 94480 84351', role: 'Owner & Founder' },
     { name: 'Jayanth Kedia', phone: '+91 99862 18879', role: 'Partner / Project Lead' },
     { name: 'Kunal Kedia', phone: '+91 80954 74075', role: 'Partner / Technical Director' },
-    { name: 'Showroom Desk', phone: '+91 94480 84351', role: 'Direct Line & Support' },
   ];
 
   return (
@@ -49,13 +49,13 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Direct Contacts List */}
+              {/* Direct Leadership Contacts List */}
               <div className="flex gap-4">
                 <div className="w-10 h-10 bg-primary/5 rounded-lg border border-primary/10 flex items-center justify-center flex-shrink-0">
                   <Phone className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex flex-col leading-snug w-full">
-                  <span className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider mb-2">Key Contacts &amp; Desk</span>
+                  <span className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider mb-2">Direct Leadership Contacts</span>
                   <div className="flex flex-col gap-2.5">
                     {contacts.map((c, i) => (
                       <div key={i} className="flex justify-between items-center bg-neutral-soft p-2.5 rounded-xl border border-neutral-light/70">
@@ -81,9 +81,9 @@ export default function Contact() {
                   <MessageSquare className="w-5 h-5 text-emerald-600" />
                 </div>
                 <div className="flex flex-col leading-snug">
-                  <span className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider mb-1">WhatsApp Desk</span>
+                  <span className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider mb-1">WhatsApp Integration</span>
                   <a href="https://wa.me/919448084351" target="_blank" rel="noopener noreferrer" className="font-display text-primary text-base font-bold hover:text-accent transition-colors">
-                    +91 94480 84351
+                    +91 94480 84351 (Ajay Kedia)
                   </a>
                   <span className="font-sans text-[10px] text-neutral-mid mt-0.5">Instant shade catalogue &amp; project consultation</span>
                 </div>

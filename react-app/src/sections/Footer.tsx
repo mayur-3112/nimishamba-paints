@@ -79,7 +79,7 @@ export default function Footer({ setCurrentTab, openQuoteModal }: FooterProps) {
             </div>
 
             <p className="font-sans text-xs text-neutral-light/65 leading-relaxed max-w-sm">
-              Sri Nimishamba Paints &amp; Plywoods is Mysuru’s premier authorised Berger Colour World Experience Centre. Serving homeowners, architects, builders, and contractors with genuine coating systems since 2005.
+              Sri Nimishamba Paints &amp; Plywoods is Mysuru’s premier authorised Berger Colour World Experience Centre. Founded by Ajay Kedia, serving homeowners, architects, builders, and contractors with genuine coating systems since 2005.
             </p>
 
             {/* Official Badge */}
@@ -108,7 +108,7 @@ export default function Footer({ setCurrentTab, openQuoteModal }: FooterProps) {
 
           {/* Column 3: Contact & Location */}
           <div className="lg:col-span-3 flex flex-col gap-5">
-            <span className="text-[10px] font-extrabold text-gold uppercase tracking-widest block">Contact &amp; Location</span>
+            <span className="text-[10px] font-extrabold text-gold uppercase tracking-widest block">Leadership &amp; Location</span>
             <div className="flex flex-col gap-3.5 text-xs font-sans text-neutral-light/80">
               
               <div className="flex gap-2.5 items-start">
@@ -118,16 +118,16 @@ export default function Footer({ setCurrentTab, openQuoteModal }: FooterProps) {
 
               <div className="flex flex-col gap-2 pt-2 border-t border-white/10">
                 <div className="flex items-center gap-2">
+                  <Phone className="w-3.5 h-3.5 text-gold flex-shrink-0" />
+                  <a href="tel:+919448084351" className="hover:text-gold transition-colors font-bold text-white">Ajay Kedia (Owner): +91 94480 84351</a>
+                </div>
+                <div className="flex items-center gap-2">
                   <Phone className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
                   <a href="tel:+919986218879" className="hover:text-gold transition-colors font-semibold">Jayanth Kedia: +91 99862 18879</a>
                 </div>
                 <div className="flex items-center gap-2">
                   <Phone className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
                   <a href="tel:+918095474075" className="hover:text-gold transition-colors font-semibold">Kunal Kedia: +91 80954 74075</a>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="w-3.5 h-3.5 text-gold flex-shrink-0" />
-                  <a href="tel:+919448084351" className="hover:text-gold transition-colors">Showroom Desk: +91 94480 84351</a>
                 </div>
               </div>
 

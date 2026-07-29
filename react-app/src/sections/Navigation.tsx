@@ -50,6 +50,8 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
 
             <div className="flex items-center gap-2 border-l border-white/15 pl-6">
               <Phone className="w-3.5 h-3.5 text-emerald-400" />
+              <a href="tel:+919448084351" className="hover:text-white transition-colors font-bold text-white">Ajay (Owner): +91 94480 84351</a>
+              <span className="text-white/20">|</span>
               <a href="tel:+919986218879" className="hover:text-white transition-colors">Jayanth: +91 99862 18879</a>
               <span className="text-white/20">|</span>
               <a href="tel:+918095474075" className="hover:text-white transition-colors">Kunal: +91 80954 74075</a>
@@ -70,7 +72,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
               className="flex items-center gap-1.5 text-emerald-400 hover:text-white transition-colors font-medium"
             >
               <MessageSquare className="w-3.5 h-3.5" />
-              <span>WhatsApp</span>
+              <span>WhatsApp Desk</span>
             </a>
           </div>
 
@@ -211,15 +213,19 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
 
           {/* Mobile Direct Contacts */}
           <div className="mt-auto pt-6 border-t border-neutral-light flex flex-col gap-4">
-            <span className="text-[9px] font-bold text-neutral-mid uppercase tracking-wider block">Showroom Direct Contacts</span>
+            <span className="text-[9px] font-bold text-neutral-mid uppercase tracking-wider block">Direct Leadership Contacts</span>
             <div className="flex flex-col gap-2 bg-neutral-soft p-3.5 rounded-2xl border border-neutral-light">
               <div className="flex justify-between items-center text-xs">
+                <span className="font-display font-bold text-primary">Ajay Kedia (Owner)</span>
+                <a href="tel:+919448084351" className="font-display font-bold text-[#E31959]">+91 94480 84351</a>
+              </div>
+              <div className="flex justify-between items-center text-xs pt-2 border-t border-neutral-light/60">
                 <span className="font-display font-bold text-primary">Jayanth Kedia</span>
-                <a href="tel:+919986218879" className="font-display font-bold text-[#E31959]">+91 99862 18879</a>
+                <a href="tel:+919986218879" className="font-display font-bold text-accent">+91 99862 18879</a>
               </div>
               <div className="flex justify-between items-center text-xs pt-2 border-t border-neutral-light/60">
                 <span className="font-display font-bold text-primary">Kunal Kedia</span>
-                <a href="tel:+918095474075" className="font-display font-bold text-[#E31959]">+91 80954 74075</a>
+                <a href="tel:+918095474075" className="font-display font-bold text-accent">+91 80954 74075</a>
               </div>
             </div>
 
@@ -244,7 +250,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
           className="flex-1 flex flex-col justify-center items-center gap-1 text-primary hover:text-[#E31959] transition-colors border-r border-neutral-light"
         >
           <Phone className="w-5 h-5 text-primary" />
-          <span className="font-sans text-[10px] font-bold uppercase tracking-wider">Call</span>
+          <span className="font-sans text-[10px] font-bold uppercase tracking-wider">Call Ajay</span>
         </a>
         <a
           href="https://wa.me/919448084351"

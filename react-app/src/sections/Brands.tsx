@@ -8,30 +8,31 @@ const CREDENTIALS = [
 
 export default function Brands() {
   return (
-    <section id="brands" className="py-16 bg-neutral-soft border-y border-neutral-light">
+    <section id="brands" className="py-16 bg-neutral-soft border-y border-neutral-light text-left">
       <div className="max-w-7xl mx-auto px-6">
         <div className="bg-white border border-neutral-light rounded-3xl overflow-hidden shadow-sm grid md:grid-cols-2">
-          {/* Showroom counter */}
+          
+          {/* Showroom Counter (Real Storefront Photo) */}
           <div className="relative min-h-[280px] md:min-h-full">
             <img
-              src="/images/shop_interior.png"
-              alt="The Berger Colour World experience centre at Nimishamba, Hinkal, Mysuru"
+              src="/images/gallery_google_1.png"
+              alt="Sri Nimishamba Paints & Plywoods Storefront in Hinkal, Mysuru"
               loading="lazy"
               decoding="async"
               className="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/45 to-transparent" />
-            <span className="absolute bottom-5 left-5 glass-panel rounded-full px-4 py-2 font-sans text-[10px] font-bold uppercase tracking-widest text-primary">
-              Berger Colour World · Hinkal
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
+            <span className="absolute bottom-5 left-5 bg-white/90 backdrop-blur-md border border-neutral-light rounded-full px-4 py-2 font-sans text-[10px] font-extrabold uppercase tracking-widest text-primary shadow-xs">
+              Berger Colour World &middot; Hinkal
             </span>
           </div>
 
-          {/* Dealership credentials */}
-          <div className="p-8 md:p-12 flex flex-col justify-center">
+          {/* Dealership Credentials */}
+          <div className="p-8 md:p-12 flex flex-col justify-center text-left">
             <div className="flex items-center gap-3 mb-5">
               <img
                 src="/images/logo-mark.png"
-                alt=""
+                alt="Berger Paints Logo Mark"
                 width={48}
                 height={48}
                 loading="lazy"
@@ -45,12 +46,12 @@ export default function Brands() {
               </div>
             </div>
 
-            <h2 className="font-display font-bold text-primary text-2xl md:text-3xl mb-4 leading-snug">
+            <h2 className="font-display font-black text-primary text-2xl md:text-3xl mb-4 leading-snug">
               Mysuru's authorised Berger Colour World experience centre
             </h2>
 
             <p className="font-sans text-neutral-mid text-sm leading-relaxed mb-7">
-              As an authorised Platinum partner, we stock the complete Berger range — premium interior emulsions, exterior weather barriers, HomeShield waterproofing, industrial floor coatings, and WoodKeeper finishes. Every product is sourced directly and tinted in-store from official bases.
+              As an authorised Platinum partner, we stock the complete Berger range &mdash; premium interior emulsions, exterior weather barriers, HomeShield waterproofing, industrial floor coatings, and WoodKeeper finishes. Every product is sourced directly and tinted in-store from official bases.
             </p>
 
             <ul className="grid sm:grid-cols-2 gap-4 border-t border-neutral-light pt-6">

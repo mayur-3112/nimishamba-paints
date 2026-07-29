@@ -53,21 +53,21 @@ export default function Hero({ setCurrentTab, openQuoteModal }: HeroProps) {
           </div>
         </div>
 
-        {/* Right Atmospheric Showroom Showcase Card (Proportionately Sized) */}
+        {/* Right Authentic Showroom Card (Real Google Store Photo) */}
         <div className="lg:col-span-5 w-full mt-2 lg:mt-0">
           <div className="relative group overflow-hidden rounded-2xl border border-neutral-light/80 bg-white p-3 shadow-luxury transition-all duration-500 max-w-lg mx-auto lg:max-w-none">
             <div className="overflow-hidden rounded-xl aspect-[4/3] bg-neutral-light relative">
               <img 
-                src="/images/shop_interior.png" 
-                alt="Nimishamba showroom interior with Berger Colour World" 
-                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-95"
+                src="/images/gallery_google_1.png" 
+                alt="Sri Nimishamba Paints & Plywoods Storefront in Hinkal Mysuru" 
+                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-primary/5 mix-blend-multiply" />
 
               <div className="absolute top-2.5 left-2.5 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-neutral-light shadow-xs flex items-center gap-1.5">
                 <ShieldCheck className="w-3 h-3 text-[#E31959]" />
                 <span className="font-display text-[8px] font-black uppercase tracking-widest text-primary">
-                  Berger Colour World &middot; Hinkal
+                  Store Counter &middot; Hinkal Ring Road
                 </span>
               </div>
             </div>

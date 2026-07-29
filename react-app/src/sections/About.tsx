@@ -1,8 +1,15 @@
 import React from 'react';
-import { Award, CheckCircle, Users, Sparkles, Star } from 'lucide-react';
+import { Award, CheckCircle, Users, Star, MapPin } from 'lucide-react';
 import { REVIEWS } from '../data/staticData';
 
 export default function About() {
+  const storePhotos = [
+    { src: '/images/gallery_google_1.png', label: 'Showroom & Tinting Counter' },
+    { src: '/images/gallery_google_3.png', label: 'Berger Paints Stock & Display' },
+    { src: '/images/gallery_google_4.png', label: 'Colour World Mixing Counter' },
+    { src: '/images/gallery_google_2.png', label: 'Sri Nimishamba Storefront & Entrance' },
+  ];
+
   return (
     <div id="pg-about" className="animate-fade-in text-left">
       {/* Inner Hero Header */}
@@ -12,7 +19,7 @@ export default function About() {
           <span className="text-[10px] font-bold text-gold uppercase tracking-widest block mb-3">Our Legacy</span>
           <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl leading-tight max-w-2xl text-white">
             Trusted since 2005.<br />
-            <span className="text-gold-light">Built on expertise.</span>
+            <span className="text-gold-light">Built on authentic expertise.</span>
           </h1>
           <p className="font-sans text-neutral-light opacity-60 text-sm sm:text-base max-w-lg mt-4 leading-relaxed">
             For over two decades, we have been the preferred surface solutions partner for homeowners, architects, contractors, and industrial clients across Mysuru.
@@ -20,8 +27,40 @@ export default function About() {
         </div>
       </div>
 
+      {/* Real Store Photo Gallery Section */}
+      <section className="py-16 bg-neutral-soft border-b border-neutral-light">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-2 mb-2">
+            <MapPin className="w-4 h-4 text-[#E31959]" />
+            <span className="text-[10px] font-extrabold text-accent uppercase tracking-widest">
+              Authentic Storefront &amp; Counter &middot; Hinkal, Mysuru
+            </span>
+          </div>
+          <h2 className="font-display font-black text-primary text-2xl sm:text-3xl mb-8">
+            Inside Sri Nimishamba Paints &amp; Plywoods
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {storePhotos.map((photo, i) => (
+              <div key={i} className="bg-white rounded-2xl p-3 border border-neutral-light shadow-sm flex flex-col group">
+                <div className="overflow-hidden rounded-xl aspect-[4/3] bg-neutral-light relative">
+                  <img
+                    src={photo.src}
+                    alt={photo.label}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <span className="font-sans text-xs font-bold text-primary mt-3 px-1 text-left">
+                  {photo.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Detail Story */}
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           
           {/* Text Column (Left) */}
@@ -31,10 +70,10 @@ export default function About() {
               Mysuru's Trusted Surface Solutions Partner
             </h2>
             <p className="font-sans text-neutral-mid text-sm leading-relaxed">
-              Founded in 2005, Sri Nimishamba Paints &amp; Plywoods has grown from a local supplier into a comprehensive surface solutions company. We specialise in precision colour tinting, decorative texture systems, structural waterproofing, industrial floor coatings, and premium wood and metal finishes.
+              Founded in 2005 by Ajay Kedia, Sri Nimishamba Paints &amp; Plywoods has grown from a local supplier into a comprehensive surface solutions company. We specialise in precision colour tinting, decorative texture systems, structural waterproofing, industrial floor coatings, and premium wood and metal finishes.
             </p>
             <p className="font-sans text-neutral-mid text-sm leading-relaxed">
-              We work directly with India's leading coating manufacturers, holding the Platinum Partner authorisation from <strong>Berger Paints</strong>. This direct relationship ensures our entire product portfolio is genuine, factory-fresh, and backed by manufacturer warranties.
+              We work directly with India's leading coating manufacturers, holding the Platinum Partner authorisation from <strong>Berger Paints</strong>. This direct relationship ensures our entire product portfolio is 100% genuine, factory-fresh, and backed by manufacturer warranties.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowDown, ArrowRight } from 'lucide-react';
+import ColorMyWorldLaunch from '../components/ColorMyWorldLaunch';
 
 interface HeroProps {
   setCurrentTab: (tab: string) => void;
@@ -8,7 +9,7 @@ interface HeroProps {
 
 export default function Hero({ setCurrentTab, openQuoteModal }: HeroProps) {
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-between bg-neutral-soft overflow-hidden px-6 md:px-12 pt-28 pb-12 border-b border-neutral-light">
+    <section className="relative min-h-[90vh] flex flex-col justify-between bg-neutral-soft overflow-hidden px-6 md:px-12 pt-28 pb-12 border-b border-neutral-light text-left">
       
       {/* Background Subtle Elements */}
       <div className="absolute top-1/4 right-10 w-96 h-96 bg-gold/5 rounded-full filter blur-3xl pointer-events-none" />
@@ -18,23 +19,40 @@ export default function Hero({ setCurrentTab, openQuoteModal }: HeroProps) {
         
         {/* Left Big Typographic Statement */}
         <div className="lg:col-span-8 text-left">
-          <span className="text-[10px] font-bold text-accent uppercase tracking-widest block mb-4">
-            Residential · Commercial · Industrial / Est. 2005
-          </span>
+          <div className="flex flex-wrap items-center gap-3 mb-4">
+            <span className="text-[10px] font-bold text-accent uppercase tracking-widest">
+              Residential · Commercial · Industrial / Est. 2005
+            </span>
+          </div>
+
           <h1 className="font-display font-black text-primary text-5xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tight uppercase">
             Sri Nimishamba<br />
             Paints<span className="text-gold">.</span>
           </h1>
+          
           <p className="font-display font-bold text-gold-dark text-lg sm:text-xl uppercase tracking-wider mt-4">
             Premium Surface Solutions
           </p>
+
           <p className="font-sans text-neutral-mid text-sm sm:text-base max-w-lg mt-6 leading-relaxed">
             From luxury homes to industrial facilities. We deliver surface protection, decorative finishes, and project-grade coating systems — backed by Berger's authorised product portfolio and 20 years of technical expertise.
           </p>
+
+          {/* Cinematic Launch CTA Button */}
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <ColorMyWorldLaunch autoPlay={true} />
+            
+            <button
+              onClick={() => openQuoteModal('Book Colour Consultation')}
+              className="border border-neutral-light hover:border-primary text-primary font-display text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-xl hover:bg-white transition-all cursor-pointer shadow-sm"
+            >
+              Book Consultation
+            </button>
+          </div>
         </div>
 
         {/* Right Atmospheric Card with Grid Break */}
-        <div className="lg:col-span-4 lg:mt-12 w-full">
+        <div className="lg:col-span-4 lg:mt-6 w-full">
           <div className="relative group overflow-hidden rounded-3xl border border-neutral-light bg-white p-4 shadow-premium hover:shadow-luxury transition-all duration-300">
             <div className="overflow-hidden rounded-2xl aspect-[4/3] bg-neutral-light relative">
               <img 
@@ -86,7 +104,7 @@ export default function Hero({ setCurrentTab, openQuoteModal }: HeroProps) {
           </div>
           <div>
             <span className="text-[9px] font-bold text-neutral-mid uppercase tracking-wider block mb-1">Opening Hours</span>
-            <span className="font-sans text-xs text-primary font-bold">Mon - Sat: 9 AM - 7 PM</span>
+            <span className="font-sans text-xs text-primary font-bold">Mon - Sat: 9 AM - 8:30 PM</span>
           </div>
         </div>
 

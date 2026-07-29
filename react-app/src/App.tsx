@@ -15,6 +15,7 @@ import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 import About from './sections/About';
 import InstagramReels from './sections/InstagramReels';
+import ColorMyWorldWebGL from './components/ColorMyWorldWebGL';
 
 // Load the Berger colors database statically
 import colorsData from './data/berger_colors.json';
@@ -28,6 +29,7 @@ export default function App() {
   const [selectedShade, setSelectedShade] = useState<Shade | null>(null);
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [quoteCategory, setQuoteCategory] = useState('');
+  const [webGLTriggerCount, setWebGLTriggerCount] = useState(0);
 
   const openQuoteModal = (category: string = '') => {
     setQuoteCategory(category);
@@ -41,6 +43,10 @@ export default function App() {
 
   const handleSelectShade = (shade: Shade) => {
     setSelectedShade(shade);
+  };
+
+  const handleTriggerColorMyWorld = () => {
+    setWebGLTriggerCount((prev) => prev + 1);
   };
 
   // Bento Strip sampling for Home Page
@@ -58,6 +64,13 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col justify-between relative bg-white text-primary">
       
+      {/* Real-time WebGL Shader Fluid Dynamics ("Color My World" Signature Interaction) */}
+      <ColorMyWorldWebGL 
+        isButtonOnly={true} 
+        forceTrigger={webGLTriggerCount > 0} 
+        key={webGLTriggerCount} 
+      />
+
       {/* Navbar Navigation */}
       <Navigation 
         currentTab={currentTab} 
@@ -69,8 +82,12 @@ export default function App() {
       <main id="main-content" className="flex-grow">
         {currentTab === 'home' && (
           <div className="animate-fade-in">
-            {/* Hero Section with Interactive Architectural Ambient Color Experience */}
-            <Hero setCurrentTab={setCurrentTab} openQuoteModal={() => openQuoteModal()} />
+            {/* Hero Section with Interactive Architectural Living Room Transformation */}
+            <Hero 
+              setCurrentTab={setCurrentTab} 
+              openQuoteModal={() => openQuoteModal()} 
+              triggerColorMyWorld={handleTriggerColorMyWorld}
+            />
             
             {/* Brands / Dealer Credentials */}
             <Brands />

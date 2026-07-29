@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Sparkles, ArrowRight, CheckCircle2, RotateCcw, Palette, Phone } from 'lucide-react';
+import { Sparkles, ArrowRight, CheckCircle2, RotateCcw, Palette, Phone, Play } from 'lucide-react';
 
 interface LivingRoomTransformProps {
   openQuoteModal: (category?: string) => void;
   setCurrentTab: (tab: string) => void;
+  triggerColorMyWorld?: () => void;
 }
 
 interface ColorShade {
@@ -65,7 +66,7 @@ const COLOR_SHADES: ColorShade[] = [
   }
 ];
 
-export default function LivingRoomTransform({ openQuoteModal, setCurrentTab }: LivingRoomTransformProps) {
+export default function LivingRoomTransform({ openQuoteModal, setCurrentTab, triggerColorMyWorld }: LivingRoomTransformProps) {
   const [isTransformed, setIsTransformed] = useState(false);
   const [activeShade, setActiveShade] = useState<ColorShade>(COLOR_SHADES[0]);
   const [isPainting, setIsPainting] = useState(false);
@@ -130,16 +131,29 @@ export default function LivingRoomTransform({ openQuoteModal, setCurrentTab }: L
           {/* Primary Mobile Action Buttons (Min 48px touch targets) */}
           <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             {!isTransformed ? (
-              <button
-                onClick={handleExperienceColour}
-                disabled={isPainting}
-                className="group relative w-full sm:w-auto min-h-[52px] inline-flex items-center justify-center gap-3 bg-[#E31959] hover:bg-[#C20F4B] active:bg-[#A00B3B] text-white font-display text-xs font-black uppercase tracking-wider px-8 rounded-2xl shadow-luxury active:scale-[0.98] transition-all duration-300 border border-[#E31959]/30 cursor-pointer overflow-hidden"
-              >
-                <span className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                <Sparkles className={`w-4 h-4 text-gold ${isPainting ? 'animate-spin' : 'group-hover:rotate-45'} transition-transform`} />
-                <span>{isPainting ? 'Painting Living Room...' : 'Experience Colour'}</span>
-                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
-              </button>
+              <>
+                <button
+                  onClick={handleExperienceColour}
+                  disabled={isPainting}
+                  className="group relative w-full sm:w-auto min-h-[52px] inline-flex items-center justify-center gap-3 bg-[#E31959] hover:bg-[#C20F4B] active:bg-[#A00B3B] text-white font-display text-xs font-black uppercase tracking-wider px-8 rounded-2xl shadow-luxury active:scale-[0.98] transition-all duration-300 border border-[#E31959]/30 cursor-pointer overflow-hidden"
+                >
+                  <span className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                  <Sparkles className={`w-4 h-4 text-gold ${isPainting ? 'animate-spin' : 'group-hover:rotate-45'} transition-transform`} />
+                  <span>{isPainting ? 'Painting Living Room...' : 'Experience Colour'}</span>
+                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+                </button>
+
+                {triggerColorMyWorld && (
+                  <button
+                    onClick={triggerColorMyWorld}
+                    className="min-h-[52px] border border-neutral-light hover:border-primary text-primary font-display text-xs font-bold uppercase tracking-wider px-6 rounded-2xl hover:bg-white transition-all cursor-pointer inline-flex items-center justify-center gap-2"
+                    title="Play WebGL Fluid Dynamics Simulation"
+                  >
+                    <Play className="w-3.5 h-3.5 text-[#E31959] fill-[#E31959]" />
+                    <span>Color My World</span>
+                  </button>
+                )}
+              </>
             ) : (
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto animate-fade-in">
                 <button

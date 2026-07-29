@@ -54,8 +54,7 @@ export interface Project {
 }
 
 /* ─────────────────────────────────────────────────
-   SOLUTIONS — Replaces the old PRODUCTS array.
-   Organized by market tier with 100% accurate, high-res images.
+   SOLUTIONS — Curated market tier surface solutions.
    ───────────────────────────────────────────────── */
 
 export const SOLUTIONS: Solution[] = [
@@ -133,14 +132,6 @@ export const SOLUTIONS: Solution[] = [
     name: "Anti-Corrosion & Protective Systems",
     description: "Industrial-grade protective coatings for steel structures, pipelines, tanks, and machinery. Formulated for extreme weather, chemical exposure, and marine environments.",
     image: "/images/sol_protective_coat.png"
-  },
-  {
-    id: "ind-heavy",
-    tier: "Industrial",
-    category: "Heavy-Duty Finishes",
-    name: "Chemical Resistant & High-Temp Coatings",
-    description: "Specialised coating systems for manufacturing plants, processing facilities, and industrial infrastructure requiring chemical, heat, and abrasion resistance.",
-    image: "/images/sol_heavy_industry.jpg"
   }
 ];
 

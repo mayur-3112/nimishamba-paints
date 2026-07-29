@@ -44,7 +44,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
           <div className="flex items-center gap-8">
             <div className="flex items-center gap-1.5 text-neutral-light/90">
               <MapPin className="w-3.5 h-3.5 text-gold" />
-              <span>📍 Mysuru &amp; Bengaluru, KA</span>
+              <span>📍 Hinkal Ring Road, Mysuru, KA</span>
             </div>
 
             <div className="flex items-center gap-2 border-l border-white/15 pl-6">
@@ -108,7 +108,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
                 </span>
               </div>
               <span className="font-sans text-[8px] sm:text-[9px] font-bold text-neutral-mid tracking-widest uppercase mt-0.5">
-                EXPERIENCE CENTRE
+                EXPERIENCE CENTRE &middot; MYSURU
               </span>
             </div>
           </a>
@@ -178,7 +178,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
                 <img src="/images/logo.png" alt="Berger Logo" className="w-9 h-9 rounded-xl object-cover" />
                 <div className="flex flex-col text-left">
                   <span className="font-display font-black text-primary text-base">SRI NIMISHAMBA</span>
-                  <span className="font-sans text-[8px] font-bold text-[#E31959] uppercase tracking-wider">Authorised Berger Experience Centre</span>
+                  <span className="font-sans text-[8px] font-bold text-[#E31959] uppercase tracking-wider">Authorised Berger Experience Centre &middot; Mysuru</span>
                 </div>
               </div>
 
@@ -218,7 +218,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
 
           {/* Direct Leadership Contacts & Fast Quote */}
           <div className="mt-8 pt-6 border-t border-neutral-light text-left space-y-4">
-            <span className="font-sans text-[9px] font-black uppercase tracking-widest text-neutral-mid block">Direct Leadership Desk</span>
+            <span className="font-sans text-[9px] font-black uppercase tracking-widest text-neutral-mid block">Direct Leadership Desk &middot; Mysuru</span>
             
             <div className="bg-neutral-soft p-4 rounded-2xl border border-neutral-light space-y-3">
               <div className="flex justify-between items-center">

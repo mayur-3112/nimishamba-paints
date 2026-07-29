@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Sparkles, X, Play, RefreshCw } from 'lucide-react';
+import { Sparkles, X, Play } from 'lucide-react';
 
 interface ColorMyWorldWebGLProps {
   onComplete?: () => void;
@@ -47,7 +47,6 @@ export default function ColorMyWorldWebGL({
 
     const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
     if (!gl) {
-      // Fallback if WebGL is disabled
       setTimeout(() => {
         setIsPlaying(false);
         if (onComplete) onComplete();
@@ -66,7 +65,7 @@ export default function ColorMyWorldWebGL({
     };
     window.addEventListener('resize', handleResize);
 
-    // ── GLSL SHADERS (Vertex & Viscous Fluid Normal Specular Fragment Shader) ──
+    // ── GLSL SHADERS (High Gloss WebGL Liquid Paint Simulation) ──
     const vertShaderSource = `
       attribute vec2 a_position;
       varying vec2 v_uv;
@@ -83,84 +82,76 @@ export default function ColorMyWorldWebGL({
       uniform float u_time;
       uniform float u_progress;
 
-      // Metaball Signed Distance Field for Viscous Liquid Paint Dynamics
-      float smin(float a, float b, float k) {
-        float h = clamp(0.5 + 0.5 * (b - a) / k, 0.0, 1.0);
-        return mix(b, a, h) - k * h * (1.0 - h);
+      // Viscous Paint Surface Normal & Specular Gloss Shading
+      float hash(vec2 p) {
+        return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
       }
 
-      float blobSDF(vec2 p, vec2 c, float r) {
-        return length(p - c) - r;
+      float noise(vec2 p) {
+        vec2 i = floor(p);
+        vec2 f = fract(p);
+        vec2 u = f * f * (3.0 - 2.0 * f);
+        return mix(mix(hash(i + vec2(0.0,0.0)), hash(i + vec2(1.0,0.0)), u.x),
+                   mix(hash(i + vec2(0.0,1.0)), hash(i + vec2(1.0,1.0)), u.x), u.y);
+      }
+
+      float liquidField(vec2 p, float time, float prog) {
+        // Fluid splash center point
+        vec2 center = vec2(0.5, 0.5);
+        float dist = length(p - center);
+        
+        // Fluid Wave Expansion
+        float waveRadius = prog * 1.8;
+        float fluid = dist - waveRadius;
+
+        // Viscous Surface Ripples & Droplet Breakup
+        float n = noise(p * 6.0 + time * 0.8) * 0.15;
+        float drip = sin(p.x * 14.0 + time) * 0.08 * (1.0 - prog);
+        
+        return fluid + n + drip;
       }
 
       void main() {
         vec2 st = gl_FragCoord.xy / u_resolution.xy;
-        st.y = 1.0 - st.y; // Correct orientation
         float aspect = u_resolution.x / u_resolution.y;
         vec2 p = st * vec2(aspect, 1.0);
 
-        // Fluid Metadynamics simulation parameters
         float prog = clamp(u_progress, 0.0, 1.0);
-        float d = 10.0;
+        float f = liquidField(p, u_time, prog);
 
-        // Wave sweep & dripping liquid streams
-        vec2 center = vec2(0.5 * aspect, 0.5);
-        float sweepRadius = pow(prog, 1.4) * aspect * 1.6;
-        float wave = blobSDF(p, center, sweepRadius);
-        d = smin(d, wave, 0.35);
-
-        // Viscous Dripping Ribbons (Gravity & Viscosity)
-        for (int i = 0; i < 7; i++) {
-          float fi = float(i);
-          float offset = fi * 0.28 * aspect;
-          float dripSpeed = 0.8 + sin(fi * 1.5) * 0.3;
-          float dripY = clamp((prog - 0.2) * dripSpeed * 1.8, 0.0, 1.5);
-          float dripX = offset + sin(u_time * 2.0 + fi) * 0.05;
-          float radius = 0.12 * (1.0 - prog * 0.4);
-          
-          float b = blobSDF(p, vec2(dripX, dripY), radius);
-          d = smin(d, b, 0.25);
-        }
-
-        // Specular Lighting & Paint Surface Normal Calculation
-        float edge = smoothstep(0.02, -0.02, d);
-        
+        float edge = smoothstep(0.03, -0.03, f);
         if (edge <= 0.001) {
           discard;
         }
 
-        // 3D Surface Normal for High-Gloss Wall Paint Specular Reflection
-        vec2 eps = vec2(0.005, 0.0);
-        float dx = (blobSDF(p + eps.xy, center, sweepRadius) - blobSDF(p - eps.xy, center, sweepRadius));
-        float dy = (blobSDF(p + eps.yx, center, sweepRadius) - blobSDF(p - eps.yx, center, sweepRadius));
-        vec3 normal = normalize(vec3(-dx, -dy, 0.15));
+        // 3D Specular Light Normal Gradient
+        vec2 e = vec2(0.004, 0.0);
+        float nx = liquidField(p + e.xy, u_time, prog) - liquidField(p - e.xy, u_time, prog);
+        float ny = liquidField(p + e.yx, u_time, prog) - liquidField(p - e.yx, u_time, prog);
+        vec3 norm = normalize(vec3(-nx, -ny, 0.12));
 
-        // Light direction (Top Left Studio Spot)
-        vec3 lightDir = normalize(vec3(-0.5, -0.8, 1.0));
-        vec3 viewDir = vec3(0.0, 0.0, 1.0);
-        vec3 halfDir = normalize(lightDir + viewDir);
+        // Studio Light Highlight
+        vec3 light = normalize(vec3(-0.4, -0.7, 1.0));
+        vec3 view = vec3(0.0, 0.0, 1.0);
+        vec3 halfV = normalize(light + view);
+        float spec = pow(max(dot(norm, halfV), 0.0), 38.0) * 0.9;
+        float rim = pow(1.0 - max(dot(norm, view), 0.0), 2.5) * 0.45;
 
-        // Specular Glossy Reflection (Fresh Paint Look)
-        float spec = pow(max(dot(normal, halfDir), 0.0), 32.0) * 0.85;
-        float fresnel = pow(1.0 - max(dot(normal, viewDir), 0.0), 3.0) * 0.4;
+        // Signature Berger Paint Palette (#E31959 Crimson, #D4AF37 Gold, #008080 Emerald)
+        vec3 crimson = vec3(0.89, 0.10, 0.35);
+        vec3 gold = vec3(0.83, 0.69, 0.22);
+        vec3 emerald = vec3(0.0, 0.50, 0.50);
 
-        // Signature Berger Paint Palette
-        vec3 crimson = vec3(0.89, 0.10, 0.35); // #E31959
-        vec3 gold = vec3(0.83, 0.69, 0.22);    // #D4AF37
-        vec3 teal = vec3(0.0, 0.50, 0.50);     // #008080
-        
-        vec3 paintColor = mix(crimson, gold, sin(st.x * 3.0 + u_time) * 0.5 + 0.5);
-        paintColor = mix(paintColor, teal, cos(st.y * 2.0) * 0.3);
+        vec3 paintCol = mix(crimson, gold, sin(p.x * 4.0 + u_time) * 0.5 + 0.5);
+        paintCol = mix(paintCol, emerald, cos(p.y * 3.0) * 0.3);
 
-        // Final Gloss Surface Blend
-        vec3 finalColor = paintColor + vec3(spec + fresnel);
-        float alpha = clamp(edge * (1.0 - prog * 0.85), 0.0, 1.0);
+        vec3 finalCol = paintCol + vec3(spec + rim);
+        float alpha = clamp(edge * (1.0 - prog * 0.8), 0.0, 1.0);
 
-        gl_FragColor = vec4(finalColor, alpha);
+        gl_FragColor = vec4(finalCol, alpha);
       }
     `;
 
-    // Compile Shaders
     const createShader = (type: number, source: string) => {
       const shader = gl.createShader(type);
       if (!shader) return null;
@@ -196,7 +187,6 @@ export default function ColorMyWorldWebGL({
 
     gl.useProgram(program);
 
-    // Quad Geometry
     const positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     gl.bufferData(
@@ -217,7 +207,7 @@ export default function ColorMyWorldWebGL({
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
     const startTime = performance.now();
-    const duration = 3500; // 3.5 seconds cinematic reveal
+    const duration = 3200; // 3.2 seconds max duration
 
     const render = (now: number) => {
       const elapsed = now - startTime;
@@ -236,7 +226,6 @@ export default function ColorMyWorldWebGL({
       if (progress < 1.0) {
         animFrameRef.current = requestAnimationFrame(render);
       } else {
-        // Cleanup GPU Buffers
         window.removeEventListener('resize', handleResize);
         gl.deleteBuffer(positionBuffer);
         gl.deleteShader(vertShader);
@@ -255,26 +244,23 @@ export default function ColorMyWorldWebGL({
     <>
       {/* ── REAL-TIME GPU FLUID SIMULATION OVERLAY ──────────────────── */}
       {isPlaying && (
-        <div className="fixed inset-0 z-50 pointer-events-auto bg-[#070C12]/40 backdrop-blur-xs flex items-center justify-center overflow-hidden">
+        <div className="fixed inset-0 z-50 pointer-events-auto bg-[#070C12]/50 backdrop-blur-xs flex items-center justify-center overflow-hidden">
           
-          {/* WebGL Canvas Shader Layer */}
           <canvas ref={canvasRef} className="absolute inset-0 w-full h-full block z-10" />
 
-          {/* Cinematic Title Overlay */}
           <div className="relative z-20 text-center px-6 pointer-events-none animate-fade-in">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/20 px-4 py-1.5 rounded-full text-gold text-[10px] font-display font-extrabold uppercase tracking-widest mb-4 shadow-luxury">
               <Sparkles className="w-3.5 h-3.5 text-gold animate-spin" />
-              <span>Berger Fluid Dynamics</span>
+              <span>Berger Experience &middot; Mysuru</span>
             </div>
             <h1 className="font-display font-black text-white text-5xl sm:text-7xl lg:text-8xl tracking-tight uppercase drop-shadow-2xl">
               Color My World<span className="text-[#E31959]">.</span>
             </h1>
             <p className="font-sans text-neutral-light/80 text-xs sm:text-sm mt-3 font-bold tracking-widest uppercase max-w-md mx-auto">
-              Real-Time Fluid Simulation &middot; Berger Paints Experience Centre
+              Authorised Berger Paints Experience Centre &middot; Mysuru
             </p>
           </div>
 
-          {/* Skip Button */}
           <button
             onClick={() => {
               if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
@@ -289,17 +275,15 @@ export default function ColorMyWorldWebGL({
         </div>
       )}
 
-      {/* Dedicated Interactive Button */}
+      {/* Trigger Button */}
       {!isButtonOnly && (
         <button
           onClick={triggerLaunch}
-          className={buttonClassName || "group relative inline-flex items-center gap-2.5 bg-gradient-to-r from-[#E31959] via-accent to-gold text-white font-display text-xs font-black uppercase tracking-wider px-7 py-4 rounded-2xl shadow-luxury hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 border border-white/20 cursor-pointer overflow-hidden min-h-[52px]"}
+          className={buttonClassName || "group relative inline-flex items-center gap-2.5 border border-neutral-light/80 hover:border-primary text-primary font-display text-xs font-bold uppercase tracking-wider px-6 rounded-2xl hover:bg-white transition-all cursor-pointer shadow-2xs min-h-[48px]"}
           title="Play WebGL 'Color My World' Real-Time Fluid Dynamics"
         >
-          <span className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-          <Sparkles className="w-4 h-4 text-gold-light group-hover:rotate-45 transition-transform" />
+          <Sparkles className="w-4 h-4 text-[#E31959]" />
           <span>Color My World</span>
-          <Play className="w-3.5 h-3.5 fill-white text-white ml-0.5 group-hover:translate-x-0.5 transition-transform" />
         </button>
       )}
     </>

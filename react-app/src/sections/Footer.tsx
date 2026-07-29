@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageSquare, Phone, MapPin, Award } from 'lucide-react';
+import { MessageSquare, Phone, MapPin, Award, Mail } from 'lucide-react';
 
 interface FooterProps {
   setCurrentTab: (tab: string) => void;
@@ -32,13 +32,13 @@ export default function Footer({ setCurrentTab, openQuoteModal }: FooterProps) {
               <img src="/images/logo.png" alt="Nimishamba Logo" className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="font-display font-bold text-white tracking-tight text-base">NIMISHAMBA</span>
-              <span className="font-sans text-[9px] font-bold text-neutral-light opacity-50 tracking-wider uppercase">SURFACE SOLUTIONS</span>
+              <span className="font-display font-bold text-white tracking-tight text-base">SRI NIMISHAMBA PAINTS</span>
+              <span className="font-sans text-[9px] font-bold text-neutral-light opacity-50 tracking-wider uppercase">PREMIUM SURFACE SOLUTIONS</span>
             </div>
           </a>
           
           <p className="font-sans text-xs text-neutral-light opacity-60 leading-relaxed">
-            Nimishamba is a premium surface solutions company in Mysuru. We partner with homeowners, architects, contractors, and industrial clients to deliver the right coating system for every project — from a single room to a multi-facility complex.
+            Sri Nimishamba Paints is a premier surface solutions company in Mysuru. We partner with homeowners, architects, contractors, and industrial clients to deliver the right coating system for every project — from luxury residences to large commercial complexes.
           </p>
 
           <div className="flex items-center gap-3 bg-white bg-opacity-5 rounded-2xl p-4 border border-white border-opacity-5 self-start">
@@ -70,7 +70,7 @@ export default function Footer({ setCurrentTab, openQuoteModal }: FooterProps) {
           <span className="text-[10px] font-bold text-gold uppercase tracking-wider block">Solution Areas</span>
           <nav className="flex flex-col gap-3 text-xs font-sans text-neutral-light opacity-75">
             <button onClick={() => handleNavClick('solutions')} className="hover:text-accent transition-colors self-start">Residential Interiors & Exteriors</button>
-            <button onClick={() => handleNavClick('solutions')} className="hover:text-accent transition-colors self-start">Commercial Spaces</button>
+            <button onClick={() => handleNavClick('solutions')} className="hover:text-accent transition-colors self-start">Commercial & Corporate Spaces</button>
             <button onClick={() => handleNavClick('solutions')} className="hover:text-accent transition-colors self-start">Industrial Floor & Protective Coatings</button>
             <button onClick={() => handleNavClick('solutions')} className="hover:text-accent transition-colors self-start">Waterproofing & Surface Treatment</button>
             <button onClick={() => handleNavClick('solutions')} className="hover:text-accent transition-colors self-start">Decorative Textures & Luxury Finishes</button>
@@ -80,23 +80,40 @@ export default function Footer({ setCurrentTab, openQuoteModal }: FooterProps) {
 
         {/* Right Details */}
         <div className="md:col-span-3 flex flex-col gap-5">
-          <span className="text-[10px] font-bold text-gold uppercase tracking-wider block">Experience Centre</span>
-          <div className="flex flex-col gap-4 text-xs font-sans text-neutral-light opacity-75">
-            <div className="flex gap-3">
-              <MapPin className="w-4 h-4 text-accent flex-shrink-0" />
+          <span className="text-[10px] font-bold text-gold uppercase tracking-wider block">Direct Contacts</span>
+          <div className="flex flex-col gap-3 text-xs font-sans text-neutral-light opacity-85">
+            <div className="flex gap-2.5 items-start">
+              <MapPin className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
               <span>Hinkal Ring Road Junction, near Outer Ring Road, Mysuru &mdash; 570017</span>
             </div>
-            <div className="flex gap-3">
-              <Phone className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-              <a href="tel:+919448084351" className="hover:text-accent transition-colors">+91 94480 84351</a>
+            
+            <div className="flex flex-col gap-1.5 pt-1">
+              <div className="flex items-center gap-2">
+                <Phone className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                <a href="tel:+919986218879" className="hover:text-accent transition-colors font-semibold">Jayanth Kedia: +91 99862 18879</a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                <a href="tel:+918095474075" className="hover:text-accent transition-colors font-semibold">Kunal Kedia: +91 80954 74075</a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-3.5 h-3.5 text-accent flex-shrink-0" />
+                <a href="tel:+919448084351" className="hover:text-accent transition-colors">Showroom Desk: +91 94480 84351</a>
+              </div>
             </div>
-            <div className="flex gap-3">
+
+            <div className="flex gap-2.5 items-center pt-1">
+              <Mail className="w-4 h-4 text-gold flex-shrink-0" />
+              <a href="mailto:nimimys@gmail.com" className="hover:text-accent transition-colors">nimimys@gmail.com</a>
+            </div>
+
+            <div className="flex gap-2.5 items-center">
               <MessageSquare className="w-4 h-4 text-emerald-400 flex-shrink-0" />
               <a href="https://wa.me/919448084351" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Chat on WhatsApp</a>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-2.5 items-center">
               <svg className="w-4 h-4 text-pink-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-              <a href="https://www.instagram.com/nimishamba.paints/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Instagram @nimishamba.paints</a>
+              <a href="https://www.instagram.com/nimishamba.paints/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">@nimishamba.paints</a>
             </div>
           </div>
         </div>

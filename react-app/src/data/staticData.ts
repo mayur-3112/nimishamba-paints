@@ -35,15 +35,6 @@ export interface Inspiration {
   colors: string[]; // hex codes
 }
 
-/**
- * A completed room scheme shown in the Featured Projects section.
- *
- * `compare` drives the drag-to-compare slider. It holds two Berger shades that
- * are blended over the same photograph, so the comparison is a genuine shade
- * preview rather than a claimed customer before/after. When real project
- * photography becomes available, supply `beforeImage` instead and the slider
- * will show the photographs directly.
- */
 export interface Project {
   id: string;
   title: string;
@@ -64,7 +55,7 @@ export interface Project {
 
 /* ─────────────────────────────────────────────────
    SOLUTIONS — Replaces the old PRODUCTS array.
-   Organized by market tier, not product type.
+   Organized by market tier with accurate images.
    ───────────────────────────────────────────────── */
 
 export const SOLUTIONS: Solution[] = [
@@ -108,7 +99,7 @@ export const SOLUTIONS: Solution[] = [
     category: "Office & Corporate",
     name: "Office & Corporate Interiors",
     description: "Durable, low-maintenance wall systems for open-plan offices, executive suites, and reception areas. Specified for high-traffic durability and professional aesthetics.",
-    image: "/images/shop_interior.png"
+    image: "/images/sol_office_interior.png"
   },
   {
     id: "com-hospitality",
@@ -124,7 +115,7 @@ export const SOLUTIONS: Solution[] = [
     category: "Institutional",
     name: "Schools, Hospitals & Public Buildings",
     description: "Anti-bacterial, hypoallergenic, and easy-clean coating systems formulated for healthcare, educational, and institutional environments with strict hygiene standards.",
-    image: "/images/bedroom_visualizer.png"
+    image: "/images/sol_institutional.png"
   },
   // ── Industrial ───────────────────────────────
   {
@@ -133,7 +124,7 @@ export const SOLUTIONS: Solution[] = [
     category: "Floor Coatings",
     name: "Epoxy & Polyurethane Floor Systems",
     description: "High-performance floor coatings for warehouses, factories, parking structures, and showrooms. Chemical-resistant, anti-skid, and engineered for heavy traffic.",
-    image: "/images/paint_cans.png"
+    image: "/images/sol_epoxy_floor.png"
   },
   {
     id: "ind-protective",
@@ -141,7 +132,7 @@ export const SOLUTIONS: Solution[] = [
     category: "Protective Coatings",
     name: "Anti-Corrosion & Protective Systems",
     description: "Industrial-grade protective coatings for steel structures, pipelines, tanks, and machinery. Formulated for extreme weather, chemical exposure, and marine environments.",
-    image: "/images/color_wall.png"
+    image: "/images/sol_protective_coat.png"
   },
   {
     id: "ind-heavy",
@@ -149,7 +140,7 @@ export const SOLUTIONS: Solution[] = [
     category: "Heavy-Duty Finishes",
     name: "Chemical Resistant & High-Temp Coatings",
     description: "Specialised coating systems for manufacturing plants, processing facilities, and industrial infrastructure requiring chemical, heat, and abrasion resistance.",
-    image: "/images/hero_banner.png"
+    image: "/images/paint_cans.png"
   }
 ];
 

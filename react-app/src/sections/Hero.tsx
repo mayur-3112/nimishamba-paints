@@ -22,11 +22,13 @@ export default function Hero({ setCurrentTab, openQuoteModal }: HeroProps) {
             Residential · Commercial · Industrial / Est. 2005
           </span>
           <h1 className="font-display font-black text-primary text-5xl sm:text-7xl lg:text-8xl leading-[0.9] tracking-tight uppercase">
-            Premium<br />
-            Surface<br />
-            Solutions<span className="text-gold">.</span>
+            Sri Nimishamba<br />
+            Paints<span className="text-gold">.</span>
           </h1>
-          <p className="font-sans text-neutral-mid text-sm sm:text-base max-w-lg mt-8 leading-relaxed">
+          <p className="font-display font-bold text-gold-dark text-lg sm:text-xl uppercase tracking-wider mt-4">
+            Premium Surface Solutions
+          </p>
+          <p className="font-sans text-neutral-mid text-sm sm:text-base max-w-lg mt-6 leading-relaxed">
             From luxury homes to industrial facilities. We deliver surface protection, decorative finishes, and project-grade coating systems — backed by Berger's authorised product portfolio and 20 years of technical expertise.
           </p>
         </div>
@@ -36,8 +38,8 @@ export default function Hero({ setCurrentTab, openQuoteModal }: HeroProps) {
           <div className="relative group overflow-hidden rounded-3xl border border-neutral-light bg-white p-4 shadow-premium hover:shadow-luxury transition-all duration-300">
             <div className="overflow-hidden rounded-2xl aspect-[4/3] bg-neutral-light relative">
               <img 
-                src="/images/living_room_visualizer.png" 
-                alt="Premium interior with designer wall finishes" 
+                src="/images/shop_interior.png" 
+                alt="Nimishamba showroom interior with Berger Colour World" 
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-90"
               />
               <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />

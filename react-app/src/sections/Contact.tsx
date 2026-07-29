@@ -1,11 +1,17 @@
 import React from 'react';
-import { MapPin, Phone, MessageSquare, Mail, Clock, ShieldCheck, Map } from 'lucide-react';
+import { MapPin, Phone, MessageSquare, Mail, Clock, Map, User } from 'lucide-react';
 
 export default function Contact() {
   const handleDirectionsClick = () => {
     const mapsUrl = "https://maps.google.com/?q=Sri+Nimishamba+Paints+and+Plywoods+Mysore";
     window.open(mapsUrl, '_blank');
   };
+
+  const contacts = [
+    { name: 'Jayanth Kedia', phone: '+91 99862 18879', role: 'Partner / Project Lead' },
+    { name: 'Kunal Kedia', phone: '+91 80954 74075', role: 'Partner / Technical Director' },
+    { name: 'Showroom Desk', phone: '+91 94480 84351', role: 'Direct Line & Support' },
+  ];
 
   return (
     <section className="py-24 bg-white" id="contact">
@@ -18,7 +24,7 @@ export default function Contact() {
             Visit Our Experience Centre
           </h2>
           <p className="font-sans text-neutral-mid text-sm mt-3">
-            Walk in today to examine textured boards, scan through our shade catalogs, and talk directly with color consultants.
+            Walk in today to examine textured boards, scan through our shade catalogs, and talk directly with our leadership and color consultants.
           </p>
         </div>
 
@@ -28,6 +34,7 @@ export default function Contact() {
             
             {/* Address and Contacts */}
             <div className="flex flex-col gap-6">
+              {/* Address */}
               <div className="flex gap-4">
                 <div className="w-10 h-10 bg-accent bg-opacity-5 rounded-lg border border-accent border-opacity-10 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-5 h-5 text-accent" />
@@ -42,44 +49,60 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* Direct Contacts List */}
               <div className="flex gap-4">
                 <div className="w-10 h-10 bg-primary bg-opacity-5 rounded-lg border border-primary border-opacity-10 flex items-center justify-center flex-shrink-0">
                   <Phone className="w-5 h-5 text-primary" />
                 </div>
-                <div className="flex flex-col leading-snug">
-                  <span className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider mb-1">Phone Enquiries</span>
-                  <a href="tel:+919448084351" className="font-display text-primary text-base font-bold hover:text-accent transition-colors">
-                    +91 94480 84351
-                  </a>
-                  <span className="font-sans text-[10px] text-neutral-mid mt-0.5">Showroom manager direct desk</span>
+                <div className="flex flex-col leading-snug w-full">
+                  <span className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider mb-2">Key Contacts &amp; Desk</span>
+                  <div className="flex flex-col gap-2.5">
+                    {contacts.map((c, i) => (
+                      <div key={i} className="flex justify-between items-center bg-neutral-soft p-2.5 rounded-xl border border-neutral-light/70">
+                        <div className="flex flex-col">
+                          <strong className="font-display text-primary text-xs font-bold">{c.name}</strong>
+                          <span className="font-sans text-[9px] text-neutral-mid">{c.role}</span>
+                        </div>
+                        <a 
+                          href={`tel:${c.phone.replace(/\s+/g, '')}`} 
+                          className="font-display text-accent text-xs font-bold hover:underline"
+                        >
+                          {c.phone}
+                        </a>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
+              {/* WhatsApp */}
               <div className="flex gap-4">
                 <div className="w-10 h-10 bg-emerald-50 rounded-lg border border-emerald-200 flex items-center justify-center flex-shrink-0">
                   <MessageSquare className="w-5 h-5 text-emerald-600" />
                 </div>
                 <div className="flex flex-col leading-snug">
-                  <span className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider mb-1">WhatsApp Integration</span>
+                  <span className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider mb-1">WhatsApp Desk</span>
                   <a href="https://wa.me/919448084351" target="_blank" rel="noopener noreferrer" className="font-display text-primary text-base font-bold hover:text-accent transition-colors">
                     +91 94480 84351
                   </a>
-                  <span className="font-sans text-[10px] text-neutral-mid mt-0.5">Instant shade catalogue &amp; price lists</span>
+                  <span className="font-sans text-[10px] text-neutral-mid mt-0.5">Instant shade catalogue &amp; project consultation</span>
                 </div>
               </div>
 
+              {/* Email */}
               <div className="flex gap-4">
                 <div className="w-10 h-10 bg-gold bg-opacity-5 rounded-lg border border-gold border-opacity-10 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-5 h-5 text-gold-dark" />
                 </div>
                 <div className="flex flex-col leading-snug">
-                  <span className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider mb-1">Email Desk</span>
-                  <a href="mailto:nimishambapaints@gmail.com" className="font-sans text-neutral-mid text-xs font-semibold hover:text-primary transition-colors mt-0.5">
-                    nimishambapaints@gmail.com
+                  <span className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider mb-1">Business Email</span>
+                  <a href="mailto:nimimys@gmail.com" className="font-sans text-neutral-dark text-sm font-semibold hover:text-primary transition-colors mt-0.5">
+                    nimimys@gmail.com
                   </a>
                 </div>
               </div>
 
+              {/* Instagram */}
               <div className="flex gap-4">
                 <div className="w-10 h-10 bg-pink-50 rounded-lg border border-pink-200 flex items-center justify-center flex-shrink-0">
                   <svg className="w-5 h-5 text-pink-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>

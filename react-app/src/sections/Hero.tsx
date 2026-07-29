@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowDown, ArrowRight } from 'lucide-react';
-import ColorMyWorldLaunch from '../components/ColorMyWorldLaunch';
+import ArchitecturalColourReveal from '../components/ArchitecturalColourReveal';
 
 interface HeroProps {
   setCurrentTab: (tab: string) => void;
@@ -38,9 +38,9 @@ export default function Hero({ setCurrentTab, openQuoteModal }: HeroProps) {
             From luxury homes to industrial facilities. We deliver surface protection, decorative finishes, and project-grade coating systems — backed by Berger's authorised product portfolio and 20 years of technical expertise.
           </p>
 
-          {/* Cinematic Launch CTA Button */}
+          {/* Architectural Cinematic Reveal Button */}
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <ColorMyWorldLaunch autoPlay={true} />
+            <ArchitecturalColourReveal autoPlay={true} />
             
             <button
               onClick={() => openQuoteModal('Book Colour Consultation')}

@@ -15,7 +15,7 @@ import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 import About from './sections/About';
 import InstagramReels from './sections/InstagramReels';
-import ColorMyWorldLaunch from './components/ColorMyWorldLaunch';
+import ArchitecturalColourReveal from './components/ArchitecturalColourReveal';
 
 // Load the Berger colors database statically
 import colorsData from './data/berger_colors.json';
@@ -64,8 +64,8 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col justify-between relative">
       
-      {/* Global Cinematic Launch Animation (Auto-plays once per session + on demand trigger) */}
-      <ColorMyWorldLaunch autoPlay={true} isButtonOnly={true} forceTrigger={forceLaunchTrigger > 0} key={forceLaunchTrigger} />
+      {/* Global Architectural Cinematic Light & Colour Reveal (3.4s duration, Apple & Porsche inspired) */}
+      <ArchitecturalColourReveal autoPlay={true} isButtonOnly={true} forceTrigger={forceLaunchTrigger > 0} key={forceLaunchTrigger} />
 
       {/* Navbar Navigation */}
       <Navigation 

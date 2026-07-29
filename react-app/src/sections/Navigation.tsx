@@ -27,6 +27,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
     { id: 'estimator', label: 'Estimator' },
     { id: 'services', label: 'Services' },
     { id: 'about', label: 'About' },
+    { id: 'social', label: 'Social' },
     { id: 'contact', label: 'Contact' },
   ];
 

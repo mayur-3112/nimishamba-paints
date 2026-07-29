@@ -14,6 +14,7 @@ import QuoteForm from './sections/QuoteForm';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 import About from './sections/About';
+import InstagramReels from './sections/InstagramReels';
 
 // Load the Berger colors database statically
 import colorsData from './data/berger_colors.json';
@@ -236,6 +237,10 @@ export default function App() {
 
         {currentTab === 'about' && (
           <About />
+        )}
+
+        {currentTab === 'social' && (
+          <InstagramReels />
         )}
 
         {currentTab === 'contact' && (

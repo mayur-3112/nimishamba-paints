@@ -60,6 +60,7 @@ export default function Footer({ setCurrentTab, openQuoteModal }: FooterProps) {
             <button onClick={() => handleNavClick('estimator')} className="hover:text-accent transition-colors self-start">Paint Estimator</button>
             <button onClick={() => handleNavClick('services')} className="hover:text-accent transition-colors self-start">Services</button>
             <button onClick={() => handleNavClick('about')} className="hover:text-accent transition-colors self-start">About Us</button>
+            <button onClick={() => handleNavClick('social')} className="hover:text-accent transition-colors self-start">Social Showcase</button>
             <button onClick={() => handleNavClick('contact')} className="hover:text-accent transition-colors self-start">Contact</button>
           </nav>
         </div>

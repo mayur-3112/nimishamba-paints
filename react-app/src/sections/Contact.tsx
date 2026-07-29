@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, MessageSquare, Mail, Clock, Map, User } from 'lucide-react';
+import { MapPin, Phone, MessageSquare, Mail, Clock, Map } from 'lucide-react';
 
 export default function Contact() {
   const handleDirectionsClick = () => {
@@ -36,7 +36,7 @@ export default function Contact() {
             <div className="flex flex-col gap-6">
               {/* Address */}
               <div className="flex gap-4">
-                <div className="w-10 h-10 bg-accent bg-opacity-5 rounded-lg border border-accent border-opacity-10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-accent/5 rounded-lg border border-accent/10 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-5 h-5 text-accent" />
                 </div>
                 <div className="flex flex-col leading-snug">
@@ -51,7 +51,7 @@ export default function Contact() {
 
               {/* Direct Contacts List */}
               <div className="flex gap-4">
-                <div className="w-10 h-10 bg-primary bg-opacity-5 rounded-lg border border-primary border-opacity-10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-primary/5 rounded-lg border border-primary/10 flex items-center justify-center flex-shrink-0">
                   <Phone className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex flex-col leading-snug w-full">
@@ -91,7 +91,7 @@ export default function Contact() {
 
               {/* Email */}
               <div className="flex gap-4">
-                <div className="w-10 h-10 bg-gold bg-opacity-5 rounded-lg border border-gold border-opacity-10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-gold/10 rounded-lg border border-gold/20 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-5 h-5 text-gold-dark" />
                 </div>
                 <div className="flex flex-col leading-snug">
@@ -155,7 +155,7 @@ export default function Contact() {
             {/* Navigation Button */}
             <button
               onClick={handleDirectionsClick}
-              className="bg-primary text-white font-display text-xs font-bold uppercase tracking-wider py-4.5 rounded-xl hover:bg-primary-light transition-all shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2"
+              className="bg-primary text-white font-display text-xs font-bold uppercase tracking-wider py-4.5 rounded-xl hover:bg-primary-light transition-all shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer"
             >
               <Map className="w-4 h-4 text-gold-light" />
               <span>Get Directions on Google Maps</span>

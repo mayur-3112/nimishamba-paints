@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, MessageSquare, MapPin, ArrowRight, ShieldCheck, FileText, Compass, Clock } from 'lucide-react';
+import { Menu, X, Phone, MessageSquare, MapPin, ArrowRight, ShieldCheck, FileText, Compass, Clock, Sparkles } from 'lucide-react';
+import ColorMyWorldWebGL from '../components/ColorMyWorldWebGL';
 
 interface NavigationProps {
   currentTab: string;
@@ -138,13 +139,17 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
             })}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-4">
+          {/* Desktop Action Buttons: Color My World & Consultation */}
+          <div className="hidden lg:flex items-center gap-3">
+            <ColorMyWorldWebGL 
+              buttonClassName="bg-[#E31959]/10 hover:bg-[#E31959]/20 text-[#E31959] border border-[#E31959]/30 font-display text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all cursor-pointer inline-flex items-center gap-2"
+            />
+
             <button
               onClick={() => openQuoteModal('Book Colour Consultation')}
-              className="bg-[#E31959] hover:bg-[#C20F4B] text-white font-display text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-xl shadow-luxury transition-all cursor-pointer border border-[#E31959]/30"
+              className="bg-[#E31959] hover:bg-[#C20F4B] text-white font-display text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-xl shadow-luxury transition-all cursor-pointer border border-[#E31959]/30"
             >
-              <span>Book Colour Consultation</span>
+              <span>Book Consultation</span>
             </button>
           </div>
 
@@ -192,22 +197,22 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
             </div>
 
             {/* Large Editorial Nav Links */}
-            <nav className="flex flex-col gap-2 mt-8 text-left">
+            <nav className="flex flex-col gap-2 mt-6 text-left">
               {navLinks.map((link) => {
                 const isActive = currentTab === link.id;
                 return (
                   <button
                     key={link.id}
                     onClick={() => handleNavClick(link.id)}
-                    className={`w-full py-4 px-4 rounded-2xl flex items-center justify-between text-left transition-all active:scale-[0.98] ${
+                    className={`w-full py-3.5 px-4 rounded-2xl flex items-center justify-between text-left transition-all active:scale-[0.98] ${
                       isActive 
                         ? 'bg-[#E31959]/5 border border-[#E31959]/20 text-[#E31959]' 
                         : 'hover:bg-neutral-soft text-primary'
                     }`}
                   >
                     <div className="flex flex-col">
-                      <span className="font-display font-extrabold text-2xl tracking-tight">{link.label}</span>
-                      <span className="font-sans text-[9px] font-bold uppercase tracking-widest text-neutral-mid/70 mt-0.5">{link.badge}</span>
+                      <span className="font-display font-extrabold text-xl tracking-tight">{link.label}</span>
+                      <span className="font-sans text-[8px] font-bold uppercase tracking-widest text-neutral-mid/70 mt-0.5">{link.badge}</span>
                     </div>
                     <ArrowRight className={`w-5 h-5 ${isActive ? 'text-[#E31959]' : 'text-neutral-mid/40'}`} />
                   </button>
@@ -216,28 +221,23 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
             </nav>
           </div>
 
-          {/* Direct Leadership Contacts & Fast Quote */}
-          <div className="mt-8 pt-6 border-t border-neutral-light text-left space-y-4">
-            <span className="font-sans text-[9px] font-black uppercase tracking-widest text-neutral-mid block">Direct Leadership Desk &middot; Mysuru</span>
+          {/* Direct Leadership Contacts & Color My World Trigger in Mobile Menu */}
+          <div className="mt-6 pt-5 border-t border-neutral-light text-left space-y-3">
             
-            <div className="bg-neutral-soft p-4 rounded-2xl border border-neutral-light space-y-3">
+            {/* Color My World Signature Button inside Mobile Menu */}
+            <ColorMyWorldWebGL 
+              buttonClassName="w-full min-h-[48px] bg-gradient-to-r from-primary to-[#0B111A] text-white font-display text-xs font-black uppercase tracking-wider rounded-2xl flex items-center justify-center gap-2 shadow-luxury active:scale-[0.98] transition-all cursor-pointer border border-white/20"
+              onComplete={() => setIsOpen(false)}
+            />
+
+            <div className="bg-neutral-soft p-3.5 rounded-2xl border border-neutral-light space-y-2.5">
               <div className="flex justify-between items-center">
                 <div className="flex flex-col">
                   <span className="font-display text-xs font-bold text-primary">Ajay Kedia</span>
-                  <span className="font-sans text-[9px] text-neutral-mid">Owner &amp; Founder</span>
+                  <span className="font-sans text-[8px] text-neutral-mid">Owner &amp; Founder</span>
                 </div>
-                <a href="tel:+919448084351" className="font-display text-xs font-black text-[#E31959] bg-[#E31959]/10 px-3 py-1.5 rounded-lg border border-[#E31959]/20">
+                <a href="tel:+919448084351" className="font-display text-xs font-black text-[#E31959] bg-[#E31959]/10 px-3 py-1 rounded-lg border border-[#E31959]/20">
                   +91 94480 84351
-                </a>
-              </div>
-
-              <div className="flex justify-between items-center pt-2 border-t border-neutral-light">
-                <div className="flex flex-col">
-                  <span className="font-display text-xs font-bold text-primary">Jayanth Kedia</span>
-                  <span className="font-sans text-[9px] text-neutral-mid">Partner / Projects</span>
-                </div>
-                <a href="tel:+919986218879" className="font-display text-xs font-bold text-primary bg-white px-3 py-1.5 rounded-lg border border-neutral-light">
-                  +91 99862 18879
                 </a>
               </div>
             </div>
@@ -247,7 +247,7 @@ export default function Navigation({ currentTab, setCurrentTab, openQuoteModal }
                 setIsOpen(false);
                 openQuoteModal('Book Colour Consultation');
               }}
-              className="w-full min-h-[52px] bg-[#E31959] hover:bg-[#C20F4B] text-white font-display text-xs font-black uppercase tracking-wider rounded-2xl flex items-center justify-center gap-2 shadow-luxury active:scale-[0.98] transition-all cursor-pointer"
+              className="w-full min-h-[48px] bg-[#E31959] hover:bg-[#C20F4B] text-white font-display text-xs font-black uppercase tracking-wider rounded-2xl flex items-center justify-center gap-2 shadow-luxury active:scale-[0.98] transition-all cursor-pointer"
             >
               <span>Book Colour Consultation</span>
               <ArrowRight className="w-4 h-4" />

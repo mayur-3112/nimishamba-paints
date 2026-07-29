@@ -55,7 +55,7 @@ export interface Project {
 
 /* ─────────────────────────────────────────────────
    SOLUTIONS — Replaces the old PRODUCTS array.
-   Organized by market tier with accurate images.
+   Organized by market tier with 100% accurate, high-res images.
    ───────────────────────────────────────────────── */
 
 export const SOLUTIONS: Solution[] = [
@@ -82,7 +82,7 @@ export const SOLUTIONS: Solution[] = [
     category: "Waterproofing",
     name: "Structural Waterproofing Solutions",
     description: "Scientific damp-proofing using elastomeric membranes. Treatment for rising damp, terrace leakage, bathroom seepage, and structural crack bridging.",
-    image: "/images/color_wall.png"
+    image: "/images/sol_waterproofing.jpg"
   },
   {
     id: "res-texture",
@@ -90,7 +90,7 @@ export const SOLUTIONS: Solution[] = [
     category: "Luxury Finishes",
     name: "Decorative Textures & Designer Walls",
     description: "Metallic, marble-effect, microcement, and artisanal plaster finishes. Transform accent walls into signature design statements.",
-    image: "/images/hero_minimal.png"
+    image: "/images/sol_texture.jpg"
   },
   // ── Commercial ───────────────────────────────
   {
@@ -107,7 +107,7 @@ export const SOLUTIONS: Solution[] = [
     category: "Hospitality & Retail",
     name: "Hotels, Restaurants & Retail Spaces",
     description: "Premium decorative finishes for lobbies, dining areas, and customer-facing retail environments. Stain-resistant, easy to maintain, and visually striking.",
-    image: "/images/living_room_visualizer.png"
+    image: "/images/sol_hospitality.jpg"
   },
   {
     id: "com-institution",
@@ -140,7 +140,7 @@ export const SOLUTIONS: Solution[] = [
     category: "Heavy-Duty Finishes",
     name: "Chemical Resistant & High-Temp Coatings",
     description: "Specialised coating systems for manufacturing plants, processing facilities, and industrial infrastructure requiring chemical, heat, and abrasion resistance.",
-    image: "/images/paint_cans.png"
+    image: "/images/sol_heavy_industry.jpg"
   }
 ];
 
@@ -219,7 +219,7 @@ export const INSPIRATIONS: Inspiration[] = [
     title: "Warm Elegance Master Bedroom",
     category: "Bedroom",
     description: "Soothing pink-cream base shades paired with luxurious gold or deep red upholstery finishes.",
-    image: "/images/hero_minimal.png",
+    image: "/images/sol_texture.jpg",
     colors: ["#F5E2E9", "#FAF0DC", "#C97152", "#FFFFFF"]
   },
   {

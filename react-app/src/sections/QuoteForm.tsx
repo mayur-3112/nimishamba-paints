@@ -12,7 +12,7 @@ export default function QuoteForm({ isModal = false, onClose, prefilledCategory 
     name: '',
     phone: '',
     location: '',
-    category: 'Interior Painting',
+    category: 'Residential — Interior & Exterior',
     message: ''
   });
 
@@ -23,28 +23,28 @@ export default function QuoteForm({ isModal = false, onClose, prefilledCategory 
   }, [prefilledCategory]);
 
   const categories = [
-    'Interior Painting',
-    'Exterior Painting',
-    'Waterproofing Solutions',
-    'Wood Finishes / Polishing',
-    'Primers & Putty Prep',
-    'Texture & Accent Designs',
-    'Bulk Retail / Contractor Orders'
+    'Residential — Interior & Exterior',
+    'Commercial — Office & Retail Spaces',
+    'Industrial — Protective & Floor Coatings',
+    'Waterproofing & Surface Treatment',
+    'Luxury Finishes & Decorative Textures',
+    'Bulk Supply & Contractor Partnership',
+    'Project Consultation & Site Visit'
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    const msg = `Hi Nimishamba Paints! 👋
+    const msg = `Hi Nimishamba! 👋
 
-I would like to request a painting quotation:
-• Customer Name: ${formData.name}
-• Contact Phone: ${formData.phone}
+I would like to request a project consultation:
+• Name: ${formData.name}
+• Contact: ${formData.phone}
 • Project Location: ${formData.location}
-• Paint Category: ${formData.category}
-${formData.message ? `• Requirements: ${formData.message}` : ''}
+• Solution Category: ${formData.category}
+${formData.message ? `• Project Details: ${formData.message}` : ''}
 
-Please contact me to discuss pricing and coordinate a site inspection. Thanks!`;
+Please contact me to discuss requirements and arrange a site assessment. Thanks!`;
 
     const url = 'https://wa.me/919448084351?text=' + encodeURIComponent(msg);
     window.open(url, '_blank');
@@ -89,7 +89,7 @@ Please contact me to discuss pricing and coordinate a site inspection. Thanks!`;
       {/* Location */}
       <div className="flex flex-col gap-1.5">
         <label htmlFor="quote-loc" className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider">
-          Project Location / Area
+          Project Location / Site
         </label>
         <input
           id="quote-loc"
@@ -105,7 +105,7 @@ Please contact me to discuss pricing and coordinate a site inspection. Thanks!`;
       {/* Category Selector */}
       <div className="flex flex-col gap-1.5">
         <label htmlFor="quote-cat" className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider">
-          Product / Service Category
+          Solution Category
         </label>
         <select
           id="quote-cat"
@@ -122,12 +122,12 @@ Please contact me to discuss pricing and coordinate a site inspection. Thanks!`;
       {/* Message */}
       <div className="flex flex-col gap-1.5">
         <label htmlFor="quote-msg" className="text-[10px] font-bold text-neutral-mid uppercase tracking-wider">
-          Message / Project Scope (Optional)
+          Project Details (Optional)
         </label>
         <textarea
           id="quote-msg"
           rows={3}
-          placeholder="e.g. Re-painting internal walls for a 3-bedroom apartment. Need budget estimates."
+          placeholder="e.g. 3BHK apartment interior repaint, or factory floor epoxy coating for 2,000 sq ft."
           value={formData.message}
           onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
           className="bg-neutral-soft border border-neutral-light focus:border-primary focus:bg-white rounded-xl px-4 py-3.5 font-sans text-sm font-semibold text-primary outline-none resize-none transition-all"
@@ -140,7 +140,7 @@ Please contact me to discuss pricing and coordinate a site inspection. Thanks!`;
         className="mt-2 bg-primary text-white font-display text-xs font-bold uppercase tracking-wider py-4.5 rounded-xl hover:bg-primary-light transition-all shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2"
       >
         <MessageSquare className="w-4 h-4 text-emerald-400" />
-        <span>Submit &amp; Enquire on WhatsApp</span>
+        <span>Submit & Connect on WhatsApp</span>
       </button>
     </form>
   );
@@ -162,10 +162,10 @@ Please contact me to discuss pricing and coordinate a site inspection. Thanks!`;
 
           <div className="p-8">
             <div className="text-left mb-6 pr-8">
-              <span className="text-[9px] font-bold text-accent uppercase tracking-wider block mb-1">Quote Request</span>
-              <h3 className="font-display font-extrabold text-primary text-2xl">Get Free Estimate</h3>
+              <span className="text-[9px] font-bold text-accent uppercase tracking-wider block mb-1">Project Enquiry</span>
+              <h3 className="font-display font-extrabold text-primary text-2xl">Request Project Consultation</h3>
               <p className="font-sans text-neutral-mid text-xs mt-1">
-                Provide your details below to generate a formatted query template to chat with our showroom specialists.
+                Share your project details and our experts will get back to you with a tailored solution and quotation.
               </p>
             </div>
             {formContent}
@@ -178,10 +178,10 @@ Please contact me to discuss pricing and coordinate a site inspection. Thanks!`;
   return (
     <div className="bg-white border border-neutral-light rounded-3xl p-8 shadow-premium w-full">
       <div className="text-left mb-6">
-        <span className="text-[9px] font-bold text-accent uppercase tracking-wider block mb-1">Online Desk</span>
-        <h3 className="font-display font-extrabold text-primary text-2xl">Request Painting Quotation</h3>
+        <span className="text-[9px] font-bold text-accent uppercase tracking-wider block mb-1">Project Desk</span>
+        <h3 className="font-display font-extrabold text-primary text-2xl">Request Project Consultation</h3>
         <p className="font-sans text-neutral-mid text-xs mt-1">
-          Plan your residential or commercial painting projects. Enquire directly about stock availability.
+          Residential, commercial, or industrial — share your requirements and we'll provide expert guidance.
         </p>
       </div>
       {formContent}

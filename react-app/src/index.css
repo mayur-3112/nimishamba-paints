@@ -49,6 +49,10 @@
 }
 
 @layer base {
+  button, a, input, select, textarea {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-soft transition-shadow;
+  }
+
   body {
     @apply bg-neutral-soft text-neutral-dark font-sans selection:bg-accent-light selection:text-accent-dark;
   }

@@ -9,27 +9,27 @@ export default function WhyChooseUs() {
           {/* Left Text Block */}
           <div className="lg:col-span-5 text-left sticky top-28">
             <span className="text-[10px] font-bold text-accent uppercase tracking-widest block mb-4">
-              The Showroom Standards
+              Why Nimishamba
             </span>
             <h2 className="font-display font-black text-primary text-4xl sm:text-5xl uppercase leading-tight">
-              A Study in <br />
-              Color & Precision<span className="text-gold">.</span>
+              Technical Precision<span className="text-gold">.</span><br />
+              Proven Expertise<span className="text-gold">.</span>
             </h2>
             <p className="font-sans text-neutral-mid text-sm mt-6 leading-relaxed max-w-sm">
-              We do not simply sell paint. We partner with architects, builders, and homeowners to formulate exact atmospheres. Sourced and tint-matched under direct Berger authorization.
+              We don't simply supply coatings. We partner with architects, builders, contractors, and homeowners to engineer the right surface solution for every project — backed by 20 years of technical expertise and Berger's authorised product portfolio.
             </p>
           </div>
 
-          {/* Right Editorial Blocks - Asymmetrical Scroll */}
+          {/* Right Editorial Blocks */}
           <div className="lg:col-span-7 flex flex-col gap-16">
             
             {/* Pillar 01 */}
             <div className="flex gap-8 items-start border-b border-neutral-light pb-10">
               <span className="font-display font-black text-gold/30 text-5xl sm:text-6xl leading-none">01</span>
               <div className="text-left">
-                <h3 className="font-display font-bold text-primary text-xl mb-2">Exclusive Tinting Base Access</h3>
+                <h3 className="font-display font-bold text-primary text-xl mb-2">Authorised Product Portfolio</h3>
                 <p className="font-sans text-neutral-mid text-xs leading-relaxed max-w-md">
-                  Direct factory allocation of Berger's premium Silk Glamor bases, WoodKeeper polymers, and architectural membranes. No dilutions, no generic fills.
+                  Direct factory allocation of Berger's complete range — premium emulsions, industrial coatings, waterproofing membranes, and speciality finishes. Every product is genuine, factory-fresh, and backed by manufacturer warranties.
                 </p>
               </div>
             </div>
@@ -38,9 +38,9 @@ export default function WhyChooseUs() {
             <div className="flex gap-8 items-start border-b border-neutral-light pb-10">
               <span className="font-display font-black text-gold/30 text-5xl sm:text-6xl leading-none">02</span>
               <div className="text-left">
-                <h3 className="font-display font-bold text-primary text-xl mb-2">Moisture & Damp Diagnostics</h3>
+                <h3 className="font-display font-bold text-primary text-xl mb-2">Surface Assessment & Diagnostics</h3>
                 <p className="font-sans text-neutral-mid text-xs leading-relaxed max-w-md">
-                  Before a drop of paint is applied, our team checks wall moisture levels using professional electronic meters, prescribing structural HomeShield treatments first.
+                  Before any coating is specified, our team assesses wall moisture levels, substrate conditions, and structural integrity using professional electronic instruments — ensuring the right system is prescribed from the start.
                 </p>
               </div>
             </div>
@@ -49,9 +49,9 @@ export default function WhyChooseUs() {
             <div className="flex gap-8 items-start">
               <span className="font-display font-black text-gold/30 text-5xl sm:text-6xl leading-none">03</span>
               <div className="text-left">
-                <h3 className="font-display font-bold text-primary text-xl mb-2">Architectural Grade Yields</h3>
+                <h3 className="font-display font-bold text-primary text-xl mb-2">Project-Scale Logistics</h3>
                 <p className="font-sans text-neutral-mid text-xs leading-relaxed max-w-md">
-                  Precise calculations mapping paint solids to coverage index. Get exact quantity guides to eliminate wastage on massive residential build scopes.
+                  Precise coverage calculations, phased delivery scheduling, and coordinated dispatch to residential, commercial, and industrial project sites across Mysuru. Eliminates waste and prevents mid-project shortfalls.
                 </p>
               </div>
             </div>

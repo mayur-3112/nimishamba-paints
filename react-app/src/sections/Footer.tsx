@@ -29,58 +29,58 @@ export default function Footer({ setCurrentTab, openQuoteModal }: FooterProps) {
             className="flex items-center gap-3 cursor-pointer group"
           >
             <div className="overflow-hidden w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-md border border-neutral-light/10">
-              <img src="/images/logo.png" alt="Nimishamba Paints Logo" className="w-full h-full object-cover" />
+              <img src="/images/logo.png" alt="Nimishamba Logo" className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col leading-none">
               <span className="font-display font-bold text-white tracking-tight text-base">NIMISHAMBA</span>
-              <span className="font-sans text-[9px] font-bold text-neutral-light opacity-50 tracking-wider uppercase">PAINTS &amp; DÉCOR</span>
+              <span className="font-sans text-[9px] font-bold text-neutral-light opacity-50 tracking-wider uppercase">SURFACE SOLUTIONS</span>
             </div>
           </a>
           
           <p className="font-sans text-xs text-neutral-light opacity-60 leading-relaxed">
-            Sri Nimishamba Paints &amp; Plywoods is a premium authorized retailer and color experience centre in Mysuru. We assist homeowners, interior designers, and architects in bringing structural coatings and decor ideas to life.
+            Nimishamba is a premium surface solutions company in Mysuru. We partner with homeowners, architects, contractors, and industrial clients to deliver the right coating system for every project — from a single room to a multi-facility complex.
           </p>
 
           <div className="flex items-center gap-3 bg-white bg-opacity-5 rounded-2xl p-4 border border-white border-opacity-5 self-start">
             <Award className="w-8 h-8 text-gold" />
             <div className="flex flex-col leading-snug">
-              <span className="font-display text-white text-xs font-bold">Authorized Platinum Retailer</span>
-              <span className="font-sans text-[8px] text-neutral-light opacity-50 uppercase tracking-wider">Berger Paints &amp; Coatings</span>
+              <span className="font-display text-white text-xs font-bold">Authorised Platinum Partner</span>
+              <span className="font-sans text-[8px] text-neutral-light opacity-50 uppercase tracking-wider">Berger Paints & Coatings</span>
             </div>
           </div>
         </div>
 
         {/* Middle Quick Links */}
         <div className="md:col-span-2 flex flex-col gap-5">
-          <span className="text-[10px] font-bold text-gold uppercase tracking-wider block">Showroom Map</span>
+          <span className="text-[10px] font-bold text-gold uppercase tracking-wider block">Site Map</span>
           <nav className="flex flex-col gap-3 text-xs font-sans text-neutral-light opacity-75">
             <button onClick={() => handleNavClick('home')} className="hover:text-accent transition-colors self-start">Home</button>
-            <button onClick={() => handleNavClick('products')} className="hover:text-accent transition-colors self-start">Products</button>
-            <button onClick={() => handleNavClick('shades')} className="hover:text-accent transition-colors self-start">Colour Library</button>
-            <button onClick={() => handleNavClick('estimator')} className="hover:text-accent transition-colors self-start">Paint Estimator</button>
-            <button onClick={() => handleNavClick('services')} className="hover:text-accent transition-colors self-start">Services</button>
+            <button onClick={() => handleNavClick('solutions')} className="hover:text-accent transition-colors self-start">Solutions</button>
+            <button onClick={() => handleNavClick('shades')} className="hover:text-accent transition-colors self-start">Colour Studio</button>
+            <button onClick={() => handleNavClick('estimator')} className="hover:text-accent transition-colors self-start">Project Estimator</button>
+            <button onClick={() => handleNavClick('services')} className="hover:text-accent transition-colors self-start">Capabilities</button>
             <button onClick={() => handleNavClick('about')} className="hover:text-accent transition-colors self-start">About Us</button>
             <button onClick={() => handleNavClick('social')} className="hover:text-accent transition-colors self-start">Social Showcase</button>
             <button onClick={() => handleNavClick('contact')} className="hover:text-accent transition-colors self-start">Contact</button>
           </nav>
         </div>
 
-        {/* Middle Product Categories */}
+        {/* Middle Solution Areas */}
         <div className="md:col-span-3 flex flex-col gap-5">
-          <span className="text-[10px] font-bold text-gold uppercase tracking-wider block">Product Lines</span>
+          <span className="text-[10px] font-bold text-gold uppercase tracking-wider block">Solution Areas</span>
           <nav className="flex flex-col gap-3 text-xs font-sans text-neutral-light opacity-75">
-            <button onClick={() => handleNavClick('products')} className="hover:text-accent transition-colors self-start">Interior Wall Emulsion</button>
-            <button onClick={() => handleNavClick('products')} className="hover:text-accent transition-colors self-start">Exterior WeatherCoat Shield</button>
-            <button onClick={() => handleNavClick('products')} className="hover:text-accent transition-colors self-start">HomeShield Waterproofing</button>
-            <button onClick={() => handleNavClick('products')} className="hover:text-accent transition-colors self-start">Wood Melamine &amp; PU Polishes</button>
-            <button onClick={() => handleNavClick('products')} className="hover:text-accent transition-colors self-start">Bison Acrylic Wall Putty</button>
-            <button onClick={() => handleNavClick('products')} className="hover:text-accent transition-colors self-start">Textured Signature Design Finish</button>
+            <button onClick={() => handleNavClick('solutions')} className="hover:text-accent transition-colors self-start">Residential Interiors & Exteriors</button>
+            <button onClick={() => handleNavClick('solutions')} className="hover:text-accent transition-colors self-start">Commercial Spaces</button>
+            <button onClick={() => handleNavClick('solutions')} className="hover:text-accent transition-colors self-start">Industrial Floor & Protective Coatings</button>
+            <button onClick={() => handleNavClick('solutions')} className="hover:text-accent transition-colors self-start">Waterproofing & Surface Treatment</button>
+            <button onClick={() => handleNavClick('solutions')} className="hover:text-accent transition-colors self-start">Decorative Textures & Luxury Finishes</button>
+            <button onClick={() => handleNavClick('solutions')} className="hover:text-accent transition-colors self-start">Wood & Metal Coatings</button>
           </nav>
         </div>
 
-        {/* Right Store Details */}
+        {/* Right Details */}
         <div className="md:col-span-3 flex flex-col gap-5">
-          <span className="text-[10px] font-bold text-gold uppercase tracking-wider block">Showroom Details</span>
+          <span className="text-[10px] font-bold text-gold uppercase tracking-wider block">Experience Centre</span>
           <div className="flex flex-col gap-4 text-xs font-sans text-neutral-light opacity-75">
             <div className="flex gap-3">
               <MapPin className="w-4 h-4 text-accent flex-shrink-0" />
@@ -107,8 +107,8 @@ export default function Footer({ setCurrentTab, openQuoteModal }: FooterProps) {
       <div className="max-w-7xl mx-auto px-6 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] font-sans text-neutral-light opacity-50 uppercase tracking-widest">
         <span>&copy; {currentYear} Sri Nimishamba Paints &amp; Plywoods. All Rights Reserved.</span>
         <div className="flex gap-6">
-          <span>Authorized Dealer</span>
-          <span>Designed with Premium Aesthetic</span>
+          <span>Authorised Berger Partner</span>
+          <span>Premium Surface Solutions</span>
         </div>
       </div>
     </footer>

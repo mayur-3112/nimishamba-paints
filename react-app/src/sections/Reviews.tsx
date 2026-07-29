@@ -43,13 +43,13 @@ export default function Reviews() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <div className="max-w-xl">
             <span className="text-[10px] font-bold text-accent uppercase tracking-wider block mb-2">
-              Customer Reviews
+              Client Reviews
             </span>
             <h2 className="font-display font-bold text-primary text-3xl sm:text-4xl leading-tight">
-              What Mysuru homeowners and contractors say
+              What our clients and project partners say
             </h2>
             <p className="font-sans text-neutral-mid text-sm mt-3 leading-relaxed">
-              Verified reviews from customers who bought at our Hinkal Ring Road showroom.
+              Verified reviews from homeowners, contractors, and architects who trust Nimishamba for their surface coating projects.
             </p>
           </div>
 

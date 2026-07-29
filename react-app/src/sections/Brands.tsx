@@ -1,9 +1,9 @@
 import { Award, CheckCircle, Cpu, ShieldCheck } from 'lucide-react';
 
 const CREDENTIALS = [
-  { icon: CheckCircle, tint: 'text-emerald-500', label: '100% Genuine Materials' },
-  { icon: Cpu, tint: 'text-accent', label: 'Computerised Tinting' },
-  { icon: Award, tint: 'text-gold', label: 'Platinum Certified Dealer' },
+  { icon: CheckCircle, tint: 'text-emerald-500', label: '100% Genuine Coating Systems' },
+  { icon: Cpu, tint: 'text-accent', label: 'Computerised Precision Tinting' },
+  { icon: Award, tint: 'text-gold', label: 'Platinum Certified Partner' },
 ];
 
 export default function Brands() {
@@ -15,7 +15,7 @@ export default function Brands() {
           <div className="relative min-h-[280px] md:min-h-full">
             <img
               src="/images/shop_interior.png"
-              alt="The Berger Colour World counter and shade library at the Nimishamba Paints showroom in Hinkal, Mysuru"
+              alt="The Berger Colour World experience centre at Nimishamba, Hinkal, Mysuru"
               loading="lazy"
               decoding="async"
               className="absolute inset-0 w-full h-full object-cover"
@@ -40,20 +40,17 @@ export default function Brands() {
               <div className="inline-flex items-center gap-2 bg-accent/5 px-3 py-1 rounded-full border border-accent/10">
                 <ShieldCheck className="w-3.5 h-3.5 text-accent" />
                 <span className="font-display text-[9px] font-bold uppercase tracking-wider text-accent">
-                  Exclusive Authorised Showroom
+                  Authorised Surface Solutions Partner
                 </span>
               </div>
             </div>
 
             <h2 className="font-display font-bold text-primary text-2xl md:text-3xl mb-4 leading-snug">
-              Mysuru's official Berger Paints Colour World centre
+              Mysuru's authorised Berger Colour World experience centre
             </h2>
 
             <p className="font-sans text-neutral-mid text-sm leading-relaxed mb-7">
-              As an authorised Platinum dealer we stock the complete Berger range — interior
-              emulsions, exterior weather barriers, HomeShield waterproofing and WoodKeeper
-              finishes. Every litre is tinted in-store from official bases, so the shade on your
-              wall matches the shade on the card.
+              As an authorised Platinum partner, we stock the complete Berger range — premium interior emulsions, exterior weather barriers, HomeShield waterproofing, industrial floor coatings, and WoodKeeper finishes. Every product is sourced directly and tinted in-store from official bases.
             </p>
 
             <ul className="grid sm:grid-cols-2 gap-4 border-t border-neutral-light pt-6">

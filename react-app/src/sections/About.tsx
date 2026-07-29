@@ -12,10 +12,10 @@ export default function About() {
           <span className="text-[10px] font-bold text-gold uppercase tracking-widest block mb-3">Our Legacy</span>
           <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl leading-tight max-w-2xl text-white">
             Trusted since 2005.<br />
-            <span className="text-gold-light">Built on quality.</span>
+            <span className="text-gold-light">Built on expertise.</span>
           </h1>
           <p className="font-sans text-neutral-light opacity-60 text-sm sm:text-base max-w-lg mt-4 leading-relaxed">
-            For over two decades, we have been the primary retail partner for premium interior decor and paint supplies on Hinkal Ring Road, Mysuru.
+            For over two decades, we have been the preferred surface solutions partner for homeowners, architects, contractors, and industrial clients across Mysuru.
           </p>
         </div>
       </div>
@@ -28,13 +28,13 @@ export default function About() {
           <div className="lg:col-span-7 flex flex-col gap-6">
             <span className="text-[10px] font-bold text-accent uppercase tracking-wider block">Our Core Principles</span>
             <h2 className="font-display font-bold text-primary text-3xl">
-              Mysuru’s Premium Paint Experience Centre
+              Mysuru's Trusted Surface Solutions Partner
             </h2>
             <p className="font-sans text-neutral-mid text-sm leading-relaxed">
-              Founded in 2005, Sri Nimishamba Paints &amp; Plywoods has grown from a local retail supplier into a high-end experience centre. We specialize in computer color mixing tinting systems, texture wall designs, structural waterproofing diagnostics, and premium wood/metal lacquer supplies.
+              Founded in 2005, Sri Nimishamba Paints &amp; Plywoods has grown from a local supplier into a comprehensive surface solutions company. We specialise in precision colour tinting, decorative texture systems, structural waterproofing, industrial floor coatings, and premium wood and metal finishes.
             </p>
             <p className="font-sans text-neutral-mid text-sm leading-relaxed">
-              We work directly with India’s leading paint manufacturers, primarily holding the Platinum Dealer authorization from **Berger Paints**. This direct relation ensures our stock is always genuine, fresh, and free from retail shelf-life compromises.
+              We work directly with India's leading coating manufacturers, holding the Platinum Partner authorisation from <strong>Berger Paints</strong>. This direct relationship ensures our entire product portfolio is genuine, factory-fresh, and backed by manufacturer warranties.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
@@ -43,8 +43,8 @@ export default function About() {
                   <CheckCircle className="w-5 h-5 text-accent" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-primary text-sm mb-1">Contractor Relations</h4>
-                  <p className="font-sans text-neutral-mid text-xs leading-normal">Specialized pricing structures, trade accounts, and logistics support for local decorators.</p>
+                  <h4 className="font-display font-bold text-primary text-sm mb-1">Project Partnerships</h4>
+                  <p className="font-sans text-neutral-mid text-xs leading-normal">Dedicated trade accounts, bulk pricing, and logistics support for contractors, builders, and facility managers.</p>
                 </div>
               </div>
 
@@ -53,8 +53,8 @@ export default function About() {
                   <Users className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-primary text-sm mb-1">Designer Collaborations</h4>
-                  <p className="font-sans text-neutral-mid text-xs leading-normal">Assisting architects and interior decorators with customized shade mixing and swatch sample tinting.</p>
+                  <h4 className="font-display font-bold text-primary text-sm mb-1">Architect & Designer Specifications</h4>
+                  <p className="font-sans text-neutral-mid text-xs leading-normal">Custom shade mixing, material sample provisioning, and specification support for design professionals.</p>
                 </div>
               </div>
             </div>
@@ -69,14 +69,14 @@ export default function About() {
               </div>
               <div>
                 <span className="font-display font-extrabold text-primary text-4xl">5,000+</span>
-                <span className="font-sans text-[10px] font-bold text-neutral-mid uppercase tracking-wider block mt-1">Happy Clients</span>
+                <span className="font-sans text-[10px] font-bold text-neutral-mid uppercase tracking-wider block mt-1">Projects Completed</span>
               </div>
             </div>
             
             <div className="border-b border-neutral-light pb-6 flex items-center justify-between">
               <div>
                 <span className="font-display font-extrabold text-primary text-4xl">2,500+</span>
-                <span className="font-sans text-[10px] font-bold text-neutral-mid uppercase tracking-wider block mt-1">Computer Shades</span>
+                <span className="font-sans text-[10px] font-bold text-neutral-mid uppercase tracking-wider block mt-1">Precision Shades</span>
               </div>
               <div>
                 <span className="font-display font-extrabold text-primary text-4xl">100%</span>
@@ -87,8 +87,8 @@ export default function About() {
             <div className="flex items-center gap-4 bg-white p-5 rounded-2xl border border-neutral-light">
               <Award className="w-10 h-10 text-gold flex-shrink-0" />
               <div className="flex flex-col leading-snug">
-                <strong className="font-display text-primary text-sm font-bold">Berger Platinum Showroom</strong>
-                <span className="font-sans text-[10px] text-neutral-mid leading-relaxed">Certified experience store under manufacturer auditing protocols.</span>
+                <strong className="font-display text-primary text-sm font-bold">Berger Platinum Partner</strong>
+                <span className="font-sans text-[10px] text-neutral-mid leading-relaxed">Certified experience centre under manufacturer auditing protocols.</span>
               </div>
             </div>
           </div>
@@ -96,16 +96,16 @@ export default function About() {
         </div>
       </section>
 
-      {/* Customer Reviews Slider */}
+      {/* Customer Reviews */}
       <section className="py-24 bg-neutral-soft border-t border-neutral-light">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-xl mx-auto mb-16">
             <span className="text-[10px] font-bold text-accent uppercase tracking-wider block mb-2">Testimonials</span>
             <h2 className="font-display font-bold text-primary text-3xl sm:text-4xl">
-              What Our Customers Say
+              What Our Clients Say
             </h2>
             <p className="font-sans text-neutral-mid text-sm mt-3">
-              We are proud to serve homeowners, contractors, and builders. Read reviews from verified showroom visitors.
+              We are proud to serve homeowners, contractors, architects, and commercial clients. Read verified reviews from our project partners.
             </p>
           </div>
 

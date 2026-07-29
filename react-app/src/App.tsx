@@ -2,11 +2,11 @@ import { useState } from 'react';
 import Navigation from './sections/Navigation';
 import Hero from './sections/Hero';
 import Brands from './sections/Brands';
-import Products from './sections/Products';
+import Solutions from './sections/Solutions';
 import Projects from './sections/Projects';
 import Reviews from './sections/Reviews';
 import Services from './sections/Services';
-import WhyChooseUs from './sections/WhyChooseUs';
+import WhoWeServe from './sections/WhoWeServe';
 import PaintInspiration from './sections/PaintInspiration';
 import ColourTrends from './sections/ColourTrends';
 import PaintCalculator from './sections/PaintCalculator';
@@ -71,7 +71,7 @@ export default function App() {
             {/* Hero Section */}
             <Hero setCurrentTab={setCurrentTab} openQuoteModal={() => openQuoteModal()} />
             
-            {/* Brands Section */}
+            {/* Brands / Dealer Credentials */}
             <Brands />
 
             {/* Curated Color Bento Strip & Trends (Home view) */}
@@ -84,7 +84,7 @@ export default function App() {
                     Discover Signature Combinations
                   </h2>
                   <p className="font-sans text-neutral-mid text-sm mt-3">
-                    Preview our digital colour studio. Click any shade below to open the Material Mood Board and explore palettes against real interior finishes.
+                    Explore our digital colour studio. Select any shade below to visualise it against real interior materials in our Material Mood Board.
                   </p>
                 </div>
 
@@ -142,8 +142,8 @@ export default function App() {
               </div>
             </section>
 
-            {/* Why Choose Us Section */}
-            <WhyChooseUs />
+            {/* Who We Serve (replaces WhyChooseUs) */}
+            <WhoWeServe openQuoteModal={openQuoteModal} />
 
             {/* Featured Schemes with drag-to-compare shade preview */}
             <Projects openQuoteModal={openQuoteModal} />
@@ -151,29 +151,29 @@ export default function App() {
             {/* Verified customer reviews */}
             <Reviews />
 
-            {/* Visualizer Promo Band (Glassmorphic) */}
+            {/* Project Consultation CTA Band */}
             <section className="py-20 bg-primary text-white text-center relative overflow-hidden border-b border-white border-opacity-5">
               <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary-dark opacity-90 z-0" />
               <div className="max-w-4xl mx-auto px-6 relative z-10">
-                <span className="text-[10px] font-bold text-gold uppercase tracking-widest block mb-3">Onsite Consultation</span>
+                <span className="text-[10px] font-bold text-gold uppercase tracking-widest block mb-3">Project Support</span>
                 <h2 className="font-display font-extrabold text-3xl sm:text-5xl leading-tight mb-4 text-white">
-                  Need Professional Colour Advice?
+                  Need Expert Surface Consultation?
                 </h2>
                 <p className="font-sans text-neutral-light opacity-65 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
-                  Arrange a technical site visit today. Our color specialists will measure your wall areas, diagnose dampness, and help select exact matching shades.
+                  Whether it's a residential repaint, a commercial fit-out, or an industrial coating specification — our experts will assess your requirements, recommend the right systems, and deliver a detailed project quotation.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4">
                   <button
-                    onClick={() => openQuoteModal('Bulk Retail / Contractor Orders')}
+                    onClick={() => openQuoteModal('Project Consultation')}
                     className="bg-white text-primary font-display text-xs font-bold uppercase tracking-wider px-8 py-4 rounded-xl hover:bg-neutral-light transition-all shadow-md text-center"
                   >
-                    Request Site Inspection
+                    Request Project Consultation
                   </button>
                   <a
                     href="tel:+919448084351"
                     className="border border-white border-opacity-20 text-white font-display text-xs font-bold uppercase tracking-wider px-8 py-4 rounded-xl hover:bg-white hover:bg-opacity-5 transition-all text-center"
                   >
-                    Call Showroom Desk
+                    Call Our Experts
                   </a>
                 </div>
               </div>
@@ -184,8 +184,8 @@ export default function App() {
           </div>
         )}
 
-        {currentTab === 'products' && (
-          <Products setCurrentTab={setCurrentTab} openQuoteModal={openQuoteModal} />
+        {currentTab === 'solutions' && (
+          <Solutions setCurrentTab={setCurrentTab} openQuoteModal={openQuoteModal} />
         )}
 
         {currentTab === 'shades' && (
@@ -194,7 +194,7 @@ export default function App() {
             <div className="bg-gradient-to-br from-primary to-primary-dark text-white py-20 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-80 h-80 bg-gold bg-opacity-10 rounded-full filter blur-3xl pointer-events-none" />
               <div className="max-w-7xl mx-auto px-6 relative z-10 text-left">
-                <span className="text-[10px] font-bold text-gold uppercase tracking-widest block mb-2">Berger Colour Studio</span>
+                <span className="text-[10px] font-bold text-gold uppercase tracking-widest block mb-2">Colour Studio</span>
                 <h1 className="font-display font-extrabold text-3xl sm:text-5xl leading-tight max-w-xl text-white">
                   The Material Mood Board Lab
                 </h1>
@@ -248,7 +248,7 @@ export default function App() {
         )}
       </main>
 
-      {/* Showroom Footer */}
+      {/* Footer */}
       <Footer 
         setCurrentTab={setCurrentTab} 
         openQuoteModal={() => openQuoteModal()} 
